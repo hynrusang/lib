@@ -16,9 +16,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/util</name>
+			<name>src/Livedata</name>
 			<type>2</type>
-			<locationURI>PROJECT_LOC/1.0/util</locationURI>
+			<locationURI>PROJECT_LOC/1.0/Livedata</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

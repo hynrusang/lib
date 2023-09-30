@@ -6,7 +6,7 @@ public class MainActivity {
     	if (MainActivity.target.equals("LiveData")) {
     		Livedata<Integer> livedata = new Livedata<Integer>(0);
             livedata.observe(it -> {
-                System.out.println(it);
+                System.out.println("data was changed:" + it);
             });
             livedata.setValue(3);
             livedata.setValue(7);

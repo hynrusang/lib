@@ -4,7 +4,7 @@
 #if defined DATAS
 
 #define type int
-#include "1.0.0/datas.h"
+#include "1.0/datas.h"
 int main() {
 	const int count = 10; const char* const _Format = "%d\t";
 	Stack* stack = newStack();
@@ -78,7 +78,7 @@ DB {
 	int data;
 };
 #include <string.h>
-#include "1.0.0/dbreader.h"
+#include "1.0/dbreader.h"
 
 bool filter(DB* db, char* name) {
 	return !strcmp(db->name, name);
@@ -109,7 +109,7 @@ int main() {
 #elif defined LIVEDATA
 
 #define livetype int
-#include "1.0.0/livedata.h"
+#include "1.0/livedata.h"
 #include <time.h>
 #include <stdlib.h>
 

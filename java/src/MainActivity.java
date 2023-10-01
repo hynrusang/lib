@@ -1,3 +1,4 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 
@@ -24,15 +25,14 @@ public class MainActivity {
     	case "Document":
     		new Body(
     			new Fragment(
-    				new Fragment(
-    					new JButton[] {
-    						new JButton("bt1"), 
-    						new JButton("bt2"), 
-    						new JButton("bt3")
-    					}
-    				)
-    				.withStyle.layout(new GridLayout(3, 1, 1, 10)).background(Color.blue).end()
-    			), "West"
+        		    new Fragment(
+        		    	new JButton[] {
+        		    		new JButton("bt1"), 
+        		    		new JButton("bt2"), 
+        		    		new JButton("bt3")
+        		    	}
+        		    ).withStyle.layout(new GridLayout(3, 1, 1, 10)).background(Color.blue).end()
+        		)
     		).withStyle.title("hello, world!").size(1040, 720).end();
     		break;
     	}

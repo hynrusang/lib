@@ -40,20 +40,8 @@ public class Body extends JFrame {
 		setSize(720, 440);
 		setVisible(true);
 	}
-	public Body(Component element) {
-		this();
-		add(element);
-	}
-	public Body(Component element, String placement) {
-		this();
-		add(element, placement);
-	}
-	public Body(Component[] elements) {
+	public Body(Component... elements) {
 		this();
 		for (Component element: elements) add(element);
-	}
-	public Body(Component[] elements, String[] placements) {
-		this();
-		for (int i = 0; i < elements.length; i++) add(elements[i], placements[i]);
 	}
 }

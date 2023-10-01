@@ -31,17 +31,7 @@ public class Fragment extends JPanel {
 		}
 	}
 	public Style withStyle = new Style();
-	public Fragment() { };
-	public Fragment(Component element) {
-		add(element);
-	}
-	public Fragment(Component element, String placement) {
-		add(element, placement);
-	}
-	public Fragment(Component[] elements) {
+	public Fragment(Component... elements) {
 		for (Component element: elements) add(element);
-	}
-	public Fragment(Component[] elements, String[] placements) {
-		for (int i = 0; i < elements.length; i++) add(elements[i], placements[i]);
 	}
 }

@@ -1,7 +1,12 @@
+import java.awt.Component;
+
+import javax.swing.JButton;
+
 import util.Livedata;
+import util.Document.Body;
 
 public class MainActivity {
-	private static String target = "Livedata";
+	private static String target = "Document";
     public static void main(String[] args) {
     	switch (MainActivity.target) {
     	case "Livedata":
@@ -13,6 +18,10 @@ public class MainActivity {
             livedata.setValue(7);
             livedata.setValue(7);
             livedata.setValue(9);
+    		break;
+    	case "Document":
+    		Body body = new Body();
+    		body.style.setTitle("hello, world!").setSize(1040, 720);
     		break;
     	}
     }

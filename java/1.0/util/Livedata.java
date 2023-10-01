@@ -1,13 +1,15 @@
-package Livedata;
+package util;
 
 /**
  * An class that has an initial value and automatically executes a observer function when the value changes.
  * @param <T> instanceof Object
  */
 public class Livedata<T> {
+	public static interface Observer<T> {
+		void function(T it);
+	}
     private T value;
     private Observer<T> observer;
-    
     /**
      * get <b>value</b> of livedata.<br>
      * @return value of livedata
@@ -24,7 +26,7 @@ public class Livedata<T> {
     public boolean setValue(T value) {
         if (this.value.equals(value)) return false;
         this.value = value;
-        this.observer.func(this.value);
+        this.observer.function(this.value);
         return true;
     }
     /**

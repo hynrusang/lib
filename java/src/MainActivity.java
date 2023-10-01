@@ -1,7 +1,3 @@
-import java.awt.Component;
-
-import javax.swing.JButton;
-
 import util.Livedata;
 import util.Document.Body;
 

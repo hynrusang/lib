@@ -1,5 +1,9 @@
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+
 import javax.swing.JButton;
 
 import util.Livedata;
@@ -22,10 +26,16 @@ public class MainActivity {
     		break;
     	case "Document":
     		Html html = new Html("font: Arial, 24; windows: 1040, 720");
+    		Fragment side = new Fragment(target).customize.background(Color.BLUE).end();
+    		side.addComponentListener(new ComponentAdapter() {
+    			@Override
+    			public void componentResized(ComponentEvent e) {
+    				Container parent = e.getComponent().getParent();
+    				e.getComponent().setSize(parent.getWidth() / 2, 60);
+    			}
+    		});
     		Fragment first = new Fragment(null,
-    			new JButton("bt1"),
-            	new JButton("bt2"),
-            	new JButton("bt3")
+    			side
     		).customize.layout(new FlowLayout(FlowLayout.LEFT)).background(Color.GRAY).end();
     		
     		html.onCreate(first);

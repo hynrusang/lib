@@ -29,11 +29,6 @@ public class Html extends JFrame {
 			Html.this.setBackground(color);
 			return this;
 		}
-
-		public Style title(String title) {
-			Html.this.setTitle(title);
-			return this;
-		}
 		
 		public Html end() {
 			return Html.this;

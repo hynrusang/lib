@@ -35,7 +35,7 @@ public class MainActivity {
     		            new JButton("bt3")
     		        ).withStyle.layout(new GridLayout(3, 1, 1, 10)).end()
     			).withStyle.layout(new FlowLayout(FlowLayout.LEFT)).background(Color.GRAY).end()
-    		).withStyle.title("hello, world!").size(1040, 720).end();
+    		).withStyle.size(1040, 720).end();
     		break;
     	}
     }

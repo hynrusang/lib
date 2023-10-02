@@ -24,13 +24,14 @@ public class MainActivity {
             livedata.setValue(9);
     		break;
     	case "Document":
+    		Html html = new Html();
     		Fragment first = new Fragment(null,
     			new JButton("bt1"),
             	new JButton("bt2"),
             	new JButton("bt3")
     		).customize.layout(new FlowLayout(FlowLayout.LEFT)).background(Color.GRAY).end();
     		
-    		Html.onCreate("font: Arial, 24; windows: 1040, 720", first);
+    		html.onCreate("font: Arial, 24; windows: 1040, 720", first);
     		break;
     	}
     }

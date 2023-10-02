@@ -6,36 +6,47 @@ import java.awt.Font;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Html extends JFrame {
-	private static ArrayList<Component> children = new ArrayList<Component>();
-	private static JFrame html;
-	private static JLabel head;
-	private static Fragment body;
+	private ArrayList<Component> children = new ArrayList<Component>();
+	private JLabel head;
+	private Fragment body;
 	
-	public static void appendChild(Component component) {
-		html.add(component);
+	public void appendChild(Component component) {
+		add(component);
 		children.add(component);
 	}
-	public static void appendChild(Component component, Object constraints) {
-		html.add(component, constraints);
+	public void appendChild(Component component, Object constraints) {
+		add(component, constraints);
 		children.add(component);
 	}
-	public static void removeChild(Component component) {
-		html.remove(component);
+	public void removeChild(Component component) {
+		remove(component);
 		children.remove(component);
 	}
-	public static void onCreate(String headers, Fragment bundle) {
-		if (html != null) throw new RuntimeException("html was already created.");
-		html = new JFrame();
-		head = new JLabel();
+	public void onCreate(Fragment bundle) {
+		if (head != null) throw new RuntimeException("html was already created.");
 		body = bundle;
 		
-		html.addComponentListener(new ComponentListener() {
+		head.setText("document: " + (body.getName() != null ? body.getName() : "index"));
+		appendChild(body, BorderLayout.CENTER);
+		setVisible(true);
+	}
+	public void onReplace(Fragment bundle) {
+		head.setText("document: " + (body.getName() != null ? body.getName() : "index"));
+		
+		removeChild(body);
+		appendChild(bundle, BorderLayout.CENTER);
+		body = bundle;
+		repaint();
+	}
+	public Html() { 
+		head = new JLabel();
+		appendChild(head, BorderLayout.NORTH);
+		addComponentListener(new ComponentListener() {
 			@Override
 			public void componentResized(ComponentEvent e) {
 				children.forEach(child -> child.dispatchEvent(new ComponentEvent(child, ComponentEvent.COMPONENT_RESIZED)));
@@ -56,24 +67,13 @@ public class Html extends JFrame {
 				children.forEach(child -> child.dispatchEvent(new ComponentEvent(child, ComponentEvent.COMPONENT_HIDDEN)));
 			}
 		});
-		if (headers != null) for (String header: headers.split(";")) {
-			String[] spliter = Arrays.stream(header.split(":")[1].split(",")).map(String::trim).toArray(String[]::new);
-			if (header.indexOf("font") != -1) head.setFont(new Font(spliter[0], Font.PLAIN, Integer.parseInt(spliter[1])));
-			else if (header.indexOf("windows") != -1) html.setSize(Integer.parseInt(spliter[0]), Integer.parseInt(spliter[1]));
+	};
+	public Html(String headers) {
+		this();
+		for (String header: headers.split(";")) {
+			String[] spliter = header.split(":")[1].split(",");
+			if (header.indexOf("font") != -1) head.setFont(new Font(spliter[0].trim(), Font.PLAIN, Integer.parseInt(spliter[1].trim())));
+			else if (header.indexOf("windows") != -1) setSize(Integer.parseInt(spliter[0].trim()), Integer.parseInt(spliter[1].trim()));
 		}
-		head.setText("document: " + (body.getName() != null ? body.getName() : "index"));
-		
-		html.add(head, BorderLayout.NORTH);
-		appendChild(body, BorderLayout.CENTER);
-		html.setVisible(true);
-	}
-	public static void onReplace(Fragment bundle) {
-		removeChild(body);
-		body = bundle;
-		
-		head.setText("document: " + (body.getName() != null ? body.getName() : "index"));
-		
-		appendChild(bundle, BorderLayout.CENTER);
-		html.repaint();
 	}
 }

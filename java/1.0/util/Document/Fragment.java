@@ -8,6 +8,7 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JPanel;
 
 public class Fragment extends JPanel {
+	private static final long serialVersionUID = 1L;
 	private String name;
 	
 	public class Customize implements HTMLCustomize<Customize, Fragment> {

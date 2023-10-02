@@ -87,7 +87,7 @@ public class Fragment extends JPanel {
 	}
 	/**
 	 * Create a unique semantic tag that makes up different pages within the Html tag.
-	 * @param id Unique name value for Fragment
+	 * @param id Unique name for Fragment
 	 * @param components Elements to Set as Subcomponents
 	 */
 	public Fragment(String id, Component... components) {

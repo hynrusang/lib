@@ -14,14 +14,11 @@ public class Html extends JFrame {
 	 * @param bundle Fragment to be transitioned anew
 	 */
 	public void onCreate(Fragment bundle) {
-		if (!bundle.getId().equals(body.getId())) {
-			head.setText("document: " + (bundle.getId() != null ? bundle.getId() : "index"));
-			
-			if (body != null) remove(body);
-			add(bundle, BorderLayout.CENTER);
-			body = bundle;
-			repaint();
-		}
+		head.setText("document: " + (bundle.getId() != null ? bundle.getId() : "index"));
+		if (body != null) remove(body);
+		add(bundle, BorderLayout.CENTER);
+		body = bundle;
+		repaint();
 	}
 	/**
 	 * Create the only main component to configure one Windows window.

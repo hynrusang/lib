@@ -1,14 +1,11 @@
 package util.Document;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.LayoutManager;
 import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class Html extends JFrame {
 	private static final long serialVersionUID = 1L;

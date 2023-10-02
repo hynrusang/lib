@@ -7,33 +7,32 @@ import javax.swing.JPanel;
 
 public class Fragment extends JPanel {
 	private String name;
-	public class Style implements StyleSet<Fragment, Style> {
+	public class Style implements StyleSet<Style, Fragment> {
 
 		@Override
-		public StyleSet size(int x, int y) {
-			// TODO Auto-generated method stub
-			return null;
+		public Style size(int x, int y) {
+			Fragment.this.setSize(x, y);
+			return this;
 		}
 
 		@Override
-		public StyleSet layout(LayoutManager layout) {
-			// TODO Auto-generated method stub
-			return null;
+		public Style layout(LayoutManager layout) {
+			Fragment.this.setLayout(layout);
+			return this;
 		}
 
 		@Override
-		public StyleSet background(Color color) {
-			// TODO Auto-generated method stub
-			return null;
+		public Style background(Color color) {
+			Fragment.this.setBackground(color);
+			return this;
 		}
 
 		@Override
 		public Fragment end() {
-			// TODO Auto-generated method stub
-			return null;
+			return Fragment.this;
 		}
-		
 	}
+	public Style withStyle = new Style();
 	public String getName() {
 		return name;
 	}

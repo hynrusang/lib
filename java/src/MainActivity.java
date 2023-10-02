@@ -1,7 +1,5 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+
 import javax.swing.JButton;
 
 import util.Livedata;
@@ -23,12 +21,12 @@ public class MainActivity {
             livedata.setValue(9);
     		break;
     	case "Document":
-    		Html.setHeader("font: Arial, 20; windows: 1040, 720");
+    		Html.setHeader("font: Arial, 24; windows: 1040, 720");
     		Fragment first = new Fragment(null,
     			new JButton("bt1"),
             	new JButton("bt2"),
             	new JButton("bt3")
-    		);
+    		).withStyle.background(Color.BLUE).end();
     		Html.onCreate(first);
     		break;
     	}

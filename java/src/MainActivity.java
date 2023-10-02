@@ -1,12 +1,11 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 
 import util.Livedata;
-import util.Document.Body;
 import util.Document.Fragment;
-import util.Document.Head;
 import util.Document.Html;
 
 public class MainActivity {
@@ -24,18 +23,13 @@ public class MainActivity {
             livedata.setValue(9);
     		break;
     	case "Document":
-    		new Html(
-    			new Head(null, new String[] {
-    				"url-font: Arial, 20"
-    			}),
-    			new Body(
-    				new Fragment(
-    		        	new JButton("bt1"), 
-    		            new JButton("bt2"), 
-    		            new JButton("bt3")
-    		        ).withStyle.layout(new GridLayout(3, 1, 1, 10)).end()
-    			).withStyle.layout(new FlowLayout(FlowLayout.LEFT)).background(Color.GRAY).end()
-    		).withStyle.size(1040, 720).end();
+    		Html.setHeader("font: Arial, 20; windows: 1040, 720");
+    		Fragment first = new Fragment(null,
+    			new JButton("bt1"),
+            	new JButton("bt2"),
+            	new JButton("bt3")
+    		);
+    		Html.onCreate(first);
     		break;
     	}
     }

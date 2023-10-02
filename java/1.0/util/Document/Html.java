@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Html extends JFrame {
+	private static final long serialVersionUID = 1L;
 	public JPanel head;
 	public JPanel body;
 	public class Style implements StyleSet {

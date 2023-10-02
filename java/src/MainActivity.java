@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 
@@ -26,7 +27,7 @@ public class MainActivity {
     			new JButton("bt1"),
             	new JButton("bt2"),
             	new JButton("bt3")
-    		).withStyle.background(Color.BLUE).end();
+    		).withStyle.layout(new FlowLayout(FlowLayout.LEFT)).background(Color.GRAY).end();
     		Html.onCreate(first);
     		break;
     	}

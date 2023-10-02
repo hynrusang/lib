@@ -26,13 +26,13 @@ struct dbReader {
 };
 
 int DBReader$find(DBReader* dbReader, void* data, bool (*filter)(DB* _Structure, void* _Target)) {
-	DB* temp = (DB*)malloc(sizeof(DB));
-	if (!temp) {
+	DB* buffer = (DB*)malloc(sizeof(DB));
+	if (!buffer) {
 		_memory_is_full;
 		return -2;
 	}
 	fseek(dbReader->_file, 0, SEEK_SET);
-	for (int pos = 0; fread(temp, sizeof(DB), 1, dbReader->_file); pos++) if (filter(temp, data)) return pos;
+	for (int pos = 0; fread(buffer, sizeof(DB), 1, dbReader->_file); pos++) if (filter(buffer, data)) return pos;
 	return -2;
 }
 bool DBReader$read(DBReader* dbReader, DB* data, int pos) {
@@ -61,7 +61,7 @@ DBReader* newDBReader(char* url) {
 		temp->write = DBReader$write;
 		temp->rewrite= DBReader$rewrite;
 
-		void* buffer = malloc(sizeof(DB));
+		DB* buffer = (DB*)malloc(sizeof(DB));
 		if (!buffer) {
 			_memory_is_full;
 			free(temp);

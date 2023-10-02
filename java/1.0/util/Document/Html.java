@@ -1,32 +1,54 @@
 package util.Document;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Html extends JFrame {
-	private static final long serialVersionUID = 1L;
+	static ArrayList<Component> children;
 	private static JFrame html;
 	private static JLabel head;
 	private static Fragment body;
-	private static void reloadTitle() {
-		head.setText("document: " + (body.getName() != null ? body.getName() : "index"));
-	}
 	public static void onCreate(String headers, Fragment bundle) {
 		if (html != null) throw new RuntimeException("html was already created.");
 		html = new JFrame();
 		head = new JLabel();
 		body = bundle;
 		
+		html.addComponentListener(new ComponentListener() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				children.forEach(child -> child.dispatchEvent(new ComponentEvent(child, ComponentEvent.COMPONENT_RESIZED)));
+			}
+
+			@Override
+			public void componentMoved(ComponentEvent e) {
+				children.forEach(child -> child.dispatchEvent(new ComponentEvent(child, ComponentEvent.COMPONENT_MOVED)));
+			}
+
+			@Override
+			public void componentShown(ComponentEvent e) {
+				children.forEach(child -> child.dispatchEvent(new ComponentEvent(child, ComponentEvent.COMPONENT_SHOWN)));
+			}
+
+			@Override
+			public void componentHidden(ComponentEvent e) {
+				children.forEach(child -> child.dispatchEvent(new ComponentEvent(child, ComponentEvent.COMPONENT_HIDDEN)));
+			}
+		});
 		if (headers != null) for (String header: headers.split(";")) {
 			String[] spliter = Arrays.stream(header.split(":")[1].split(",")).map(String::trim).toArray(String[]::new);
 			if (header.indexOf("font") != -1) head.setFont(new Font(spliter[0], Font.PLAIN, Integer.parseInt(spliter[1])));
 			else if (header.indexOf("windows") != -1) html.setSize(Integer.parseInt(spliter[0]), Integer.parseInt(spliter[1]));
 		}
-		reloadTitle();
+		head.setText("document: " + (body.getName() != null ? body.getName() : "index"));
 		
 		html.add(head, BorderLayout.NORTH);
 		html.add(body, BorderLayout.CENTER);
@@ -36,7 +58,7 @@ public class Html extends JFrame {
 		html.remove(body);
 		body = bundle;
 		
-		reloadTitle();
+		head.setText("document: " + (body.getName() != null ? body.getName() : "index"));
 		
 		html.add(bundle);
 		html.repaint();

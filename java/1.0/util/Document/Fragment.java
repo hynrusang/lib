@@ -7,8 +7,10 @@ import javax.swing.JPanel;
 
 public class Fragment extends JPanel {
 	private String name;
-	public class Style implements StyleSet<Style, Fragment> {
-
+	public String getName() {
+		return name;
+	}
+	public class Style implements HTMLStyle<Style, Fragment> {
 		@Override
 		public Style size(int x, int y) {
 			Fragment.this.setSize(x, y);
@@ -33,9 +35,6 @@ public class Fragment extends JPanel {
 		}
 	}
 	public Style withStyle = new Style();
-	public String getName() {
-		return name;
-	}
 	public Fragment(String name, Component... components) {
 		this.name = name;
 		for (Component component: components) add(component);

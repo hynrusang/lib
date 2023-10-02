@@ -19,7 +19,7 @@ public class MainActivity {
             livedata.setValue(9);
     		break;
     	case "Document":
-    		Html html = new Html("font: Arial, 24; windows: 1040, 720");
+    		Html html = new Html("font: Arial, 20; windows: 1040, 720");
     		Fragment first = new Fragment(null,
     			new Div().style.size("100%", "60px").position("0px", "0px").background(Color.RED).end(),
     			new Div().style.size(20, 0, 100, -120).position("0px", "60px").background(Color.GREEN).end(),

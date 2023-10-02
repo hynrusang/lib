@@ -3,6 +3,7 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 import javax.swing.JButton;
 
@@ -12,7 +13,7 @@ import util.Document.Html;
 
 public class MainActivity {
 	private static String target = "Document";
-    public static void main(String[] args) {
+	public static void main(String[] args) {
     	switch (MainActivity.target) {
     	case "Livedata":
     		Livedata<Integer> livedata = new Livedata<Integer>(0);
@@ -26,18 +27,9 @@ public class MainActivity {
     		break;
     	case "Document":
     		Html html = new Html("font: Arial, 24; windows: 1040, 720");
-    		Fragment side = new Fragment(target).customize.background(Color.BLUE).end();
-    		side.addComponentListener(new ComponentAdapter() {
-    			@Override
-    			public void componentResized(ComponentEvent e) {
-    				Container parent = e.getComponent().getParent();
-    				e.getComponent().setSize(parent.getWidth() / 2, 60);
-    			}
-    		});
     		Fragment first = new Fragment(null,
-    			side
+    			new Fragment(null).customize.size("40%", "60px").end()
     		).customize.layout(new FlowLayout(FlowLayout.LEFT)).background(Color.GRAY).end();
-    		
     		html.onCreate(first);
     		break;
     	}

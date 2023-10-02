@@ -10,17 +10,25 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class Fragment extends JPanel {
-	ArrayList<Component> children = new ArrayList<Component>();
-	
+	private ArrayList<Component> children = new ArrayList<Component>();
 	private String name;
 	
 	public class Customize implements HTMLCustomize<Customize, Fragment> {
 		@Override
-		public Customize size(int x, int y) {
-			Fragment.this.setSize(x, y);
+		public Customize size(String width, String height) {
+			int widthRange = Integer.parseInt(width.replaceAll("[^0-9]", ""));
+			int heightRange = Integer.parseInt(height.replaceAll("[^0-9]", ""));
+			Fragment.this.addComponentListener(new ComponentAdapter() {
+				public void componentResized(ComponentEvent e) {
+					Component parent = e.getComponent().getParent();
+					int newWidth = (width.indexOf("%") != -1) ? parent.getWidth() * widthRange / 100 : widthRange;
+					int newHeight = (height.indexOf("%") != -1) ? parent.getHeight() * heightRange / 100 : heightRange;
+					Fragment.this.setSize(newWidth, newHeight);
+				}
+			});
 			return this;
 		}
-
+		
 		@Override
 		public Customize layout(LayoutManager layout) {
 			Fragment.this.setLayout(layout);

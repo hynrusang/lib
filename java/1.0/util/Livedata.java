@@ -19,7 +19,7 @@ public class Livedata<T> {
      * set <b>value</b> of livedata.<br>
      * if data was changed, call <b>observer</b> function.<br>
      * (Check with the <b>equals</b> method of the object)
-     * @param value T
+     * @param value new value to set
      * @return whether data was changed. 
      * .</pre>
      */
@@ -32,7 +32,7 @@ public class Livedata<T> {
     /**
      * Registers an <b>observer</b> function to call when the value of livedata changes.<br>
      * The observer function is written in the form of a <b>Lambda</b> function.
-     * @param observer T -> void
+     * @param observer Lambda function to run automatically when the value changes
      */
     public void observe(Observer<T> observer) { this.observer = observer; }
     public Livedata(T value) { this.value = value; }

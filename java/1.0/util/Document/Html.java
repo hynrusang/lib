@@ -8,20 +8,33 @@ public class Html extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JLabel head;
 	private Fragment body;
-
+	
+	/**
+	 * Switch the current fragment to the newly received fragment.
+	 * @param bundle Fragment to be transitioned anew
+	 */
 	public void onCreate(Fragment bundle) {
-		head.setText("document: " + (bundle.getName() != null ? bundle.getName() : "index"));
-		
-		if (body != null) remove(body);
-		add(bundle, BorderLayout.CENTER);
-		body = bundle;
-		repaint();
+		if (!bundle.getId().equals(body.getId())) {
+			head.setText("document: " + (bundle.getId() != null ? bundle.getId() : "index"));
+			
+			if (body != null) remove(body);
+			add(bundle, BorderLayout.CENTER);
+			body = bundle;
+			repaint();
+		}
 	}
+	/**
+	 * Create the only main component to configure one Windows window.
+	 */
 	public Html() { 
 		head = new JLabel();
 		add(head, BorderLayout.NORTH);
 		setVisible(true);
 	};
+	/**
+	 * Create the only main component to configure one Windows window.
+	 * @param headers String to be set as one header consisting of a combination of strings
+	 */
 	public Html(String headers) {
 		this();
 		for (String header: headers.split(";")) {

@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class Fragment extends JPanel {
 	private static final long serialVersionUID = 1L;
-	private String name;
+	private String id;
 	
 	public class Style implements HTMLStyle<Style, Fragment> {
 		@Override
@@ -78,12 +78,20 @@ public class Fragment extends JPanel {
 			return Fragment.this;
 		}
 	}
+	/**
+	 * Open a method chain that allows you to edit the style of this component.
+	 */
 	public Style style = new Style();
-	public String getName() {
-		return name;
+	String getId() {
+		return id;
 	}
-	public Fragment(String name, Component... components) {
-		this.name = name;
+	/**
+	 * Create a unique semantic tag that makes up different pages within the Html tag.
+	 * @param id Unique name value for Fragment
+	 * @param components Elements to Set as Subcomponents
+	 */
+	public Fragment(String id, Component... components) {
+		this.id = id;
 		for (Component component: components) add(component);
 	}
 }

@@ -75,7 +75,14 @@ public class Div extends JPanel {
 			return Div.this;
 		}
 	}
+	/**
+	 * Open a method chain that allows you to edit the style of this component.
+	 */
 	public Style style = new Style();
+	/**
+	 * Create a empty box to hold the swing components.
+	 * @param components Elements to Set as Subcomponents
+	 */
 	public Div(Component... components) {
 		for (Component component: components) add(component);
 	}

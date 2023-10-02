@@ -27,6 +27,21 @@ public class Fragment extends JPanel {
 		}
 		
 		@Override
+		public Customize position(String x, String y) {
+			int xRange = Integer.parseInt(x.replaceAll("[^0-9]", ""));
+			int yRange = Integer.parseInt(y.replaceAll("[^0-9]", ""));
+			Fragment.this.addComponentListener(new ComponentAdapter() {
+				public void componentResized(ComponentEvent e) {
+					Component parent = e.getComponent().getParent();
+					int newX = (x.indexOf("%") != -1) ? parent.getWidth() * xRange / 100 :xRange;
+					int newY = (y.indexOf("%") != -1) ? parent.getHeight() * yRange / 100 : yRange;
+					Fragment.this.setLocation(newX, newY);
+				}
+			});
+			return this;
+		}
+		
+		@Override
 		public Customize layout(LayoutManager layout) {
 			Fragment.this.setLayout(layout);
 			return this;

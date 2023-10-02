@@ -5,6 +5,7 @@ import java.awt.LayoutManager;
 
 public interface HTMLCustomize<T, F extends Component> {
 	public T size(String width, String height);
+	public T position(String x, String y);
 	public T layout(LayoutManager layout);
 	public T background(Color color);
 	public F end();

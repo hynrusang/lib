@@ -16,6 +16,7 @@ public class Html extends JFrame {
 		head.setText("document: " + (body.getName() != null ? body.getName() : "index"));
 	}
 	public static void onCreate(String headers, Fragment bundle) {
+		if (html != null) throw new RuntimeException("html was already created.");
 		html = new JFrame();
 		head = new JLabel();
 		body = bundle;

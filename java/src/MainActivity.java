@@ -28,7 +28,9 @@ public class MainActivity {
     	case "Document":
     		Html html = new Html("font: Arial, 24; windows: 1040, 720");
     		Fragment first = new Fragment(null,
-    			new Fragment(null).customize.size("40%", "60px").end()
+    			new Fragment(null).customize.size("40%", "40px").end(),
+    			new Fragment(null).customize.size("40px", "40%").end(),
+    			new Fragment(null).customize.size("20%", "20%").end()
     		).customize.layout(new FlowLayout(FlowLayout.LEFT)).background(Color.GRAY).end();
     		html.onCreate(first);
     		break;

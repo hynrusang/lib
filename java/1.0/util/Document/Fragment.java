@@ -67,12 +67,6 @@ public class Fragment extends JPanel {
 			});
 			return this;
 		}
-		
-		@Override
-		public Customize layout(LayoutManager layout) {
-			Fragment.this.setLayout(layout);
-			return this;
-		}
 
 		@Override
 		public Customize background(Color color) {

@@ -2,8 +2,6 @@ package util.Document;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,27 +21,6 @@ public class Html extends JFrame {
 	public Html() { 
 		head = new JLabel();
 		add(head, BorderLayout.NORTH);
-		addComponentListener(new ComponentListener() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				if (body != null) body.dispatchEvent(new ComponentEvent(body, ComponentEvent.COMPONENT_RESIZED));
-			}
-
-			@Override
-			public void componentMoved(ComponentEvent e) {
-				if (body != null) body.dispatchEvent(new ComponentEvent(body, ComponentEvent.COMPONENT_MOVED));
-			}
-
-			@Override
-			public void componentShown(ComponentEvent e) {
-				if (body != null) body.dispatchEvent(new ComponentEvent(body, ComponentEvent.COMPONENT_SHOWN));
-			}
-
-			@Override
-			public void componentHidden(ComponentEvent e) {
-				if (body != null) body.dispatchEvent(new ComponentEvent(body, ComponentEvent.COMPONENT_HIDDEN));
-			}
-		});
 		setVisible(true);
 	};
 	public Html(String headers) {

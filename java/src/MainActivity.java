@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 
 import util.Livedata;

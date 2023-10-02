@@ -28,17 +28,9 @@ public class Html extends JFrame {
 		children.remove(component);
 	}
 	public void onCreate(Fragment bundle) {
-		if (head != null) throw new RuntimeException("html was already created.");
-		body = bundle;
+		head.setText("document: " + (bundle.getName() != null ? bundle.getName() : "index"));
 		
-		head.setText("document: " + (body.getName() != null ? body.getName() : "index"));
-		appendChild(body, BorderLayout.CENTER);
-		setVisible(true);
-	}
-	public void onReplace(Fragment bundle) {
-		head.setText("document: " + (body.getName() != null ? body.getName() : "index"));
-		
-		removeChild(body);
+		if (body != null) removeChild(body);
 		appendChild(bundle, BorderLayout.CENTER);
 		body = bundle;
 		repaint();
@@ -67,6 +59,7 @@ public class Html extends JFrame {
 				children.forEach(child -> child.dispatchEvent(new ComponentEvent(child, ComponentEvent.COMPONENT_HIDDEN)));
 			}
 		});
+		setVisible(true);
 	};
 	public Html(String headers) {
 		this();

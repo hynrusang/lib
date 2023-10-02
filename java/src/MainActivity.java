@@ -1,12 +1,4 @@
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-
-import javax.swing.JButton;
-
 import util.Livedata;
 import util.Document.Fragment;
 import util.Document.Html;
@@ -33,7 +25,7 @@ public class MainActivity {
     			new Fragment(null).customize.size(60, 0, 100, -120).position("20%", "60px").background(Color.LIGHT_GRAY).end(),
     			new Fragment(null).customize.size(20, 0, 100, -120).position("80%", "60px").background(Color.BLUE).end(),
     			new Fragment(null).customize.size("100%", "60%").position(0, 0, 80, 40).background(Color.PINK).end()
-    		).customize.layout(new FlowLayout(FlowLayout.LEFT)).end();
+    		);
     		html.onCreate(first);
     		break;
     	}

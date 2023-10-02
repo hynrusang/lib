@@ -37,6 +37,7 @@ public class Html extends JFrame {
 		body = bundle;
 		
 		reloadTitle();
+		
 		html.add(bundle);
 		html.repaint();
 	}

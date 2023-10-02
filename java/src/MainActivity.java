@@ -22,13 +22,19 @@ public class MainActivity {
             livedata.setValue(9);
     		break;
     	case "Document":
-    		Html.setHeader("font: Arial, 24; windows: 1040, 720");
     		Fragment first = new Fragment(null,
     			new JButton("bt1"),
             	new JButton("bt2"),
             	new JButton("bt3")
     		).withStyle.layout(new FlowLayout(FlowLayout.LEFT)).background(Color.GRAY).end();
-    		Html.onCreate(first);
+    		Fragment second = new Fragment("second", 
+    			new JButton("bt1"),
+                new JButton("bt2"),
+                new JButton("bt3")
+            );
+    		
+    		Html.onCreate("font: Arial, 24; windows: 1040, 720", first);
+    		Html.onReplace(second);
     		break;
     	}
     }

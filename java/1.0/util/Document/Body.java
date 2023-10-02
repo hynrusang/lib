@@ -2,9 +2,9 @@ package util.Document;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.LayoutManager;
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class Body extends JFrame {
+public class Body extends JPanel {
 	private static final long serialVersionUID = 1L;
 	public class Style implements StyleSet {
 		@Override
@@ -28,20 +28,9 @@ public class Body extends JFrame {
 		public Body end() {
 			return Body.this;
 		}
-
-		public Style title(String title) {
-			Body.this.setTitle(title);
-			return this;
-		}
 	}
 	public Style withStyle = new Style();
-	public Body() {
-		setTitle("Document");
-		setSize(720, 440);
-		setVisible(true);
-	}
 	public Body(Component... elements) {
-		this();
 		for (Component element: elements) add(element);
 	}
 }

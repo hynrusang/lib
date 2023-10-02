@@ -2,10 +2,12 @@ import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 import util.Livedata;
 import util.Document.Body;
 import util.Document.Fragment;
+import util.Document.Html;
 
 public class MainActivity {
 	private static String target = "Document";
@@ -22,14 +24,17 @@ public class MainActivity {
             livedata.setValue(9);
     		break;
     	case "Document":
-    		new Body(
+    		new Html(
     			new Fragment(
-        		    new Fragment(
-        		    	new JButton("bt1"), 
-        		    	new JButton("bt2"), 
-        		    	new JButton("bt3")
-        		    ).withStyle.layout(new GridLayout(3, 1, 1, 10)).background(Color.blue).end()
-        		)
+    				new JButton("bt1")
+        		).withStyle.background(Color.BLUE).end(),
+    			new Body(
+    				new Fragment(
+    		        	new JButton("bt1"), 
+    		            new JButton("bt2"), 
+    		            new JButton("bt3")
+    		        ).withStyle.layout(new GridLayout(3, 1, 1, 10)).end()
+    			).withStyle.background(Color.GRAY).end()
     		).withStyle.title("hello, world!").size(1040, 720).end();
     		break;
     	}

@@ -21,7 +21,7 @@ public class Html extends JFrame {
 		head = new JLabel();
 		body = bundle;
 		
-		for (String header: headers.split(";")) {
+		if (headers != null) for (String header: headers.split(";")) {
 			String[] spliter = Arrays.stream(header.split(":")[1].split(",")).map(String::trim).toArray(String[]::new);
 			if (header.indexOf("font") != -1) head.setFont(new Font(spliter[0], Font.PLAIN, Integer.parseInt(spliter[1])));
 			else if (header.indexOf("windows") != -1) html.setSize(Integer.parseInt(spliter[0]), Integer.parseInt(spliter[1]));

@@ -34,7 +34,6 @@ public class MainActivity {
             );
     		
     		Html.onCreate("font: Arial, 24; windows: 1040, 720", first);
-    		Html.onCreate("font: Arial, 24; windows: 1040, 720", second);
     		break;
     	}
     }

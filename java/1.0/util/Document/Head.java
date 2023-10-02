@@ -41,7 +41,7 @@ public class Head extends JPanel {
 	}
 	public Head(String name, String... metas) throws Exception {
 		setLayout(new FlowLayout(FlowLayout.LEFT));
-		JLabel label = new JLabel("document: " + name);
+		JLabel label = new JLabel("document: " + (name != null ? name : "index"));
 		for (String meta: metas) {
 			if (meta.indexOf("url-font") != -1) {
 				String[] syntax = meta.split(":")[1].split(",");

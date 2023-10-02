@@ -25,7 +25,7 @@ public class MainActivity {
     		break;
     	case "Document":
     		new Html(
-    			new Head("title", new String[] {
+    			new Head(null, new String[] {
     				"url-font: Arial, 20"
     			}),
     			new Body(

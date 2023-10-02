@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.JButton;
 
@@ -26,12 +28,7 @@ public class MainActivity {
     			new JButton("bt1"),
             	new JButton("bt2"),
             	new JButton("bt3")
-    		).withStyle.layout(new FlowLayout(FlowLayout.LEFT)).background(Color.GRAY).end();
-    		Fragment second = new Fragment("second", 
-    			new JButton("bt1"),
-                new JButton("bt2"),
-                new JButton("bt3")
-            );
+    		).customize.layout(new FlowLayout(FlowLayout.LEFT)).background(Color.GRAY).end();
     		
     		Html.onCreate("font: Arial, 24; windows: 1040, 720", first);
     		break;

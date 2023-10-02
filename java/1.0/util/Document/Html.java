@@ -12,10 +12,23 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Html extends JFrame {
-	static ArrayList<Component> children;
+	private static ArrayList<Component> children = new ArrayList<Component>();
 	private static JFrame html;
 	private static JLabel head;
 	private static Fragment body;
+	
+	public static void appendChild(Component component) {
+		html.add(component);
+		children.add(component);
+	}
+	public static void appendChild(Component component, Object constraints) {
+		html.add(component, constraints);
+		children.add(component);
+	}
+	public static void removeChild(Component component) {
+		html.remove(component);
+		children.remove(component);
+	}
 	public static void onCreate(String headers, Fragment bundle) {
 		if (html != null) throw new RuntimeException("html was already created.");
 		html = new JFrame();
@@ -51,16 +64,16 @@ public class Html extends JFrame {
 		head.setText("document: " + (body.getName() != null ? body.getName() : "index"));
 		
 		html.add(head, BorderLayout.NORTH);
-		html.add(body, BorderLayout.CENTER);
+		appendChild(body, BorderLayout.CENTER);
 		html.setVisible(true);
 	}
 	public static void onReplace(Fragment bundle) {
-		html.remove(body);
+		removeChild(body);
 		body = bundle;
 		
 		head.setText("document: " + (body.getName() != null ? body.getName() : "index"));
 		
-		html.add(bundle);
+		appendChild(bundle, BorderLayout.CENTER);
 		html.repaint();
 	}
 }

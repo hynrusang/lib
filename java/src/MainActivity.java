@@ -29,10 +29,10 @@ public class MainActivity {
     		Html html = new Html("font: Arial, 24; windows: 1040, 720");
     		Fragment first = new Fragment(null,
     			new Fragment(null).customize.size("100%", "40px").position("0px", "0px").background(Color.RED).end(),
-    			new Fragment(null).customize.size("20%", "80%").position("0px", "40px").background(Color.GREEN).end(),
-    			new Fragment(null).customize.size("60%", "80%").position("20%", "40px").background(Color.LIGHT_GRAY).end(),
-    			new Fragment(null).customize.size("20%", "80%").position("80%", "40px").background(Color.BLUE).end(),
-    			new Fragment(null).customize.size("100%", "40%").position("0px", "90%").background(Color.PINK).end()
+    			new Fragment(null).customize.size(20, 0, 100, -80).position("0px", "40px").background(Color.GREEN).end(),
+    			new Fragment(null).customize.size(60, 0, 100, -80).position("20%", "40px").background(Color.LIGHT_GRAY).end(),
+    			new Fragment(null).customize.size(20, 0, 100, -80).position("80%", "40px").background(Color.BLUE).end(),
+    			new Fragment(null).customize.size("100%", "40%").position(0, 0, 80, 40).background(Color.PINK).end()
     		).customize.layout(new FlowLayout(FlowLayout.LEFT)).end();
     		html.onCreate(first);
     		break;

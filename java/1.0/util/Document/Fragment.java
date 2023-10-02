@@ -27,6 +27,19 @@ public class Fragment extends JPanel {
 		}
 		
 		@Override
+		public Customize size(int widthp, int width, int heightp, int height) {
+			Fragment.this.addComponentListener(new ComponentAdapter() {
+				public void componentResized(ComponentEvent e) {
+					Component parent = e.getComponent().getParent();
+					int newWidth = parent.getWidth() * widthp / 100 + width;
+					int newHeight = parent.getHeight() * heightp / 100 + height;
+					Fragment.this.setSize(newWidth, newHeight);
+				}
+			});
+			return this;
+		}
+		
+		@Override
 		public Customize position(String x, String y) {
 			int xRange = Integer.parseInt(x.replaceAll("[^0-9]", ""));
 			int yRange = Integer.parseInt(y.replaceAll("[^0-9]", ""));
@@ -35,6 +48,19 @@ public class Fragment extends JPanel {
 					Component parent = e.getComponent().getParent();
 					int newX = (x.indexOf("%") != -1) ? parent.getWidth() * xRange / 100 :xRange;
 					int newY = (y.indexOf("%") != -1) ? parent.getHeight() * yRange / 100 : yRange;
+					Fragment.this.setLocation(newX, newY);
+				}
+			});
+			return this;
+		}
+		
+		@Override
+		public Customize position(int xp, int x, int yp, int y) {
+			Fragment.this.addComponentListener(new ComponentAdapter() {
+				public void componentResized(ComponentEvent e) {
+					Component parent = e.getComponent().getParent();
+					int newX = parent.getWidth() * xp / 100 + x;
+					int newY = parent.getHeight() * yp / 100 + y;
 					Fragment.this.setLocation(newX, newY);
 				}
 			});

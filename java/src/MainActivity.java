@@ -21,11 +21,11 @@ public class MainActivity {
     	case "Document":
     		Html html = new Html("font: Arial, 24; windows: 1040, 720");
     		Fragment first = new Fragment(null,
-    			new Div().customize.size("100%", "60px").position("0px", "0px").background(Color.RED).end(),
-    			new Div().customize.size(20, 0, 100, -120).position("0px", "60px").background(Color.GREEN).end(),
-    			new Div().customize.size(60, 0, 100, -120).position("20%", "60px").background(Color.LIGHT_GRAY).end(),
-    			new Div().customize.size(20, 0, 100, -120).position("80%", "60px").background(Color.BLUE).end(),
-    			new Div().customize.size("100%", "60%").position(0, 0, 80, 40).background(Color.PINK).end()
+    			new Div().style.size("100%", "60px").position("0px", "0px").background(Color.RED).end(),
+    			new Div().style.size(20, 0, 100, -120).position("0px", "60px").background(Color.GREEN).end(),
+    			new Div().style.size(60, 0, 100, -120).position("20%", "60px").background(Color.LIGHT_GRAY).end(),
+    			new Div().style.size(20, 0, 100, -120).position("80%", "60px").background(Color.BLUE).end(),
+    			new Div().style.size("100%", "60%").position(0, 0, 80, 40).background(Color.PINK).end()
     		);
     		html.onCreate(first);
     		break;

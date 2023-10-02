@@ -7,9 +7,9 @@ import javax.swing.JPanel;
 
 public class Div extends JPanel {
 	private static final long serialVersionUID = 1L;
-	public class Customize implements HTMLCustomize<Customize, Div> {
+	public class Style implements HTMLStyle<Style, Div> {
 		@Override
-		public Customize size(String width, String height) {
+		public Style size(String width, String height) {
 			int widthRange = Integer.parseInt(width.replaceAll("[^0-9]", ""));
 			int heightRange = Integer.parseInt(height.replaceAll("[^0-9]", ""));
 			Div.this.addComponentListener(new ComponentAdapter() {
@@ -24,7 +24,7 @@ public class Div extends JPanel {
 		}
 		
 		@Override
-		public Customize size(int widthp, int width, int heightp, int height) {
+		public Style size(int widthp, int width, int heightp, int height) {
 			Div.this.addComponentListener(new ComponentAdapter() {
 				public void componentResized(ComponentEvent e) {
 					Component parent = e.getComponent().getParent();
@@ -37,7 +37,7 @@ public class Div extends JPanel {
 		}
 		
 		@Override
-		public Customize position(String x, String y) {
+		public Style position(String x, String y) {
 			int xRange = Integer.parseInt(x.replaceAll("[^0-9]", ""));
 			int yRange = Integer.parseInt(y.replaceAll("[^0-9]", ""));
 			Div.this.addComponentListener(new ComponentAdapter() {
@@ -52,7 +52,7 @@ public class Div extends JPanel {
 		}
 		
 		@Override
-		public Customize position(int xp, int x, int yp, int y) {
+		public Style position(int xp, int x, int yp, int y) {
 			Div.this.addComponentListener(new ComponentAdapter() {
 				public void componentResized(ComponentEvent e) {
 					Component parent = e.getComponent().getParent();
@@ -65,7 +65,7 @@ public class Div extends JPanel {
 		}
 
 		@Override
-		public Customize background(Color color) {
+		public Style background(Color color) {
 			Div.this.setBackground(color);
 			return this;
 		}
@@ -75,7 +75,7 @@ public class Div extends JPanel {
 			return Div.this;
 		}
 	}
-	public Customize customize = new Customize();
+	public Style style = new Style();
 	public Div(Component... components) {
 		for (Component component: components) add(component);
 	}

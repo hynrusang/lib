@@ -10,9 +10,9 @@ public class Fragment extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private String name;
 	
-	public class Customize implements HTMLCustomize<Customize, Fragment> {
+	public class Style implements HTMLStyle<Style, Fragment> {
 		@Override
-		public Customize size(String width, String height) {
+		public Style size(String width, String height) {
 			int widthRange = Integer.parseInt(width.replaceAll("[^0-9]", ""));
 			int heightRange = Integer.parseInt(height.replaceAll("[^0-9]", ""));
 			Fragment.this.addComponentListener(new ComponentAdapter() {
@@ -27,7 +27,7 @@ public class Fragment extends JPanel {
 		}
 		
 		@Override
-		public Customize size(int widthp, int width, int heightp, int height) {
+		public Style size(int widthp, int width, int heightp, int height) {
 			Fragment.this.addComponentListener(new ComponentAdapter() {
 				public void componentResized(ComponentEvent e) {
 					Component parent = e.getComponent().getParent();
@@ -40,7 +40,7 @@ public class Fragment extends JPanel {
 		}
 		
 		@Override
-		public Customize position(String x, String y) {
+		public Style position(String x, String y) {
 			int xRange = Integer.parseInt(x.replaceAll("[^0-9]", ""));
 			int yRange = Integer.parseInt(y.replaceAll("[^0-9]", ""));
 			Fragment.this.addComponentListener(new ComponentAdapter() {
@@ -55,7 +55,7 @@ public class Fragment extends JPanel {
 		}
 		
 		@Override
-		public Customize position(int xp, int x, int yp, int y) {
+		public Style position(int xp, int x, int yp, int y) {
 			Fragment.this.addComponentListener(new ComponentAdapter() {
 				public void componentResized(ComponentEvent e) {
 					Component parent = e.getComponent().getParent();
@@ -68,7 +68,7 @@ public class Fragment extends JPanel {
 		}
 
 		@Override
-		public Customize background(Color color) {
+		public Style background(Color color) {
 			Fragment.this.setBackground(color);
 			return this;
 		}
@@ -78,7 +78,7 @@ public class Fragment extends JPanel {
 			return Fragment.this;
 		}
 	}
-	public Customize customize = new Customize();
+	public Style style = new Style();
 	public String getName() {
 		return name;
 	}

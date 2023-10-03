@@ -26,6 +26,7 @@ public class Html extends JFrame {
 	public Html() { 
 		head = new JLabel();
 		add(head, BorderLayout.NORTH);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 	};
 	/**

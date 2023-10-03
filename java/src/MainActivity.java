@@ -3,6 +3,7 @@ import java.awt.Color;
 import javax.swing.JPanel;
 
 import util.Livedata;
+import util.Document.Div;
 import util.Document.Fragment;
 import util.Document.Html;
 
@@ -22,9 +23,9 @@ public class MainActivity {
     		break;
     	case "Document":
     		Html html = new Html();
-    		JPanel test = new JPanel();
-    		test.setBackground(Color.RED);
-    		Fragment first = new Fragment(test);
+    		Div div = new Div().style.size(10, 0, 50, 0).end();
+    		div.setBackground(Color.RED);
+    		Fragment first = new Fragment(div);
     		
     		html.onCreate(first);
     		break;

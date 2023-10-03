@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 public class Html extends JFrame {
 	private JPanel body;
 	private ArrayList<Component> elements;
-	private ComponentAdapter resizeListener;
+	private static ComponentAdapter resizeListener;
 	
 	public void onCreate(Fragment bundle) {
 		if (!getTitle().equals(bundle.title)) {
@@ -35,7 +35,15 @@ public class Html extends JFrame {
                 int childWidth = (int) (parentWidth * 0.5); // 예시: 부모의 50%
                 int childHeight = (int) (parentHeight * 0.5); // 예시: 부모의 50%
                 
-                elements.forEach(element -> element.setSize(childWidth, childHeight));
+                elements.forEach(element -> {
+                	if (element instanceof HTMLElement) {
+                		int[] percentInfo = ((HTMLElement)element).getPercentInfo();
+                		int[] pxInfo = ((HTMLElement)element).getPxInfo();
+                		int newWidth = body.getWidth() * percentInfo[0] / 100 + pxInfo[0];
+                		int newHeight = body.getHeight() * percentInfo[1] / 100 + pxInfo[1];
+                		element.setBounds(0, 0, newWidth, newHeight);
+                	}
+                });
             }
         };
 		

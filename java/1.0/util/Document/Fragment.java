@@ -3,8 +3,8 @@ import java.awt.Component;
 import java.util.ArrayList;
 
 public class Fragment {
-	protected String title;
-	protected ArrayList<Component> elements;
+	String title;
+	ArrayList<Component> elements;
 	public Fragment(Component... elements) {
 		this("index", elements);
 	}

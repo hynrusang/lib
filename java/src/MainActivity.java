@@ -1,4 +1,9 @@
+import java.awt.Color;
+
+import javax.swing.JPanel;
+
 import util.Livedata;
+import util.Document.Fragment;
 import util.Document.Html;
 
 public class MainActivity {
@@ -17,6 +22,11 @@ public class MainActivity {
     		break;
     	case "Document":
     		Html html = new Html();
+    		JPanel test = new JPanel();
+    		test.setBackground(Color.RED);
+    		Fragment first = new Fragment(test);
+    		
+    		html.onCreate(first);
     		break;
     	}
     }

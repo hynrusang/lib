@@ -11,14 +11,22 @@ import javax.swing.JPanel;
 public class Html extends JFrame {
 	private JPanel body;
 	private ArrayList<Component> elements;
+	private ComponentAdapter resizeListener;
 	
+	public void onCreate(Fragment bundle) {
+		if (!getTitle().equals(bundle.title)) {
+			setTitle(bundle.title);
+			elements = bundle.elements;
+			
+			body.removeAll();
+			elements.forEach(element -> body.add(element));
+			body.dispatchEvent(new ComponentEvent(body, ComponentEvent.COMPONENT_RESIZED));
+		}
+	}
 	public Html() {
 		body = new JPanel();
 		elements = new ArrayList<Component>();
-		elements.add(new JPanel());
-		
-		body.setLayout(null);
-		body.addComponentListener(new ComponentAdapter() {
+		resizeListener = new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 int parentWidth = body.getWidth();
@@ -27,16 +35,12 @@ public class Html extends JFrame {
                 int childWidth = (int) (parentWidth * 0.5); // 예시: 부모의 50%
                 int childHeight = (int) (parentHeight * 0.5); // 예시: 부모의 50%
                 
-                elements.forEach(element -> {
-                	element.setSize(childWidth, childHeight);
-                });
+                elements.forEach(element -> element.setSize(childWidth, childHeight));
             }
-        });
+        };
 		
-		elements.get(0).setBackground(Color.RED);
-		elements.forEach(element -> {
-        	body.add(element);
-        });
+		body.setLayout(null);
+		body.addComponentListener(resizeListener);
 		
 		getContentPane().add(body);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

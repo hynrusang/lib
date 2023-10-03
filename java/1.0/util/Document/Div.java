@@ -9,7 +9,6 @@ public class Div extends JPanel implements HTMLElement {
 	int[] pxInfo;
 	
 	public class Style implements HTMLStyle<Style, Div> {
-
 		@Override
 		public Style size(int widthp, int width, int heightp, int height) {
 			percentInfo[0] = widthp;
@@ -20,8 +19,17 @@ public class Div extends JPanel implements HTMLElement {
 		}
 
 		@Override
+		public Style position(int xp, int x, int yp, int y) {
+			percentInfo[2] = xp;
+			percentInfo[3] = yp;
+			pxInfo[2] = x;
+			pxInfo[3] = y;
+			return this;
+		}
+		
+		@Override
 		public Style background(Color color) {
-			// TODO Auto-generated method stub
+			Div.this.setBackground(color);
 			return this;
 		}
 
@@ -44,6 +52,5 @@ public class Div extends JPanel implements HTMLElement {
 		percentInfo = new int[] {0, 0, 0, 0};
 		pxInfo = new int[] {0, 0, 0, 0};
 		style = new Style();
-		setLayout(null);
 	}
 }

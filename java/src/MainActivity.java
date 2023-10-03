@@ -23,9 +23,14 @@ public class MainActivity {
     		break;
     	case "Document":
     		Html html = new Html();
-    		Div div = new Div().style.size(10, 0, 50, 0).end();
-    		div.setBackground(Color.RED);
-    		Fragment first = new Fragment(div);
+    		Fragment first = new Fragment(
+    			new Div().style.size(100, 0, 0, 60).background(Color.RED).end(),
+    			new Div().style.size(100, 0, 0, 60).position(0, 0, 0, 60).background(Color.GREEN).end(),
+    			new Div().style.size(100, -300, 50, -90).position(0, 0, 0, 120).background(Color.BLUE).end(),
+    			new Div().style.size(100, -300, 50, -90).position(0, 0, 50, 30).background(Color.YELLOW).end(),
+    			new Div().style.size(300, 0, 100, -180).position(0, 0, 0, 120).background(Color.GRAY).end(),
+    			new Div().style.size(100, 0, 0, 60).position(0, 0, 100, -60).background(Color.ORANGE).end()
+    		);
     		
     		html.onCreate(first);
     		break;

@@ -4,6 +4,7 @@ import java.awt.Component;
 
 public interface HTMLStyle<T, F extends Component> {
 	public T size(int widthp, int width, int heightp, int height);
+	public T position(int xp, int x, int yp, int y);
 	public T background(Color color);
 	public F end();
 }

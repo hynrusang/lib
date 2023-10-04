@@ -44,8 +44,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 		for (HTMLElement<?> element: elements) appendChild(element);
 	}
 	
-	public class Style implements HTMLStyle<Style, T> {
-		@Override
+	public class Style {
 		public Style size(int widthp, int width, int heightp, int height) {
 			percentInfo[0] = widthp;
 			percentInfo[1] = heightp;
@@ -54,7 +53,6 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 			return this;
 		}
 
-		@Override
 		public Style position(int xp, int x, int yp, int y) {
 			percentInfo[2] = xp;
 			percentInfo[3] = yp;
@@ -63,13 +61,11 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 			return this;
 		}
 		
-		@Override
 		public Style background(Color color) {
 			main.setBackground(color);
 			return this;
 		}
 
-		@Override
 		public T end() {
 			return (T)T.this;
 		}

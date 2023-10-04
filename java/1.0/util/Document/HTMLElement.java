@@ -10,8 +10,37 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	protected int[] percentInfo;
 	protected int[] pxInfo;
 	protected ArrayList<HTMLElement<?>> nodeList;
+	public Style style;
 	
-	protected void setMain(JComponent main) {
+	public class Style {
+		public Style size(int widthp, int width, int heightp, int height) {
+			percentInfo[0] = widthp;
+			percentInfo[1] = heightp;
+			pxInfo[0] = width;
+			pxInfo[1] = height;
+			return this;
+		}
+
+		public Style position(int xp, int x, int yp, int y) {
+			percentInfo[2] = xp;
+			percentInfo[3] = yp;
+			pxInfo[2] = x;
+			pxInfo[3] = y;
+			return this;
+		}
+		
+		public Style background(Color color) {
+			main.setBackground(color);
+			return this;
+		}
+
+		@SuppressWarnings("unchecked")
+		public T end() {
+			return (T)T.this;
+		}
+	}
+	
+	private void setMain(JComponent main) {
 		this.main = main;
 		main.setLayout(null);
 		main.addComponentListener(new ComponentAdapter() {
@@ -42,33 +71,4 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 		
 		for (HTMLElement<?> element: elements) appendChild(element);
 	}
-	
-	public class Style {
-		public Style size(int widthp, int width, int heightp, int height) {
-			percentInfo[0] = widthp;
-			percentInfo[1] = heightp;
-			pxInfo[0] = width;
-			pxInfo[1] = height;
-			return this;
-		}
-
-		public Style position(int xp, int x, int yp, int y) {
-			percentInfo[2] = xp;
-			percentInfo[3] = yp;
-			pxInfo[2] = x;
-			pxInfo[3] = y;
-			return this;
-		}
-		
-		public Style background(Color color) {
-			main.setBackground(color);
-			return this;
-		}
-
-		@SuppressWarnings("unchecked")
-		public T end() {
-			return (T)T.this;
-		}
-	}
-	public Style style;
 }

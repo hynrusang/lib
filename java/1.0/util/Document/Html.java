@@ -1,10 +1,7 @@
 package util.Document;
-import java.awt.Component;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
-
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 

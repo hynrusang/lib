@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 
 public abstract class HTMLElement<T extends HTMLElement<?>> {
-	protected static final long serialVersionUID = 1L;
 	protected JComponent main;
 	protected int[] percentInfo;
 	protected int[] pxInfo;

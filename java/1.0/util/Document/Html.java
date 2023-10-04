@@ -4,6 +4,7 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -12,15 +13,15 @@ public class Html extends JFrame {
 	private int windowx;
 	private int windowy;
 	private JPanel body;
-	private ArrayList<Component> elements;
+	private ArrayList<HTMLElement<?>> nodeList;
 	
 	public void onCreate(Fragment bundle) {
 		if (!getTitle().equals(bundle.title)) {
 			setTitle(bundle.title);
-			elements = bundle.elements;
+			nodeList = bundle.nodeList;
 			
 			body.removeAll();
-			elements.forEach(element -> body.add(element));
+			nodeList.forEach(element -> body.add(element.main));
 			body.dispatchEvent(new ComponentEvent(body, ComponentEvent.COMPONENT_RESIZED));
 		}
 	}
@@ -31,7 +32,7 @@ public class Html extends JFrame {
 		windowx = 1040;
 		windowy = 720;
 		body = new JPanel();
-		elements = new ArrayList<Component>();
+		nodeList = new ArrayList<HTMLElement<?>>();
 		
 		for (String header: headers.split(";")) {
 			String[] parts = header.split(":");
@@ -44,19 +45,16 @@ public class Html extends JFrame {
 		}
 		body.setLayout(null);
 		body.addComponentListener(new ComponentAdapter() {
-            @SuppressWarnings("deprecation")
 			@Override
             public void componentResized(ComponentEvent e) {
-                elements.forEach(element -> {
-                	if (element instanceof HTMLElement) {
-						int[] percentInfo = ((HTMLElement)element).getPercentInfo();
-						int[] pxInfo = ((HTMLElement)element).getPxInfo();
-                		int newWidth = body.getWidth() * percentInfo[0] / 100 + pxInfo[0];
-                		int newHeight = body.getHeight() * percentInfo[1] / 100 + pxInfo[1];
-                		int newX = body.getWidth() * percentInfo[2] / 100 + pxInfo[2];
-                		int newY = body.getHeight() * percentInfo[3] / 100 + pxInfo[3];
-                		element.setBounds(newX, newY, newWidth, newHeight);
-                	}
+                nodeList.forEach(element -> {
+                	int[] percentInfo = element.percentInfo;
+					int[] pxInfo = element.pxInfo;
+            		int newWidth = body.getWidth() * percentInfo[0] / 100 + pxInfo[0];
+            		int newHeight = body.getHeight() * percentInfo[1] / 100 + pxInfo[1];
+            		int newX = body.getWidth() * percentInfo[2] / 100 + pxInfo[2];
+            		int newY = body.getHeight() * percentInfo[3] / 100 + pxInfo[3];
+            		element.main.setBounds(newX, newY, newWidth, newHeight);
                 });
             }
         });

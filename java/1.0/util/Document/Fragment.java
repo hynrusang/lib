@@ -1,16 +1,15 @@
 package util.Document;
-import java.awt.Component;
 import java.util.ArrayList;
 
 public class Fragment {
 	String title;
-	ArrayList<Component> elements;
-	public Fragment(Component... elements) {
+	ArrayList<HTMLElement<?>> nodeList;
+	public Fragment(HTMLElement<?>... elements) {
 		this("index", elements);
 	}
-	public Fragment(String title, Component... elements) {
+	public Fragment(String title, HTMLElement<?>... elements) {
 		this.title = title;
-		this.elements = new ArrayList<Component>();
-		for (Component element: elements) this.elements.add(element);
+		nodeList = new ArrayList<HTMLElement<?>>();
+		for (HTMLElement<?> element: elements) nodeList.add(element);
 	}
 }

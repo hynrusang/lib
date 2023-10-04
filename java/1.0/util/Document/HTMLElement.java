@@ -7,13 +7,13 @@ import javax.swing.JComponent;
 
 public abstract class HTMLElement<T extends HTMLElement<?>> {
 	protected JComponent main;
-	protected int[] percentInfo;
+	protected float[] percentInfo;
 	protected int[] pxInfo;
 	protected ArrayList<HTMLElement<?>> nodeList;
 	public Style style;
 	
 	public class Style {
-		public Style size(int widthp, int width, int heightp, int height) {
+		public Style size(float widthp, int width, float heightp, int height) {
 			percentInfo[0] = widthp;
 			percentInfo[1] = heightp;
 			pxInfo[0] = width;
@@ -21,7 +21,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 			return this;
 		}
 
-		public Style position(int xp, int x, int yp, int y) {
+		public Style position(float xp, int x, float yp, int y) {
 			percentInfo[2] = xp;
 			percentInfo[3] = yp;
 			pxInfo[2] = x;
@@ -47,12 +47,12 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 			@Override
             public void componentResized(ComponentEvent e) {
 				HTMLElement.this.nodeList.forEach(element -> {
-                	int[] percentInfo = element.percentInfo;
+					float[] percentInfo = element.percentInfo;
             		int[] pxInfo = element.pxInfo;
-            		int newWidth = HTMLElement.this.main.getWidth() * percentInfo[0] / 100 + pxInfo[0];
-            		int newHeight = HTMLElement.this.main.getHeight() * percentInfo[1] / 100 + pxInfo[1];
-            		int newX = HTMLElement.this.main.getWidth() * percentInfo[2] / 100 + pxInfo[2];
-            		int newY = HTMLElement.this.main.getHeight() * percentInfo[3] / 100 + pxInfo[3];
+            		int newWidth = (int)(HTMLElement.this.main.getWidth() * percentInfo[0] / 100 + pxInfo[0]);
+            		int newHeight = (int)(HTMLElement.this.main.getHeight() * percentInfo[1] / 100 + pxInfo[1]);
+            		int newX = (int)(HTMLElement.this.main.getWidth() * percentInfo[2] / 100 + pxInfo[2]);
+            		int newY = (int)(HTMLElement.this.main.getHeight() * percentInfo[3] / 100 + pxInfo[3]);
             		element.main.setBounds(newX, newY, newWidth, newHeight);
                 });
             }
@@ -64,7 +64,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	};
 	protected HTMLElement(JComponent main, HTMLElement<?>... elements) {
 		setMain(main);
-		percentInfo = new int[] {0, 0, 0, 0};
+		percentInfo = new float[] {0, 0, 0, 0};
 		pxInfo = new int[] {0, 0, 0, 0};
 		nodeList = new ArrayList<HTMLElement<?>>();
 		style = new Style();

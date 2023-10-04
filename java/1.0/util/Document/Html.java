@@ -20,6 +20,7 @@ public class Html extends JFrame {
 			body.removeAll();
 			nodeList.forEach(element -> body.add(element.main));
 			body.dispatchEvent(new ComponentEvent(body, ComponentEvent.COMPONENT_RESIZED));
+			repaint();
 		}
 	}
 	public Html() {
@@ -45,12 +46,12 @@ public class Html extends JFrame {
 			@Override
             public void componentResized(ComponentEvent e) {
                 nodeList.forEach(element -> {
-                	int[] percentInfo = element.percentInfo;
+                	float[] percentInfo = element.percentInfo;
 					int[] pxInfo = element.pxInfo;
-            		int newWidth = body.getWidth() * percentInfo[0] / 100 + pxInfo[0];
-            		int newHeight = body.getHeight() * percentInfo[1] / 100 + pxInfo[1];
-            		int newX = body.getWidth() * percentInfo[2] / 100 + pxInfo[2];
-            		int newY = body.getHeight() * percentInfo[3] / 100 + pxInfo[3];
+            		int newWidth = (int)(body.getWidth() * percentInfo[0] / 100 + pxInfo[0]);
+            		int newHeight = (int)(body.getHeight() * percentInfo[1] / 100 + pxInfo[1]);
+            		int newX = (int)(body.getWidth() * percentInfo[2] / 100 + pxInfo[2]);
+            		int newY = (int)(body.getHeight() * percentInfo[3] / 100 + pxInfo[3]);
             		element.main.setBounds(newX, newY, newWidth, newHeight);
                 });
             }

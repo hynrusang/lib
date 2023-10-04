@@ -1,5 +1,6 @@
 import java.awt.Color;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import util.Livedata;
@@ -23,8 +24,11 @@ public class MainActivity {
     		break;
     	case "Document":
     		Html html = new Html();
+    		Div test = new Div().style.size(50, 0, 50, 0).background(Color.BLACK).end();
     		Fragment first = new Fragment(
-    			new Div().style.size(100, 0, 0, 60).background(Color.RED).end(),
+    			new Div(
+    				test
+    			).style.size(100, 0, 0, 60).background(Color.RED).end(),
     			new Div().style.size(100, 0, 0, 60).position(0, 0, 0, 60).background(Color.GREEN).end(),
     			new Div().style.size(100, -300, 50, -90).position(0, 0, 0, 120).background(Color.BLUE).end(),
     			new Div().style.size(100, -300, 50, -90).position(0, 0, 50, 30).background(Color.YELLOW).end(),

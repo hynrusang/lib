@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 public class Html extends JFrame {
 	private JPanel body;
 	private ArrayList<Component> elements;
-	private static ComponentAdapter resizeListener;
 	
 	public void onCreate(Fragment bundle) {
 		if (!getTitle().equals(bundle.title)) {
@@ -26,7 +25,9 @@ public class Html extends JFrame {
 	public Html() {
 		body = new JPanel();
 		elements = new ArrayList<Component>();
-		resizeListener = new ComponentAdapter() {
+		
+		body.setLayout(null);
+		body.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 elements.forEach(element -> {
@@ -41,10 +42,7 @@ public class Html extends JFrame {
                 	}
                 });
             }
-        };
-		
-		body.setLayout(null);
-		body.addComponentListener(resizeListener);
+        });
 		
 		getContentPane().add(body);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

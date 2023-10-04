@@ -70,7 +70,7 @@ public class Div extends JPanel implements HTMLElement {
                 		int newHeight = Div.this.getHeight() * percentInfo[1] / 100 + pxInfo[1];
                 		int newX = Div.this.getWidth() * percentInfo[2] / 100 + pxInfo[2];
                 		int newY = Div.this.getHeight() * percentInfo[3] / 100 + pxInfo[3];
-                		element.setBounds(newX + getX(), newY + getY(), newWidth, newHeight);
+                		element.setBounds(newX, newY, newWidth, newHeight);
                 	}
                 });
             }

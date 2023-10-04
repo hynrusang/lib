@@ -28,7 +28,7 @@ public class MainActivity {
     			new Div().style.size(100, 0, 0, 60).background(Color.RED).end(),
     			new Div().style.size(100, 0, 0, 60).position(0, 0, 0, 60).background(Color.GREEN).end(),
     			new Div(
-    				new Div().style.size(50, 0, 50, 0).background(Color.BLACK).end()
+    				new Div().style.size(50, 0, 50, 0).position(25, 0, 25, 0).background(Color.BLACK).end()
     			).style.size(100, -300, 50, -90).position(0, 0, 0, 120).background(Color.BLUE).end(),
     			new Div().style.size(100, -300, 50, -90).position(0, 0, 50, 30).background(Color.YELLOW).end(),
     			new Div().style.size(300, 0, 100, -180).position(0, 0, 0, 120).background(Color.GRAY).end(),

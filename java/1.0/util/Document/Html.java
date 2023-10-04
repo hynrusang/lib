@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 
 public class Html extends JFrame {
 	private static final long serialVersionUID = 1L;
+	private int windowx;
+	private int windowy;
 	private JPanel body;
 	private ArrayList<Component> elements;
 	
@@ -23,9 +25,23 @@ public class Html extends JFrame {
 		}
 	}
 	public Html() {
+		this("");
+	}
+	public Html(String headers) {
+		windowx = 1040;
+		windowy = 720;
 		body = new JPanel();
 		elements = new ArrayList<Component>();
 		
+		for (String header: headers.split(";")) {
+			String[] parts = header.split(":");
+			switch (parts[0].trim()) {
+			case "window":
+				windowx = Integer.parseInt(parts[1].split(",")[0].trim());
+				windowy = Integer.parseInt(parts[1].split(",")[1].trim());
+				break;
+			}
+		}
 		body.setLayout(null);
 		body.addComponentListener(new ComponentAdapter() {
             @SuppressWarnings("deprecation")
@@ -47,7 +63,7 @@ public class Html extends JFrame {
 		
 		add(body);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1040, 700);
+		setSize(windowx, windowy);
 		setVisible(true);
 	}
 }

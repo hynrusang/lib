@@ -23,7 +23,7 @@ public class MainActivity {
             livedata.setValue(9);
     		break;
     	case "Document":
-    		Html html = new Html();
+    		Html html = new Html("window: 720, 440");
     		Fragment first = new Fragment(
     			new Div().style.size(100, 0, 0, 60).background(Color.RED).end(),
     			new Div().style.size(100, 0, 0, 60).position(0, 0, 0, 60).background(Color.GREEN).end(),

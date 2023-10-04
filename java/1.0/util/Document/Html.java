@@ -1,5 +1,4 @@
 package util.Document;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -44,7 +43,7 @@ public class Html extends JFrame {
             }
         });
 		
-		getContentPane().add(body);
+		add(body);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(1040, 700);
 		setVisible(true);

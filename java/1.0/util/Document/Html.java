@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Html extends JFrame {
+	private static final long serialVersionUID = 1L;
 	private JPanel body;
 	private ArrayList<Component> elements;
 	
@@ -27,12 +28,13 @@ public class Html extends JFrame {
 		
 		body.setLayout(null);
 		body.addComponentListener(new ComponentAdapter() {
-            @Override
+            @SuppressWarnings("deprecation")
+			@Override
             public void componentResized(ComponentEvent e) {
                 elements.forEach(element -> {
                 	if (element instanceof HTMLElement) {
-                		int[] percentInfo = ((HTMLElement)element).getPercentInfo();
-                		int[] pxInfo = ((HTMLElement)element).getPxInfo();
+						int[] percentInfo = ((HTMLElement)element).getPercentInfo();
+						int[] pxInfo = ((HTMLElement)element).getPxInfo();
                 		int newWidth = body.getWidth() * percentInfo[0] / 100 + pxInfo[0];
                 		int newHeight = body.getHeight() * percentInfo[1] / 100 + pxInfo[1];
                 		int newX = body.getWidth() * percentInfo[2] / 100 + pxInfo[2];

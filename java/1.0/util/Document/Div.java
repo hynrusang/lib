@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class Div extends JPanel implements HTMLElement {
+	private static final long serialVersionUID = 1L;
 	private int[] percentInfo;
 	private int[] pxInfo;
 	private ArrayList<Component> elements;
@@ -60,7 +61,8 @@ public class Div extends JPanel implements HTMLElement {
 			add(element);
 		}
 		addComponentListener(new ComponentAdapter() {
-            @Override
+			@SuppressWarnings("deprecation")
+			@Override
             public void componentResized(ComponentEvent e) {
                 Div.this.elements.forEach(element -> {
                 	if (element instanceof HTMLElement) {

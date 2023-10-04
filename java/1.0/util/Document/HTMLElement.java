@@ -66,6 +66,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 			return this;
 		}
 
+		@SuppressWarnings("unchecked")
 		public T end() {
 			return (T)T.this;
 		}

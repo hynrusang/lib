@@ -5,8 +5,8 @@ import java.awt.Component;
 import javax.swing.JPanel;
 
 public class Div extends JPanel implements HTMLElement {
-	int[] percentInfo;
-	int[] pxInfo;
+	private int[] percentInfo;
+	private int[] pxInfo;
 	
 	public class Style implements HTMLStyle<Style, Div> {
 		@Override

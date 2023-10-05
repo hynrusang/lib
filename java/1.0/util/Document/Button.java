@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
-public class Button extends HTMLElement<Button> {
+public class Button extends HTMLElement {
 	private onClick onClickEvent;
 	
 	public interface onClick {

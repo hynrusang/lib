@@ -5,11 +5,11 @@ import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 
-public abstract class HTMLElement<T extends HTMLElement<?>> {
+public abstract class HTMLElement {
 	protected JComponent main;
 	protected float[] percentInfo;
 	protected int[] pxInfo;
-	protected ArrayList<HTMLElement<?>> nodeList;
+	protected ArrayList<HTMLElement> nodeList;
 	public Style style;
 	
 	public class Style {
@@ -34,14 +34,22 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 			return this;
 		}
 
-		@SuppressWarnings("unchecked")
-		public T end() {
-			return (T)T.this;
+		public HTMLElement end() {
+			return HTMLElement.this;
 		}
 	}
 	
-	private void setMain(JComponent main) {
+	protected void appendChild(HTMLElement element) {
+		nodeList.add(element);
+		main.add(element.main);
+	};
+	protected HTMLElement(JComponent main, HTMLElement... elements) {
 		this.main = main;
+		percentInfo = new float[] {0, 0, 0, 0};
+		pxInfo = new int[] {0, 0, 0, 0};
+		nodeList = new ArrayList<HTMLElement>();
+		style = new Style();
+		
 		main.setLayout(null);
 		main.addComponentListener(new ComponentAdapter() {
 			@Override
@@ -57,18 +65,6 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
                 });
             }
         });
-	}
-	protected void appendChild(HTMLElement<?> element) {
-		nodeList.add(element);
-		main.add(element.main);
-	};
-	protected HTMLElement(JComponent main, HTMLElement<?>... elements) {
-		setMain(main);
-		percentInfo = new float[] {0, 0, 0, 0};
-		pxInfo = new int[] {0, 0, 0, 0};
-		nodeList = new ArrayList<HTMLElement<?>>();
-		style = new Style();
-		
-		for (HTMLElement<?> element: elements) appendChild(element);
+		for (HTMLElement element: elements) appendChild(element);
 	}
 }

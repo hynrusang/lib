@@ -3,6 +3,7 @@ import util.Livedata;
 import util.Document.Button;
 import util.Document.Div;
 import util.Document.Fragment;
+import util.Document.HTMLElement;
 import util.Document.Html;
 
 public class MainActivity {
@@ -23,7 +24,7 @@ public class MainActivity {
     	case "Document":
     		fragments = new Fragment[5];
     		Html html = new Html("window: 720, 440");
-    		Div footer = new Div(
+    		HTMLElement footer = new Div(
     			new Button("first fragment", target -> {
     				html.onCreate(MainActivity.fragments[0]);
     			}).style.size(20, 0, 100, 0).end(),

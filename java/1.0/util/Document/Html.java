@@ -10,7 +10,7 @@ public class Html extends JFrame {
 	private int windowx;
 	private int windowy;
 	private JPanel body;
-	private ArrayList<HTMLElement<?>> nodeList;
+	private ArrayList<HTMLElement> nodeList;
 	
 	public void onCreate(Fragment bundle) {
 		if (!getTitle().equals(bundle.title)) {
@@ -30,7 +30,7 @@ public class Html extends JFrame {
 		windowx = 1040;
 		windowy = 720;
 		body = new JPanel();
-		nodeList = new ArrayList<HTMLElement<?>>();
+		nodeList = new ArrayList<HTMLElement>();
 		
 		for (String header: headers.split(";")) {
 			String[] parts = header.split(":");

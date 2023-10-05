@@ -33,7 +33,6 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
             }
         });
 	}
-	@SuppressWarnings("unchecked")
 	public T size(float widthp, int width, float heightp, int height) {
 		percentInfo[0] = widthp;
 		percentInfo[1] = heightp;
@@ -41,7 +40,6 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 		pxInfo[1] = height;
 		return (T)this;
 	}
-	@SuppressWarnings("unchecked")
 	public T position(float xp, int x, float yp, int y) {
 		percentInfo[2] = xp;
 		percentInfo[3] = yp;
@@ -49,7 +47,6 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 		pxInfo[3] = y;
 		return (T)this;
 	}
-	@SuppressWarnings("unchecked")
 	public T background(Color color) {
 		main.setBackground(color);
 		return (T)this;

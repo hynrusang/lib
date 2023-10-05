@@ -3,13 +3,13 @@ import java.awt.event.ComponentEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Html extends HTMLElement {
+public class Html extends HTMLElement<Html> {
 	private int windowx;
 	private int windowy;
 	private JFrame mainFrame;
 
-	public void find(HTMLElement root) {
-		for (HTMLElement element: root.nodeList) {
+	public void find(HTMLElement<?> root) {
+		for (HTMLElement<?> element: root.nodeList) {
 			System.out.println(element.getClass().getName());
 			if (!element.nodeList.isEmpty()) find(element);
 		};

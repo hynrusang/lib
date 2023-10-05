@@ -5,17 +5,17 @@ import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import javax.swing.JComponent;
 
-public abstract class HTMLElement {
+public abstract class HTMLElement<T extends HTMLElement<?>> {
 	protected JComponent main;
 	protected float[] percentInfo;
 	protected int[] pxInfo;
-	protected ArrayList<HTMLElement> nodeList;
+	protected ArrayList<HTMLElement<?>> nodeList;
 	
-	protected HTMLElement(JComponent main, HTMLElement... elements) {
+	protected HTMLElement(JComponent main) {
 		this.main = main;
 		percentInfo = new float[] {0, 0, 0, 0};
 		pxInfo = new int[] {0, 0, 0, 0};
-		nodeList = new ArrayList<HTMLElement>();
+		nodeList = new ArrayList<HTMLElement<?>>();
 		
 		main.setLayout(null);
 		main.addComponentListener(new ComponentAdapter() {
@@ -32,34 +32,36 @@ public abstract class HTMLElement {
                 });
             }
         });
-		for (HTMLElement element: elements) appendChild(element);
 	}
-	public HTMLElement size(float widthp, int width, float heightp, int height) {
+	@SuppressWarnings("unchecked")
+	public T size(float widthp, int width, float heightp, int height) {
 		percentInfo[0] = widthp;
 		percentInfo[1] = heightp;
 		pxInfo[0] = width;
 		pxInfo[1] = height;
-		return this;
+		return (T)this;
 	}
-	public HTMLElement position(float xp, int x, float yp, int y) {
+	@SuppressWarnings("unchecked")
+	public T position(float xp, int x, float yp, int y) {
 		percentInfo[2] = xp;
 		percentInfo[3] = yp;
 		pxInfo[2] = x;
 		pxInfo[3] = y;
-		return this;
+		return (T)this;
 	}
-	public HTMLElement background(Color color) {
+	@SuppressWarnings("unchecked")
+	public T background(Color color) {
 		main.setBackground(color);
-		return this;
+		return (T)this;
 	}
 	public void clear() {
 		nodeList.removeAll(nodeList);
 	}
-	public void removeChild(HTMLElement element) {
+	public void removeChild(HTMLElement<?> element) {
 		nodeList.remove(element);
 		main.remove(element.main);
 	}
-	public void appendChild(HTMLElement element) {
+	public void appendChild(HTMLElement<?> element) {
 		nodeList.add(element);
 		main.add(element.main);
 	};

@@ -25,21 +25,21 @@ public class MainActivity {
     		fragments = new Fragment[5];
     		Html html = new Html("window: 720, 440");
     		HTMLElement footer = new Div(
-    			new Button("first fragment", target -> {
+    			new Button("first fragment").size(20, 0, 100, 0).onClick(e -> {
     				html.onCreate(MainActivity.fragments[0]);
-    			}).size(20, 0, 100, 0),
-    			new Button("second fragment", target -> {
+    			}),
+    			new Button("second fragment").size(20, 0, 100, 0).position(20, 0, 0, 0).onClick(e -> {
     				html.onCreate(MainActivity.fragments[1]);
-    			}).size(20, 0, 100, 0).position(20, 0, 0, 0),
-    			new Button("third fragment", target -> {
+    			}),
+    			new Button("third fragment").size(20, 0, 100, 0).position(40, 0, 0, 0).onClick(e -> {
     				html.onCreate(MainActivity.fragments[2]);
-    			}).size(20, 0, 100, 0).position(40, 0, 0, 0),
-    			new Button("fours fragment", target -> {
+    			}),
+    			new Button("fours fragment").size(20, 0, 100, 0).position(60, 0, 0, 0).onClick(e -> {
     				html.onCreate(MainActivity.fragments[3]);
-    			}).size(20, 0, 100, 0).position(60, 0, 0, 0),
-    			new Button("five fragment", target -> {
+    			}),
+    			new Button("five fragment").size(20, 0, 100, 0).position(80, 0, 0, 0).onClick(e -> {
     				html.onCreate(MainActivity.fragments[4]);
-    			}).size(20, 0, 100, 0).position(80, 0, 0, 0)
+    			})
     		).size(100, 0, 0, 60).position(0, 0, 100, -60);
     		fragments[0] = new Fragment(
     			new Div().size(100, 0, 0, 60).background(Color.RED),
@@ -65,7 +65,7 @@ public class MainActivity {
     		fragments[3] = new Fragment("index 4",
         			new Div().size(100, 0, 0, 60).background(Color.RED),
         			new Div(
-        				new Button("hello, world 3!").size(50, 0, 50, 0).position(25, 0, 25, 0)
+        				new Button("hello, world 4!").size(50, 0, 50, 0).position(25, 0, 25, 0)
         			).size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW),
         			footer
         		);

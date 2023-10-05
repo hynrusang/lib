@@ -27,53 +27,53 @@ public class MainActivity {
     		HTMLElement footer = new Div(
     			new Button("first fragment", target -> {
     				html.onCreate(MainActivity.fragments[0]);
-    			}).style.size(20, 0, 100, 0).end(),
+    			}).size(20, 0, 100, 0),
     			new Button("second fragment", target -> {
     				html.onCreate(MainActivity.fragments[1]);
-    			}).style.size(20, 0, 100, 0).position(20, 0, 0, 0).end(),
+    			}).size(20, 0, 100, 0).position(20, 0, 0, 0),
     			new Button("third fragment", target -> {
     				html.onCreate(MainActivity.fragments[2]);
-    			}).style.size(20, 0, 100, 0).position(40, 0, 0, 0).end(),
+    			}).size(20, 0, 100, 0).position(40, 0, 0, 0),
     			new Button("fours fragment", target -> {
     				html.onCreate(MainActivity.fragments[3]);
-    			}).style.size(20, 0, 100, 0).position(60, 0, 0, 0).end(),
+    			}).size(20, 0, 100, 0).position(60, 0, 0, 0),
     			new Button("five fragment", target -> {
     				html.onCreate(MainActivity.fragments[4]);
-    			}).style.size(20, 0, 100, 0).position(80, 0, 0, 0).end()
-    		).style.size(100, 0, 0, 60).position(0, 0, 100, -60).end();
+    			}).size(20, 0, 100, 0).position(80, 0, 0, 0)
+    		).size(100, 0, 0, 60).position(0, 0, 100, -60);
     		fragments[0] = new Fragment(
-    			new Div().style.size(100, 0, 0, 60).background(Color.RED).end(),
+    			new Div().size(100, 0, 0, 60).background(Color.RED),
     			new Div(
-    				new Button("hello, world!").style.size(50, 0, 50, 0).position(25, 0, 25, 0).end()
-    			).style.size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW).end(),
+    				new Button("hello, world!").size(50, 0, 50, 0).position(25, 0, 25, 0)
+    			).size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW),
     			footer
     		);
-    		fragments[1] = new Fragment("index1",
-        			new Div().style.size(100, 0, 0, 60).background(Color.RED).end(),
+    		fragments[1] = new Fragment("index 2",
+        			new Div().size(100, 0, 0, 60).background(Color.RED),
         			new Div(
-        				new Button("hello, world 2!").style.size(50, 0, 50, 0).position(25, 0, 25, 0).end()
-        			).style.size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW).end(),
+        				new Button("hello, world 2!").size(50, 0, 50, 0).position(25, 0, 25, 0)
+        			).size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW),
         			footer
         		);
-    		fragments[2] = new Fragment("index2",
-        			new Div().style.size(100, 0, 0, 60).background(Color.RED).end(),
+    		fragments[2] = new Fragment("index 3",
+        			new Div().size(100, 0, 0, 60).background(Color.RED),
         			new Div(
-        				new Button("hello, world 3!").style.size(50, 0, 50, 0).position(25, 0, 25, 0).end()
-        			).style.size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW).end(),
+        				new Button("hello, world 3!").size(50, 0, 50, 0).position(25, 0, 25, 0)
+        			).size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW),
         			footer
         		);
-    		fragments[3] = new Fragment("index3",
-        			new Div().style.size(100, 0, 0, 60).background(Color.RED).end(),
+    		fragments[3] = new Fragment("index 4",
+        			new Div().size(100, 0, 0, 60).background(Color.RED),
         			new Div(
-        				new Button("hello, world 4!").style.size(50, 0, 50, 0).position(25, 0, 25, 0).end()
-        			).style.size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW).end(),
+        				new Button("hello, world 3!").size(50, 0, 50, 0).position(25, 0, 25, 0)
+        			).size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW),
         			footer
         		);
-    		fragments[4] = new Fragment("index4",
-        			new Div().style.size(100, 0, 0, 60).background(Color.RED).end(),
+    		fragments[4] = new Fragment("index 5",
+        			new Div().size(100, 0, 0, 60).background(Color.RED),
         			new Div(
-        				new Button("hello, world 5!").style.size(50, 0, 50, 0).position(25, 0, 25, 0).end()
-        			).style.size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW).end(),
+        				new Button("hello, world 5!").size(50, 0, 50, 0).position(25, 0, 25, 0)
+        			).size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW),
         			footer
         		);
     		html.onCreate(fragments[0]);

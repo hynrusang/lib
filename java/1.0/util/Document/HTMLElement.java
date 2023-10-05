@@ -6,50 +6,16 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 
 public abstract class HTMLElement {
-	protected String name;
 	protected JComponent main;
 	protected float[] percentInfo;
 	protected int[] pxInfo;
 	protected ArrayList<HTMLElement> nodeList;
-	public Style style;
 	
-	public class Style {
-		public Style size(float widthp, int width, float heightp, int height) {
-			percentInfo[0] = widthp;
-			percentInfo[1] = heightp;
-			pxInfo[0] = width;
-			pxInfo[1] = height;
-			return this;
-		}
-
-		public Style position(float xp, int x, float yp, int y) {
-			percentInfo[2] = xp;
-			percentInfo[3] = yp;
-			pxInfo[2] = x;
-			pxInfo[3] = y;
-			return this;
-		}
-		
-		public Style background(Color color) {
-			main.setBackground(color);
-			return this;
-		}
-
-		public HTMLElement end() {
-			return HTMLElement.this;
-		}
-	}
-	
-	protected void appendChild(HTMLElement element) {
-		nodeList.add(element);
-		main.add(element.main);
-	};
 	protected HTMLElement(JComponent main, HTMLElement... elements) {
 		this.main = main;
 		percentInfo = new float[] {0, 0, 0, 0};
 		pxInfo = new int[] {0, 0, 0, 0};
 		nodeList = new ArrayList<HTMLElement>();
-		style = new Style();
 		
 		main.setLayout(null);
 		main.addComponentListener(new ComponentAdapter() {
@@ -68,4 +34,33 @@ public abstract class HTMLElement {
         });
 		for (HTMLElement element: elements) appendChild(element);
 	}
+	public HTMLElement size(float widthp, int width, float heightp, int height) {
+		percentInfo[0] = widthp;
+		percentInfo[1] = heightp;
+		pxInfo[0] = width;
+		pxInfo[1] = height;
+		return this;
+	}
+	public HTMLElement position(float xp, int x, float yp, int y) {
+		percentInfo[2] = xp;
+		percentInfo[3] = yp;
+		pxInfo[2] = x;
+		pxInfo[3] = y;
+		return this;
+	}
+	public HTMLElement background(Color color) {
+		main.setBackground(color);
+		return this;
+	}
+	public void clear() {
+		nodeList.removeAll(nodeList);
+	}
+	public void removeChild(HTMLElement element) {
+		nodeList.remove(element);
+		main.remove(element.main);
+	}
+	public void appendChild(HTMLElement element) {
+		nodeList.add(element);
+		main.add(element.main);
+	};
 }

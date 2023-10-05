@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 
 public abstract class HTMLElement {
+	protected String name;
 	protected JComponent main;
 	protected float[] percentInfo;
 	protected int[] pxInfo;

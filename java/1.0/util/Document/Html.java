@@ -1,4 +1,5 @@
 package util.Document;
+import java.awt.Component;
 import java.awt.event.ComponentEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -7,7 +8,13 @@ public class Html extends HTMLElement {
 	private int windowx;
 	private int windowy;
 	private JFrame mainFrame;
-	
+
+	public void findTag(HTMLElement root) {
+		for (HTMLElement element: root.nodeList) {
+			System.out.println(element.getClass());
+			if (!element.nodeList.isEmpty()) findTag(element);
+		};
+	}
 	public void onCreate(Fragment bundle) {
 		if (!mainFrame.getTitle().equals(bundle.title)) {
 			mainFrame.setTitle(bundle.title);
@@ -17,6 +24,7 @@ public class Html extends HTMLElement {
 			nodeList.forEach(element -> main.add(element.main));
 			main.dispatchEvent(new ComponentEvent(main, ComponentEvent.COMPONENT_RESIZED));
 			main.repaint();
+			findTag(this);
 		}
 	}
 	public Html() {

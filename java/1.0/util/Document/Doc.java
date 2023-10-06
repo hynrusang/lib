@@ -18,7 +18,7 @@ public class Doc {
 			if (!element.nodeList.isEmpty()) find(element);
 		};
 	}
-	public static void switching(Fragment bundle) {
+	public static void swiping(Fragment bundle) {
 		if (!mainFrame.getTitle().equals(bundle.title)) {
 			mainFrame.setTitle(bundle.title);
 			nodeList.removeAll(nodeList);

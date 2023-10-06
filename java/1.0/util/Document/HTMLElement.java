@@ -22,12 +22,10 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 			@Override
 			public void componentResized(ComponentEvent e) {
 				HTMLElement.this.nodeList.forEach(element -> {
-					float[] percentInfo = element.percentInfo;
-					int[] pxInfo = element.pxInfo;
-					int newWidth = (int)(HTMLElement.this.main.getWidth() * percentInfo[0] / 100 + pxInfo[0]);
-					int newHeight = (int)(HTMLElement.this.main.getHeight() * percentInfo[1] / 100 + pxInfo[1]);
-					int newX = (int)(HTMLElement.this.main.getWidth() * percentInfo[2] / 100 + pxInfo[2]);
-					int newY = (int)(HTMLElement.this.main.getHeight() * percentInfo[3] / 100 + pxInfo[3]);
+					int newWidth = (int)(HTMLElement.this.main.getWidth() * element.percentInfo[0] / 100 + element.pxInfo[0]);
+					int newHeight = (int)(HTMLElement.this.main.getHeight() * element.percentInfo[1] / 100 + element.pxInfo[1]);
+					int newX = (int)(HTMLElement.this.main.getWidth() * element.percentInfo[2] / 100 + element.pxInfo[2]);
+					int newY = (int)(HTMLElement.this.main.getHeight() * element.percentInfo[3] / 100 + element.pxInfo[3]);
 					element.main.setBounds(newX, newY, newWidth, newHeight);
 				});
 			}

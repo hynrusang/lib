@@ -13,8 +13,8 @@ public class Livedata<T> {
 	}
 	
 	/**
-	 * get value of livedata.<br>
-	 * @return value of livedata
+	 * Get value of livedata.<br>
+	 * @return Value of livedata
 	 */
 	public T getValue() { return this.value; }
 	/**

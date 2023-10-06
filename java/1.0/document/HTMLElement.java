@@ -15,7 +15,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	/**
 	 * Register a identifier for this element.
 	 * @param identity Identifier to set for this element
-	 * @return this element for the chaining method
+	 * @return This element for the chaining method
 	 */
 	final public T identity(String identity) {
 		this.identity = identity;
@@ -27,7 +27,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	 * @param width The horizontal area in pixel that this element will occupy
 	 * @param heightp The vertical area in percent that this element will occupy
 	 * @param height The vertical area in pixel that this element will occupy
-	 * @return this element for the chaining method
+	 * @return This element for the chaining method
 	 */
 	final public T size(float widthp, int width, float heightp, int height) {
 		percentInfo[0] = widthp;
@@ -42,7 +42,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	 * @param x The horizontal area in pixel where this element will be located
 	 * @param yp The vertical area in percent where this element will be located
 	 * @param y The Vertical area in pixel where this element will be located
-	 * @return this element for the chaining method
+	 * @return This element for the chaining method
 	 */
 	final public T position(float xp, int x, float yp, int y) {
 		percentInfo[2] = xp;
@@ -51,14 +51,27 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 		pxInfo[3] = y;
 		return (T)this;
 	}
+	/**
+	 * Sets the background color of this element.
+	 * @param color Color to set as background color
+	 * @return This element for the chaining method
+	 */
 	final public T background(Color color) {
 		main.setBackground(color);
 		return (T)this;
 	}
+	/**
+	 * Remove the element corresponding to the element from the child element.
+	 * @param element Child elements to delete
+	 */
 	final public void removeChild(HTMLElement<?> element) {
 		nodeList.remove(element);
 		main.remove(element.main);
 	}
+	/**
+	 * Append the element to child element.
+	 * @param element Child elements to append
+	 */
 	final public void appendChild(HTMLElement<?> element) {
 		nodeList.add(element);
 		main.add(element.main);

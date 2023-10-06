@@ -15,7 +15,7 @@ public class R {
 			new Button("first").size(20, 0, 100, 0).onClick(target -> {
 				Html.swiping(R.activity_main);
 			}),
-			new Button("second").size(20, 0, 100, 0).position(20, 0, 0, 0).onClick(target -> {
+			new Button("second").size(20, 0, 100, 0).identity("true").position(20, 0, 0, 0).onClick(target -> {
 				Html.swiping(R.activity_second);
 			})
 		).size(100, 0, 0, 60).position(0, 0, 100, -60)
@@ -30,7 +30,7 @@ public class R {
 			new Button("first").size(20, 0, 100, 0).onClick(target -> {
 				Html.swiping(R.activity_main);
 			}),
-			new Button("second").size(20, 0, 100, 0).position(20, 0, 0, 0).onClick(target -> {
+			new Button("second").size(20, 0, 100, 0).identity("true").position(20, 0, 0, 0).onClick(target -> {
 				Html.swiping(R.activity_second);
 			})
 		).size(100, 0, 0, 60).position(0, 0, 100, -60)

@@ -6,11 +6,16 @@ import java.util.ArrayList;
 import javax.swing.JComponent;
 
 public abstract class HTMLElement<T extends HTMLElement<?>> {
-	final protected JComponent main;
-	final protected float[] percentInfo;
-	final protected int[] pxInfo;
-	final protected ArrayList<HTMLElement<?>> nodeList;
+	protected String identity;
+	protected JComponent main;
+	protected float[] percentInfo;
+	protected int[] pxInfo;
+	protected ArrayList<HTMLElement<?>> nodeList;
 	
+	final public T identity(String identity) {
+		this.identity = identity;
+		return (T)this;
+	}
 	final public T size(float widthp, int width, float heightp, int height) {
 		percentInfo[0] = widthp;
 		percentInfo[1] = heightp;
@@ -40,6 +45,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	
 	protected HTMLElement(JComponent main, HTMLElement<?>... elements) {
 		this.main = main;
+		identity = "";
 		percentInfo = new float[] {0, 0, 0, 0};
 		pxInfo = new int[] {0, 0, 0, 0};
 		nodeList = new ArrayList<HTMLElement<?>>();

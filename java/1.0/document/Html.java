@@ -7,6 +7,17 @@ final public class Html {
 	private static JFrame mainFrame;
 	private static Fragment bundle;
 	
+	public static ArrayList<HTMLElement<?>> find(String identity) {
+		return find(bundle, identity);
+	}
+	public static ArrayList<HTMLElement<?>> find(HTMLElement<?> node, String identity) {
+		ArrayList<HTMLElement<?>> temp = new ArrayList<HTMLElement<?>>();
+		for (HTMLElement<?> element: node.nodeList) {
+			if (element.identity.equals(identity)) temp.add(element);
+			if (!element.nodeList.isEmpty()) temp.addAll(find(element, identity));
+		};
+		return temp;
+	}
 	public static ArrayList<HTMLElement<?>> find(HTMLElement<?> target) {
 		return find(bundle, target);
 	}
@@ -26,8 +37,12 @@ final public class Html {
 		mainFrame.repaint();
 		Html.bundle = bundle;
 		find(new Button()).forEach(element -> {
-			System.out.println(element.getClass().getName());
+			System.out.println(element.getClass());
 		});;
+		System.out.println();
+		find("true").forEach(element -> {
+			System.out.println(element.getClass());
+		});
 	}
 	
 	private Html() { };

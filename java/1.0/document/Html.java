@@ -30,6 +30,7 @@ final public class Html {
 			main.repaint();
 		}
 	}
+	
 	public static void init() {
 		init("");
 	}

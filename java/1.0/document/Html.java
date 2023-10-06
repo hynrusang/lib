@@ -7,25 +7,47 @@ final public class Html {
 	private static JFrame mainFrame;
 	private static Fragment bundle;
 	
-	public static ArrayList<HTMLElement<?>> find(String identity) {
+	public static HTMLElement<?> find(String identity) {
 		return find(bundle, identity);
 	}
-	public static ArrayList<HTMLElement<?>> find(HTMLElement<?> node, String identity) {
-		ArrayList<HTMLElement<?>> temp = new ArrayList<HTMLElement<?>>();
+	public static HTMLElement<?> find(HTMLElement<?> node, String identity) {
+		HTMLElement<?> temp = null;
 		for (HTMLElement<?> element: node.nodeList) {
-			if (element.identity.equals(identity)) temp.add(element);
-			if (!element.nodeList.isEmpty()) temp.addAll(find(element, identity));
+			if (element.identity.equals(identity)) temp = element;
+			if (!element.nodeList.isEmpty()) temp = find(element, identity);
 		};
 		return temp;
 	}
-	public static ArrayList<HTMLElement<?>> find(HTMLElement<?> target) {
+	public static HTMLElement<?> find(HTMLElement<?> target) {
 		return find(bundle, target);
 	}
-	public static ArrayList<HTMLElement<?>> find(HTMLElement<?> node, HTMLElement<?> target) {
+	public static HTMLElement<?> find(HTMLElement<?> node, HTMLElement<?> target) {
+		HTMLElement<?> temp = null;
+		for (HTMLElement<?> element: node.nodeList) {
+			if (element.getClass().equals(target.getClass())) temp = element;
+			if (!element.nodeList.isEmpty()) temp = find(element, target);
+		};
+		return temp;
+	}
+	public static ArrayList<HTMLElement<?>> findAll(String identity) {
+		return findAll(bundle, identity);
+	}
+	public static ArrayList<HTMLElement<?>> findAll(HTMLElement<?> node, String identity) {
+		ArrayList<HTMLElement<?>> temp = new ArrayList<HTMLElement<?>>();
+		for (HTMLElement<?> element: node.nodeList) {
+			if (element.identity.equals(identity)) temp.add(element);
+			if (!element.nodeList.isEmpty()) temp.addAll(findAll(element, identity));
+		};
+		return temp;
+	}
+	public static ArrayList<HTMLElement<?>> findAll(HTMLElement<?> target) {
+		return findAll(bundle, target);
+	}
+	public static ArrayList<HTMLElement<?>> findAll(HTMLElement<?> node, HTMLElement<?> target) {
 		ArrayList<HTMLElement<?>> temp = new ArrayList<HTMLElement<?>>();
 		for (HTMLElement<?> element: node.nodeList) {
 			if (element.getClass().equals(target.getClass())) temp.add(element);
-			if (!element.nodeList.isEmpty()) temp.addAll(find(element, target));
+			if (!element.nodeList.isEmpty()) temp.addAll(findAll(element, target));
 		};
 		return temp;
 	}
@@ -36,13 +58,11 @@ final public class Html {
 		mainFrame.revalidate();
 		mainFrame.repaint();
 		Html.bundle = bundle;
-		find(new Button()).forEach(element -> {
+		findAll(new Button()).forEach(element -> {
 			System.out.println(element.getClass());
 		});;
 		System.out.println();
-		find("true").forEach(element -> {
-			System.out.println(element.getClass());
-		});
+		System.out.println(find("true").getClass().getName());
 	}
 	
 	private Html() { };

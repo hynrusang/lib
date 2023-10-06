@@ -49,9 +49,6 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 		main.setBackground(color);
 		return (T)this;
 	}
-	public void clear() {
-		nodeList.removeAll(nodeList);
-	}
 	public void removeChild(HTMLElement<?> element) {
 		nodeList.remove(element);
 		main.remove(element.main);

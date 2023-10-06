@@ -2,7 +2,7 @@ package document;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 
-public class Button extends HTMLElement<Button> {
+final public class Button extends HTMLElement<Button> {
 	public Button onClick(ActionListener listener) {
 		((JButton)main).addActionListener(listener);
 		return this;

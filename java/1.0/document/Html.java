@@ -2,11 +2,10 @@ package document;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Html {
+final public class Html {
 	private static int[] window;
 	private static JFrame mainFrame;
 	private static JPanel main;

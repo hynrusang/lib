@@ -22,22 +22,22 @@ public class MainActivity {
     		break;
     	case "Document":
     		fragments = new Fragment[5];
-    		Html html = new Html("window: 720, 440");
+    		Html.setHeader("window: 720, 440");
     		Div footer = new Div(
     			new Button("first fragment").size(20, 0, 100, 0).onClick(e -> {
-    				html.onCreate(MainActivity.fragments[0]);
+    				Html.onCreate(MainActivity.fragments[0]);
     			}),
     			new Button("second fragment").size(20, 0, 100, 0).position(20, 0, 0, 0).onClick(e -> {
-    				html.onCreate(MainActivity.fragments[1]);
+    				Html.onCreate(MainActivity.fragments[1]);
     			}),
     			new Button("third fragment").size(20, 0, 100, 0).position(40, 0, 0, 0).onClick(e -> {
-    				html.onCreate(MainActivity.fragments[2]);
+    				Html.onCreate(MainActivity.fragments[2]);
     			}),
     			new Button("fours fragment").size(20, 0, 100, 0).position(60, 0, 0, 0).onClick(e -> {
-    				html.onCreate(MainActivity.fragments[3]);
+    				Html.onCreate(MainActivity.fragments[3]);
     			}),
     			new Button("five fragment").size(20, 0, 100, 0).position(80, 0, 0, 0).onClick(e -> {
-    				html.onCreate(MainActivity.fragments[4]);
+    				Html.onCreate(MainActivity.fragments[4]);
     			})
     		).size(100, 0, 0, 60).position(0, 0, 100, -60);
     		fragments[0] = new Fragment(
@@ -75,7 +75,7 @@ public class MainActivity {
         			).size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW),
         			footer
         		);
-    		html.onCreate(fragments[0]);
+    		Html.onCreate(fragments[0]);
     		break;
     	}
     }

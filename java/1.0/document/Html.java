@@ -54,8 +54,8 @@ final public class Html {
 		mainFrame.revalidate();
 		mainFrame.repaint();
 		Html.bundle = bundle;
-		findAll("tag:Button").forEach(element -> System.out.println(element.getClass()));
-		System.out.println(find("identity:true").getClass().getName());
+		System.out.println(findAll("tag:Button"));
+		System.out.println(find("identity:true"));
 	}
 	
 	private Html() { };

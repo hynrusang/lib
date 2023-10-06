@@ -1,4 +1,4 @@
-package util.Document;
+package document;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;

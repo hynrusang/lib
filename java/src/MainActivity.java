@@ -1,5 +1,5 @@
 import util.Livedata;
-import util.Document.Html;
+import document.Html;
 
 public class MainActivity {
 	private static String target = "Document";
@@ -17,7 +17,7 @@ public class MainActivity {
     		break;
     	case "Document":
     		Html.init("window: 720, 440");
-    		Html.swiping(Case.main);
+    		Html.swiping(R.activity_main);
     		break;
     	}
     }

@@ -1,4 +1,4 @@
-package util.Document;
+package document;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 

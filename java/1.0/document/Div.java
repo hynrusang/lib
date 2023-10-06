@@ -1,4 +1,4 @@
-package util.Document;
+package document;
 import javax.swing.JPanel;
 
 public class Div extends HTMLElement<Div> {

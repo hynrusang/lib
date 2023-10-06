@@ -21,7 +21,10 @@ final public class Html {
 				if (element.getClass().getSimpleName().equals(part[1])) return element;
 				break;
 			}
-			if (!element.nodeList.isEmpty()) return find(element, query);
+			if (!element.nodeList.isEmpty()) {
+	            HTMLElement<?> found = find(element, query);
+	            if (found != null) return found;
+	        }
 		};
 		return null;
 	}
@@ -55,7 +58,7 @@ final public class Html {
 			System.out.println(element.getClass());
 		});;
 		System.out.println();
-		System.out.println(find("tag:Div").getClass().getName());
+		System.out.println(find("identity:true").getClass().getName());
 	}
 	
 	private Html() { };

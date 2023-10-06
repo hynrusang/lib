@@ -1,6 +1,6 @@
 package util.Document;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
 
 public class Button extends HTMLElement<Button> {
 	public Button onClick(ActionListener listener) {

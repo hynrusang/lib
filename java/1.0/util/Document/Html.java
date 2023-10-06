@@ -51,12 +51,10 @@ public class Html {
 			@Override
 			public void componentResized(ComponentEvent e) {
 				nodeList.forEach(element -> {
-					float[] percentInfo = element.percentInfo;
-					int[] pxInfo = element.pxInfo;
-					int newWidth = (int)(main.getWidth() * percentInfo[0] / 100 + pxInfo[0]);
-					int newHeight = (int)(main.getHeight() * percentInfo[1] / 100 + pxInfo[1]);
-					int newX = (int)(main.getWidth() * percentInfo[2] / 100 + pxInfo[2]);
-					int newY = (int)(main.getHeight() * percentInfo[3] / 100 + pxInfo[3]);
+					int newWidth = (int)(main.getWidth() * element.percentInfo[0] / 100 + element.pxInfo[0]);
+					int newHeight = (int)(main.getHeight() * element.percentInfo[1] / 100 + element.pxInfo[1]);
+					int newX = (int)(main.getWidth() * element.percentInfo[2] / 100 + element.pxInfo[2]);
+					int newY = (int)(main.getHeight() * element.percentInfo[3] / 100 + element.pxInfo[3]);
 					element.main.setBounds(newX, newY, newWidth, newHeight);
 				});
 			}

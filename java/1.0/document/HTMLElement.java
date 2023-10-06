@@ -12,6 +12,11 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	protected int[] pxInfo;
 	protected ArrayList<HTMLElement<?>> nodeList;
 	
+	/**
+	 * Register a identifier for this element.
+	 * @param identity Identifier to set for this element
+	 * @return this element for the chaining method
+	 */
 	final public T identity(String identity) {
 		this.identity = identity;
 		return (T)this;

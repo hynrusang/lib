@@ -7,6 +7,11 @@ final public class Html {
 	private static JFrame mainFrame;
 	private static Fragment bundle;
 	
+	/**
+	 * 
+	 * @param query String query that begin with tag: or identity:
+	 * @return First element matching String query
+	 */
 	public static HTMLElement<?> find(String query) {
 		return find(bundle, query);
 	}

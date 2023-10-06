@@ -14,11 +14,11 @@ final public class Html {
 		String[] part = query.split(":");
 		for (HTMLElement<?> element: node.nodeList) {
 			switch (part[0]) {
-			case "identity":
-				if (element.identity.equals(part[1])) return element;
-				break;
 			case "tag":
 				if (element.getClass().getSimpleName().equals(part[1])) return element;
+				break;
+			case "identity":
+				if (element.identity.equals(part[1])) return element;
 				break;
 			}
 			if (!element.nodeList.isEmpty()) {

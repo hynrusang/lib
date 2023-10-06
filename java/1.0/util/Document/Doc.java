@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Html {
+public class Doc {
 	private static int[] window;
 	private static JFrame mainFrame;
 	private static JPanel main;
@@ -31,7 +31,10 @@ public class Html {
 			main.repaint();
 		}
 	}
-	public static void setHeader(String headers) {
+	public static void init() {
+		this("");
+	}
+	public static void init(String headers) {
 		window = new int[] { 1040, 720 };
 		mainFrame = new JFrame();
 		main = new JPanel();

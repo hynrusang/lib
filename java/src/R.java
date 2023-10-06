@@ -13,10 +13,10 @@ public class R {
 		).size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW),
 		new Div(
 			new Button("first").size(20, 0, 100, 0).onClick(target -> {
-				Html.swiping(R.activity_main);
+				Html.replace(R.activity_main);
 			}),
 			new Button("second").size(20, 0, 100, 0).identity("true").position(20, 0, 0, 0).onClick(target -> {
-				Html.swiping(R.activity_second);
+				Html.replace(R.activity_second);
 			})
 		).size(100, 0, 0, 60).position(0, 0, 100, -60)
 	);
@@ -28,10 +28,10 @@ public class R {
 		).size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW),
 		new Div(
 			new Button("first").size(20, 0, 100, 0).onClick(target -> {
-				Html.swiping(R.activity_main);
+				Html.replace(R.activity_main);
 			}),
 			new Button("second").size(20, 0, 100, 0).identity("true").position(20, 0, 0, 0).onClick(target -> {
-				Html.swiping(R.activity_second);
+				Html.replace(R.activity_second);
 			})
 		).size(100, 0, 0, 60).position(0, 0, 100, -60)
 	);

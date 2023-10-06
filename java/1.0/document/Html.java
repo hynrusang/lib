@@ -8,13 +8,19 @@ final public class Html {
 	private static Fragment bundle;
 	
 	/**
-	 * 
+	 * Return the first of the elements corresponding to the query.
 	 * @param query String query that begin with tag: or identity:
-	 * @return First element matching String query
+	 * @return First of the elements corresponding to the query
 	 */
 	public static HTMLElement<?> find(String query) {
 		return find(bundle, query);
 	}
+	/**
+	 * Return the first of the elements corresponding to the query.
+	 * @param node Parent element to start looking for
+	 * @param query String query that begin with tag: or identity:
+	 * @return First element matching String query
+	 */
 	public static HTMLElement<?> find(HTMLElement<?> node, String query) {
 		String[] part = query.split(":");
 		for (HTMLElement<?> element: node.nodeList) {
@@ -33,9 +39,20 @@ final public class Html {
 		};
 		return null;
 	}
+	/**
+	 * Returns all elements corresponding to the query string.
+	 * @param query String query that begin with tag: or identity:
+	 * @return All elements corresponding to the query string.
+	 */
 	public static ArrayList<HTMLElement<?>> findAll(String query) {
 		return findAll(bundle, query);
 	}
+	/**
+	 * Returns all elements corresponding to the query string.
+	 * @param node Parent element to start looking for
+	 * @param query String query that begin with tag: or identity:
+	 * @return All elements corresponding to the query string.
+	 */
 	public static ArrayList<HTMLElement<?>> findAll(HTMLElement<?> node, String query) {
 		String[] part = query.split(":");
 		ArrayList<HTMLElement<?>> temp = new ArrayList<HTMLElement<?>>();
@@ -52,7 +69,11 @@ final public class Html {
 		};
 		return temp;
 	}
-	public static void swiping(Fragment bundle) {
+	/**
+	 * Replace the currently displayed screen to a bundle.
+	 * @param bundle New fragment to be shown
+	 */
+	public static void replace(Fragment bundle) {
 		mainFrame.setTitle(bundle.title);
 		if (Html.bundle != null) mainFrame.remove(Html.bundle.main);
 		mainFrame.add(bundle.main);
@@ -64,9 +85,16 @@ final public class Html {
 	}
 	
 	private Html() { };
+	/**
+	 * Initialize the Frame window.
+	 */
 	public static void init() {
 		init("");
 	}
+	/**
+	 * Initialize the Frame window.
+	 * @param headers String query to set in frame window
+	 */
 	public static void init(String headers) {
 		window = new int[] { 1040, 720 };
 		mainFrame = new JFrame();

@@ -17,7 +17,7 @@ public class MainActivity {
     		break;
     	case "Document":
     		Html.init("window: 720, 440");
-    		Html.swiping(R.activity_main);
+    		Html.replace(R.activity_main);
     		break;
     	}
     }

@@ -1,37 +1,42 @@
 package document;
-import javax.swing.JComponent;
+import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 final public class Html {
 	private static int[] window;
 	private static JFrame mainFrame;
-	private static JComponent main;
-
-	public static void find(HTMLElement<?> node) {
+	private static Fragment bundle;
+	
+	public static ArrayList<HTMLElement<?>> find(HTMLElement<?> target) {
+		return find(bundle, target);
+	}
+	public static ArrayList<HTMLElement<?>> find(HTMLElement<?> node, HTMLElement<?> target) {
+		ArrayList<HTMLElement<?>> temp = new ArrayList<HTMLElement<?>>();
 		for (HTMLElement<?> element: node.nodeList) {
-			System.out.println(element.getClass().getName());
-			if (!element.nodeList.isEmpty()) find(element);
+			if (element.getClass().equals(target.getClass())) temp.add(element);
+			if (!element.nodeList.isEmpty()) temp.addAll(find(element, target));
 		};
+		return temp;
 	}
 	public static void swiping(Fragment bundle) {
-		if (main == null || !main.equals(bundle.main)) {
-			mainFrame.setTitle(bundle.title);
-			mainFrame.remove(main);
-			mainFrame.add(bundle.main);
-			mainFrame.revalidate();
-			mainFrame.repaint();
-			main = bundle.main;
-		}
+		mainFrame.setTitle(bundle.title);
+		if (Html.bundle != null) mainFrame.remove(Html.bundle.main);
+		mainFrame.add(bundle.main);
+		mainFrame.revalidate();
+		mainFrame.repaint();
+		Html.bundle = bundle;
+		find(new Button()).forEach(element -> {
+			System.out.println(element.getClass().getName());
+		});;
 	}
 	
+	private Html() { };
 	public static void init() {
 		init("");
 	}
 	public static void init(String headers) {
 		window = new int[] { 1040, 720 };
 		mainFrame = new JFrame();
-		main = new JPanel();
 		
 		for (String header: headers.split(";")) {
 			String[] parts = header.split(":");
@@ -42,7 +47,6 @@ final public class Html {
 				break;
 			}
 		}
-		mainFrame.add(main);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setSize(window[0], window[1]);
 		mainFrame.setVisible(true);

@@ -20,6 +20,7 @@ public class R {
 			})
 		).size(100, 0, 0, 60).position(0, 0, 100, -60)
 	);
+	
 	public static Fragment activity_second = new Fragment("index 2",
 		new Div().size(100, 0, 0, 60).background(Color.RED),
 		new Div(

@@ -38,7 +38,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 		main.add(element.main);
 	};
 	
-	protected HTMLElement(JComponent main) {
+	protected HTMLElement(JComponent main, HTMLElement<?>... elements) {
 		this.main = main;
 		percentInfo = new float[] {0, 0, 0, 0};
 		pxInfo = new int[] {0, 0, 0, 0};
@@ -57,5 +57,6 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 				});
 			}
 		});
+		for (HTMLElement<?> element: elements) appendChild(element);
 	}
 }

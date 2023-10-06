@@ -87,12 +87,14 @@ final public class Html {
 	private Html() { };
 	/**
 	 * Initialize the Frame window.
+	 * @param bundle Fragment to set for initial frame.
 	 */
 	public static void init(Fragment bundle) {
 		init(bundle, "");
 	}
 	/**
 	 * Initialize the Frame window.
+	 * @param bundle Fragment to set for initial frame.
 	 * @param headers String query to set in frame window
 	 */
 	public static void init(Fragment bundle, String headers) {

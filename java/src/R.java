@@ -1,5 +1,4 @@
 import java.awt.Color;
-
 import document.Button;
 import document.Div;
 import document.Fragment;

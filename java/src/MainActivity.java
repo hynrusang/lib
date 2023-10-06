@@ -16,8 +16,8 @@ public class MainActivity {
             livedata.setValue(9);
     		break;
     	case "Document":
-    		Html.setHeader("window: 720, 440");
-    		Html.onCreate(Case.main);
+    		Html.init("window: 720, 440");
+    		Html.swiping(Case.main);
     		break;
     	}
     }

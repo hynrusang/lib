@@ -21,6 +21,14 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 		this.identity = identity;
 		return (T)this;
 	}
+	/**
+	 * Sets the size of this element.
+	 * @param widthp The horizontal area in percent that this element will occupy
+	 * @param width The horizontal area in pixel that this element will occupy
+	 * @param heightp The vertical area in percent that this element will occupy
+	 * @param height The vertical area in pixel that this element will occupy
+	 * @return this element for the chaining method
+	 */
 	final public T size(float widthp, int width, float heightp, int height) {
 		percentInfo[0] = widthp;
 		percentInfo[1] = heightp;
@@ -28,6 +36,14 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 		pxInfo[1] = height;
 		return (T)this;
 	}
+	/**
+	 * Sets the position of this element.
+	 * @param xp The horizontal area in percent where this element will be located
+	 * @param x The horizontal area in pixel where this element will be located
+	 * @param yp The vertical area in percent where this element will be located
+	 * @param y The Vertical area in pixel where this element will be located
+	 * @return this element for the chaining method
+	 */
 	final public T position(float xp, int x, float yp, int y) {
 		percentInfo[2] = xp;
 		percentInfo[3] = yp;

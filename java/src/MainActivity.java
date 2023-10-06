@@ -7,13 +7,11 @@ public class MainActivity {
     	switch (MainActivity.target) {
     	case "Livedata":
     		Livedata<Integer> livedata = new Livedata<Integer>(0);
-            livedata.observe(it -> {
-                System.out.println("data was changed:" + it);
-            });
-            livedata.setValue(3);
-            livedata.setValue(7);
-            livedata.setValue(7);
-            livedata.setValue(9);
+		livedata.observe(it -> System.out.println("data was changed:" + it));
+		livedata.setValue(3);
+		livedata.setValue(7);
+		livedata.setValue(7);
+		livedata.setValue(9);
     		break;
     	case "Document":
     		Html.init(R.activity_main, "window: 720, 440");

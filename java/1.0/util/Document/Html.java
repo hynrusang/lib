@@ -7,8 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Html {
-	private static int windowx;
-	private static int windowy;
+	private static int[] window;
 	private static JFrame mainFrame;
 	private static JPanel main;
 	private static ArrayList<HTMLElement<?>> nodeList;
@@ -33,8 +32,7 @@ public class Html {
 		}
 	}
 	public static void setHeader(String headers) {
-		windowx = 1040;
-		windowy = 720;
+		window = new int[] { 1040, 720 };
 		mainFrame = new JFrame();
 		main = new JPanel();
 		nodeList = new ArrayList<HTMLElement<?>>();
@@ -43,29 +41,29 @@ public class Html {
 			String[] parts = header.split(":");
 			switch (parts[0].trim()) {
 			case "window":
-				windowx = Integer.parseInt(parts[1].split(",")[0].trim());
-				windowy = Integer.parseInt(parts[1].split(",")[1].trim());
+				window[0] = Integer.parseInt(parts[1].split(",")[0].trim());
+				window[1] = Integer.parseInt(parts[1].split(",")[1].trim());
 				break;
 			}
 		}
 		main.setLayout(null);
 		main.addComponentListener(new ComponentAdapter() {
 			@Override
-            public void componentResized(ComponentEvent e) {
+			public void componentResized(ComponentEvent e) {
 				nodeList.forEach(element -> {
 					float[] percentInfo = element.percentInfo;
-            		int[] pxInfo = element.pxInfo;
-            		int newWidth = (int)(main.getWidth() * percentInfo[0] / 100 + pxInfo[0]);
-            		int newHeight = (int)(main.getHeight() * percentInfo[1] / 100 + pxInfo[1]);
-            		int newX = (int)(main.getWidth() * percentInfo[2] / 100 + pxInfo[2]);
-            		int newY = (int)(main.getHeight() * percentInfo[3] / 100 + pxInfo[3]);
-            		element.main.setBounds(newX, newY, newWidth, newHeight);
-                });
-            }
-        });
+					int[] pxInfo = element.pxInfo;
+					int newWidth = (int)(main.getWidth() * percentInfo[0] / 100 + pxInfo[0]);
+					int newHeight = (int)(main.getHeight() * percentInfo[1] / 100 + pxInfo[1]);
+					int newX = (int)(main.getWidth() * percentInfo[2] / 100 + pxInfo[2]);
+					int newY = (int)(main.getHeight() * percentInfo[3] / 100 + pxInfo[3]);
+					element.main.setBounds(newX, newY, newWidth, newHeight);
+				});
+			}
+		});
 		mainFrame.add(main);
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainFrame.setSize(windowx, windowy);
+		mainFrame.setSize(window[0], window[1]);
 		mainFrame.setVisible(true);
 	}
 	

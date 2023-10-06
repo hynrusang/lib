@@ -80,8 +80,6 @@ final public class Html {
 		mainFrame.revalidate();
 		mainFrame.repaint();
 		Html.bundle = bundle;
-		System.out.println(findAll("tag:Button"));
-		System.out.println(find("identity:true"));
 	}
 	
 	private Html() { };

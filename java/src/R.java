@@ -14,9 +14,13 @@ public class R {
 		new Div(
 			new Button("first").size(20, 0, 100, 0).onClick(target -> {
 				Html.replace(R.activity_main);
+				System.out.println(Html.findAll("tag:Button"));
+				System.out.println(Html.find("identity:true"));
 			}),
 			new Button("second").size(20, 0, 100, 0).identity("true").position(20, 0, 0, 0).onClick(target -> {
 				Html.replace(R.activity_second);
+				System.out.println(Html.findAll("tag:Button"));
+				System.out.println(Html.find("identity:true"));
 			})
 		).size(100, 0, 0, 60).position(0, 0, 100, -60)
 	);

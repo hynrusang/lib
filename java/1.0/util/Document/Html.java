@@ -13,8 +13,8 @@ public class Html {
 	private static JPanel main;
 	private static ArrayList<HTMLElement<?>> nodeList;
 
-	public static void find(HTMLElement<?> root) {
-		for (HTMLElement<?> element: root.nodeList) {
+	public static void find(HTMLElement<?> node) {
+		for (HTMLElement<?> element: node.nodeList) {
 			System.out.println(element.getClass().getName());
 			if (!element.nodeList.isEmpty()) find(element);
 		};

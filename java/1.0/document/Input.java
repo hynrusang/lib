@@ -24,10 +24,11 @@ final public class Input extends HTMLElement<Input> {
             		lock = true;
             		try {
             			String text = e.getDocument().getText(0, e.getDocument().getLength());
-            			if (current.equals("")) {
-            				current = text.replaceAll(placeholder, "");
-            				((JTextField)main).setText(current);
-            			} else current = text;
+            			if (current.isEmpty()) {
+            				text = text.replaceAll(placeholder, "");
+            				((JTextField)main).setText(text);
+            			}
+            			current = text;
             		} catch (Exception ex) { ex.printStackTrace(); }
             		lock = false;
             	});
@@ -39,13 +40,11 @@ final public class Input extends HTMLElement<Input> {
             		lock = true;
             		try {
             			String text = e.getDocument().getText(0, e.getDocument().getLength());
-            			System.out.println(text);
             			if (text.isEmpty()) {
             				((JTextField)main).setText(placeholder);
             				((JTextField)main).setCaretPosition(0);
             			}
             			current = text;
-            			System.out.println(current);
             		} catch (Exception ex) { ex.printStackTrace(); }
             		lock = false;
             	});

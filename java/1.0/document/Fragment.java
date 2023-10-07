@@ -3,6 +3,7 @@ import javax.swing.JPanel;
 
 final public class Fragment extends HTMLElement<Fragment> {
 	String title;
+	
 	public Fragment(HTMLElement<?>... elements) {
 		this("index", elements);
 	}

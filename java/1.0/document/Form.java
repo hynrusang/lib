@@ -10,7 +10,7 @@ import document.event.SubmitListener;
 
 final public class Form extends HTMLElement<Form> {
 	private SubmitListener listener;
-
+	
 	public Form onSubmit(SubmitListener listener) {
 		this.listener = listener;
 		return this;
@@ -27,16 +27,11 @@ final public class Form extends HTMLElement<Form> {
 							public Form getTarget() {
 								return Form.this;
 							}
-							
+
 							@Override
-							public JTextField[] getFormData() {
-								ArrayList<JTextField> temp = new ArrayList<JTextField>();
-								nodeList.forEach(element -> {
-									if (element instanceof Input) temp.add((JTextField)element.main);
-								});
-								return temp.toArray(new JTextField[0]);
+							public ArrayList<HTMLElement<?>> getFormData() {
+								return nodeList;
 							}
-							
 						});
 					}
 				});
@@ -51,14 +46,9 @@ final public class Form extends HTMLElement<Form> {
 							}
 							
 							@Override
-							public JTextField[] getFormData() {
-								ArrayList<JTextField> temp = new ArrayList<JTextField>();
-								nodeList.forEach(element -> {
-									if (element instanceof Input) temp.add((JTextField)element.main);
-								});
-								return temp.toArray(new JTextField[0]);
+							public ArrayList<HTMLElement<?>> getFormData() {
+								return nodeList;
 							}
-							
 						});
 					}
 				});

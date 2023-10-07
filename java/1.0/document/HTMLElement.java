@@ -11,7 +11,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	protected float[] percentInfo;
 	protected int[] pxInfo;
 	protected ArrayList<HTMLElement<?>> nodeList;
-	
+
 	/**
 	 * Register a identifier for this element.
 	 * @param identity Identifier to set for this element

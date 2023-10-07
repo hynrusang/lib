@@ -3,6 +3,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 
 final public class Button extends HTMLElement<Button> {
+	public String getValue() {
+		return ((JButton)main).getText();
+	}
 	/**
 	 * Registers the listener that runs when you click a button.
 	 * @param listener Listener to run when a button is clicked

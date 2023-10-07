@@ -9,9 +9,8 @@ public class R {
 			new Input("placeholder").size(50, 0, 0, 40).position(25, 0, 0, 40),
 			new Button("submit").size(0, 100, 0, 40).position(50, -50, 0, 80)
 		).size(100, 0, 100, -120).identity("true").position(0, 0, 0, 60).background(Color.YELLOW).onSubmit(e -> {
-			JTextField[] fields = e.getFormData();
-			for (JTextField field: fields) {
-				System.out.println(field.getText());
+			for (HTMLElement<?> field: e.getFormData()) {
+				if (field instanceof Input) System.out.println(((Input)field).getValue());
 			}
 		}),
 		new Div(

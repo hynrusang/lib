@@ -10,6 +10,9 @@ final public class Input extends HTMLElement<Input> {
 	private boolean lock;
 	private String current;
 	
+	public String getValue() {
+		return current;
+	}
 	public Input() {
 		this("");
 	}

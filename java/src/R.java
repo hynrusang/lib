@@ -6,17 +6,13 @@ public class R {
 		return new Div(
 			new Button("first").size(20, 0, 100, 0).onClick(e -> {
 				Html.navigate(0);
-				System.out.println(Html.findAll("tag:Button"));
-				System.out.println(Html.find("identity:true"));
 			}),
 			new Button("second").size(20, 0, 100, 0).position(20, 0, 0, 0).onClick(e -> {
 				Html.navigate(1);
-				System.out.println(Html.findAll("tag:Button"));
-				System.out.println(Html.find("identity:true"));
 			})
 		).size(100, 0, 0, 60).position(0, 0, 100, -60);
 	}
-		
+	
 	public static Fragment activity_main = new Fragment(
 		new Div(
 			new Form(
@@ -36,7 +32,7 @@ public class R {
 		new Div().size(100, 0, 0, 60).background(Color.RED),
 		new Div(
 			new Button("hello, world 2!").size(50, 0, 50, 0).position(25, 0, 25, 0)
-		).size(100, 0, 100, -120).identity("true").position(0, 0, 0, 60).background(Color.YELLOW),
+		).size(100, 0, 100, -120).position(0, 0, 0, 60).background(Color.YELLOW),
 		R.footer()
 	);
 }

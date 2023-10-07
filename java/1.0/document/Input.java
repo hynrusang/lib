@@ -6,7 +6,6 @@ import javax.swing.event.DocumentListener;
 
 final public class Input extends HTMLElement<Input> {
 	private boolean lock;
-	private String placeholder;
 	private String current;
 	public Input() {
 		this("");
@@ -14,7 +13,6 @@ final public class Input extends HTMLElement<Input> {
 	public Input(String placeholder) {
 		super(new JTextField());
 		lock = false;
-		this.placeholder = placeholder;
 		this.current = "";
 		((JTextField)main).setText(placeholder);
 		((JTextField)main).getDocument().addDocumentListener(new DocumentListener() {

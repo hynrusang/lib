@@ -6,7 +6,7 @@ public class R {
 		new Div(
 			new Form(
 				new Input("placeholder").size(50, 0, 0, 40).position(25, 0, 0, 40),
-				new Button("submit").size(0, 100, 0, 40).position(50, -50, 0, 80)
+				new Submit().size(0, 100, 0, 40).position(50, -50, 0, 80)
 			).size(100, 0, 100, 0).background(Color.YELLOW).onSubmit(e -> {
 				for (HTMLElement<?> field: e.getFormData()) {
 					System.out.println(field.getText());

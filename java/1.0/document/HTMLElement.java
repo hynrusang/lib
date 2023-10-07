@@ -3,6 +3,8 @@ import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 
 public abstract class HTMLElement<T extends HTMLElement<?>> {
@@ -63,6 +65,10 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 		percentInfo[3] = yp;
 		pxInfo[2] = x;
 		pxInfo[3] = y;
+		return (T)this;
+	}
+	final public T border(Color color, int size) {
+		main.setBorder(BorderFactory.createLineBorder(color, size));
 		return (T)this;
 	}
 	/**

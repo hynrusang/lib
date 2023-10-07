@@ -7,7 +7,7 @@ public class R {
 			new Form(
 				new Input("placeholder").size(50, 0, 0, 40).position(25, 0, 0, 20),
 				new Submit().size(0, 100, 0, 40).position(50, -50, 0, 60)
-			).size(100, 0, 00, 120).background(Color.YELLOW).onSubmit(e -> {
+			).size(100, 0, 0, 120).background(Color.YELLOW).onSubmit(e -> {
 				for (HTMLElement<?> field: e.getFormData()) {
 					System.out.println(field.getText());
 				}

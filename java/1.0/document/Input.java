@@ -9,7 +9,10 @@ import javax.swing.event.DocumentListener;
 final public class Input extends HTMLElement<Input> {
 	private boolean lock;
 	private String current;
-	
+	/**
+	 * Gets the internal text of this object.
+	 * @return Internal text of this object.
+	 */
 	public String getValue() {
 		return current;
 	}

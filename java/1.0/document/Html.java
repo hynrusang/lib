@@ -4,8 +4,9 @@ import javax.swing.JFrame;
 
 final public class Html {
 	private static int[] window;
+	private static Fragment[] navigation;
 	private static JFrame mainFrame;
-	private static Fragment bundle;
+	private static int currentNum;
 	
 	/**
 	 * Return the first of the elements corresponding to the query.
@@ -13,7 +14,7 @@ final public class Html {
 	 * @return First of the elements corresponding to the query
 	 */
 	public static HTMLElement<?> find(String query) {
-		return find(bundle, query);
+		return find(navigation[currentNum], query);
 	}
 	/**
 	 * Return the first of the elements corresponding to the query.
@@ -45,7 +46,7 @@ final public class Html {
 	 * @return All elements corresponding to the query string.
 	 */
 	public static ArrayList<HTMLElement<?>> findAll(String query) {
-		return findAll(bundle, query);
+		return findAll(navigation[currentNum], query);
 	}
 	/**
 	 * Returns all elements corresponding to the query string.
@@ -73,38 +74,37 @@ final public class Html {
 	 * Replace the currently displayed screen to a bundle.
 	 * @param bundle New fragment to be shown
 	 */
-	public static void replace(Fragment bundle) {
-		if (!Html.bundle.title.equals(bundle.title)) {
-			mainFrame.setTitle(bundle.title);
-			mainFrame.remove(Html.bundle.main);
-			mainFrame.add(bundle.main);
+	public static void navigate(int num) {
+		if (Html.currentNum != num) {
+			mainFrame.setTitle(navigation[num].title);
+			mainFrame.remove(navigation[currentNum].main);
+			mainFrame.add(navigation[num].main);
 			mainFrame.revalidate();
 			mainFrame.repaint();
-			Html.bundle = bundle;
+			Html.currentNum = num;
 		}
 	}
 	
 	private Html() { };
 	/**
 	 * Initialize the Frame window.
-	 * @param bundle Fragment to set for initial frame.
 	 */
-	public static void init(Fragment bundle) {
-		init(bundle, "");
+	public static void init(Fragment... navigation) {
+		init("", navigation);
 	}
 	/**
 	 * Initialize the Frame window.
-	 * @param bundle Fragment to set for initial frame.
 	 * @param headers String query to set in frame window
 	 */
-	public static void init(Fragment bundle, String headers) {
-		if (Html.bundle != null) throw new RuntimeException("the main bundle is already set.");
+	public static void init(String headers, Fragment... navigation) {
+		if (window != null) throw new RuntimeException("html is already init.");
 		else {
 			window = new int[] { 1040, 720 };
+			Html.navigation = navigation;
 			mainFrame = new JFrame();
-			Html.bundle = bundle;
-			mainFrame.setTitle(bundle.title);
+			currentNum = 0;
 			
+			mainFrame.setTitle(navigation[0].title);
 			for (String header: headers.split(";")) {
 				String[] parts = header.split(":");
 				switch (parts[0].trim()) {
@@ -114,11 +114,10 @@ final public class Html {
 					break;
 				}
 			}
-			mainFrame.add(bundle.main);
+			mainFrame.add(navigation[0].main);
 			mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			mainFrame.setSize(window[0], window[1]);
 			mainFrame.setVisible(true);
 		}
 	}
-	
 }

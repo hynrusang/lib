@@ -14,7 +14,7 @@ public class MainActivity {
     		livedata.setValue(9);
     		break;
     	case "Document":
-    		Html.init(R.activity_main, "window: 1440, 1040");
+    		Html.init(R.activity_main, "window: 720, 440");
     		break;
     	}
     }

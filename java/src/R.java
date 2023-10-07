@@ -9,7 +9,7 @@ public class R {
 	public static Fragment activity_main = new Fragment(
 		new Div().size(100, 0, 0, 60).background(Color.RED),
 		new Div(
-			new Input().size(50, 0, 0, 40).position(25, 0, 0, 40)
+			new Input("hint").size(50, 0, 0, 40).position(25, 0, 0, 40)
 		).size(100, 0, 100, -120).identity("true").position(0, 0, 0, 60).background(Color.YELLOW),
 		new Div(
 			new Button("first").size(20, 0, 100, 0).onClick(target -> {

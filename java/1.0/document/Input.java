@@ -1,6 +1,8 @@
 package document;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -52,5 +54,15 @@ final public class Input extends HTMLElement<Input> {
             public void changedUpdate(DocumentEvent e) {
             }
         });
+		((JTextField)main).addCaretListener(new CaretListener() {
+			@Override
+			public void caretUpdate(CaretEvent e) {
+				if (!lock) {
+					lock = true;
+					if (current.isEmpty()) ((JTextField)main).setCaretPosition(0);
+					lock = false;
+				}
+			}
+		});
 	}
 }

@@ -1,7 +1,5 @@
 package document;
 import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.CaretEvent;

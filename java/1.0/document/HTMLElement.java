@@ -29,6 +29,13 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 		return (T)this;
 	}
 	/**
+	 * Return identifier for this element.
+	 * @return Identifier for this element
+	 */
+	final public String getIdentity() {
+		return identity;
+	}
+	/**
 	 * Sets the size of this element.
 	 * @param widthp The horizontal area in percent that this element will occupy
 	 * @param width The horizontal area in pixel that this element will occupy

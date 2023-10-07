@@ -18,7 +18,7 @@ final public class Input extends HTMLElement<Input> {
 		this.current = "";
 		((JTextField)main).setText(placeholder);
 		((JTextField)main).getDocument().addDocumentListener(new DocumentListener() {
-            @Override
+			@Override
             public void insertUpdate(DocumentEvent e) {
             	if (!lock) SwingUtilities.invokeLater(() -> {
             		lock = true;
@@ -53,7 +53,6 @@ final public class Input extends HTMLElement<Input> {
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                // 스타일 변경 시 호출됨 (일반적으로 텍스트 컴포넌트에서 사용되지 않음)
             }
         });
 	}

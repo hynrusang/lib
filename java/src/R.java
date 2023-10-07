@@ -9,7 +9,7 @@ public class R {
 				new Button("submit").size(0, 100, 0, 40).position(50, -50, 0, 80)
 			).size(100, 0, 100, 0).background(Color.YELLOW).onSubmit(e -> {
 				for (HTMLElement<?> field: e.getFormData()) {
-					if (field instanceof Input) System.out.println(((Input)field).getValue());
+					System.out.println(field.getText());
 				}
 			})
 		).size(100, 0, 100, -60),

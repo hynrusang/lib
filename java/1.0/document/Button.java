@@ -3,11 +3,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 
 final public class Button extends HTMLElement<Button> {
-	/**
-	 * Gets the internal text of this object.
-	 * @return Internal text of this object.
-	 */
-	public String getValue() {
+	@Override
+	public String getText() {
 		return ((JButton)main).getText();
 	}
 	/**

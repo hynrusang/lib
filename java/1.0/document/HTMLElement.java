@@ -11,7 +11,14 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	protected float[] percentInfo;
 	protected int[] pxInfo;
 	protected ArrayList<HTMLElement<?>> nodeList;
-
+	
+	/**
+	 * Gets the text of this object.<br>
+	 * @return text of this object.
+	 */
+	public String getText() {
+		return "";
+	};
 	/**
 	 * Register a identifier for this element.
 	 * @param identity Identifier to set for this element

@@ -14,6 +14,7 @@ public class Submit extends HTMLElement<Submit> {
 	public String getText() {
 		return ((JButton)main).getText();
 	}
+	
 	public Submit() {
 		this("submit");
 	}

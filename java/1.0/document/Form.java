@@ -9,6 +9,7 @@ final public class Form extends HTMLElement<Form> {
 		this.listener = listener;
 		return this;
 	}
+	
 	public Form(HTMLElement<?>... elements) {
 		super(new JPanel(), elements);
 		nodeList.forEach(element -> {

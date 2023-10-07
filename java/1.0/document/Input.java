@@ -19,6 +19,7 @@ final public class Input extends HTMLElement<Input> {
 		((JTextField)main).addActionListener(listener);
 		return this;
 	}
+	
 	public Input() {
 		this("");
 	}

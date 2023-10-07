@@ -16,6 +16,7 @@ final public class Button extends HTMLElement<Button> {
 		((JButton)main).addActionListener(listener);
 		return this;
 	}
+	
 	public Button() {
 		this("");
 	}

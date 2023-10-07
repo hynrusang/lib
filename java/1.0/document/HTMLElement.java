@@ -26,6 +26,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	 * @param identity Identifier to set for this element
 	 * @return This element for the chaining method
 	 */
+	@SuppressWarnings("unchecked")
 	final public T identity(String identity) {
 		this.identity = identity;
 		return (T)this;
@@ -45,6 +46,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	 * @param height The vertical area in pixel that this element will occupy
 	 * @return This element for the chaining method
 	 */
+	@SuppressWarnings("unchecked")
 	final public T size(float widthp, int width, float heightp, int height) {
 		percentInfo[0] = widthp;
 		percentInfo[1] = heightp;
@@ -60,6 +62,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	 * @param y The Vertical area in pixel where this element will be located
 	 * @return This element for the chaining method
 	 */
+	@SuppressWarnings("unchecked")
 	final public T position(float xp, int x, float yp, int y) {
 		percentInfo[2] = xp;
 		percentInfo[3] = yp;
@@ -67,6 +70,13 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 		pxInfo[3] = y;
 		return (T)this;
 	}
+	/**
+	 * Sets the border of this element.
+	 * @param color Color to set as border color
+	 * @param size Size of border
+	 * @return This element for the chaining method
+	 */
+	@SuppressWarnings("unchecked")
 	final public T border(Color color, int size) {
 		main.setBorder(BorderFactory.createLineBorder(color, size));
 		return (T)this;
@@ -76,6 +86,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	 * @param color Color to set as background color
 	 * @return This element for the chaining method
 	 */
+	@SuppressWarnings("unchecked")
 	final public T background(Color color) {
 		main.setBackground(color);
 		return (T)this;

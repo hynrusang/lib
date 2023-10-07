@@ -1,4 +1,7 @@
 package document;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.event.CaretEvent;
@@ -13,6 +16,10 @@ final public class Input extends HTMLElement<Input> {
 	@Override
 	public String getText() {
 		return current;
+	}
+	public Input onEnter(ActionListener listener) {
+		((JTextField)main).addActionListener(listener);
+		return this;
 	}
 	public Input() {
 		this("");

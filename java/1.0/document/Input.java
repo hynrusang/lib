@@ -9,14 +9,15 @@ import javax.swing.event.DocumentListener;
 final public class Input extends HTMLElement<Input> {
 	private boolean lock;
 	private String current;
+	
 	public Input() {
 		this("");
 	}
 	public Input(String placeholder) {
-		super(new JTextField());
+		super(new JTextField(placeholder));
 		lock = false;
-		this.current = "";
-		((JTextField)main).setText(placeholder);
+		current = "";
+		
 		((JTextField)main).getDocument().addDocumentListener(new DocumentListener() {
 			@Override
             public void insertUpdate(DocumentEvent e) {
@@ -51,8 +52,7 @@ final public class Input extends HTMLElement<Input> {
             }
 
             @Override
-            public void changedUpdate(DocumentEvent e) {
-            }
+            public void changedUpdate(DocumentEvent e) { }
         });
 		((JTextField)main).addCaretListener(new CaretListener() {
 			@Override

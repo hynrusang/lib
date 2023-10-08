@@ -23,7 +23,9 @@ public class R {
 					System.out.println(field.getText());
 				}
 			}),
-			new Div().size(100, 0, 100, 0).position(0, 0, 0, 120).background(Color.BLACK)
+			new ScrollBox(10,
+				new Div().background(Color.BLACK)
+			).size(100, 0, 100, 0).position(0, 0, 0, 120)
 		).size(100, 0, 100, -60),
 		R.footer()
 	);

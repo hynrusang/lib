@@ -9,6 +9,7 @@ import javax.swing.JComponent;
 
 public abstract class HTMLElement<T extends HTMLElement<?>> {
 	protected String identity;
+	protected String text;
 	protected JComponent main;
 	protected float[] percentInfo;
 	protected int[] pxInfo;
@@ -19,7 +20,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	 * @return text of this object.
 	 */
 	public String getText() {
-		return "";
+		return text;
 	};
 	/**
 	 * Register a identifier for this element.
@@ -111,6 +112,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	protected HTMLElement(JComponent main, HTMLElement<?>... elements) {
 		this.main = main;
 		identity = "";
+		text = "";
 		percentInfo = new float[] {0, 0, 0, 0};
 		pxInfo = new int[] {0, 0, 0, 0};
 		nodeList = new ArrayList<HTMLElement<?>>();

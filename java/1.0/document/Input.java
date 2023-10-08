@@ -9,12 +9,7 @@ import javax.swing.event.DocumentListener;
 
 final public class Input extends HTMLElement<Input> {
 	private boolean lock;
-	private String current;
 
-	@Override
-	public String getText() {
-		return current;
-	}
 	public Input onEnter(ActionListener listener) {
 		((JTextField)main).addActionListener(listener);
 		return this;
@@ -26,7 +21,7 @@ final public class Input extends HTMLElement<Input> {
 	public Input(String placeholder) {
 		super(new JTextField(placeholder));
 		lock = false;
-		current = "";
+		text = "";
 		
 		((JTextField)main).getDocument().addDocumentListener(new DocumentListener() {
 			@Override
@@ -34,12 +29,12 @@ final public class Input extends HTMLElement<Input> {
             	if (!lock) SwingUtilities.invokeLater(() -> {
             		lock = true;
             		try {
-            			String text = e.getDocument().getText(0, e.getDocument().getLength());
-            			if (current.isEmpty()) {
-            				text = text.replaceAll(placeholder, "");
-            				((JTextField)main).setText(text);
+            			String buffer = e.getDocument().getText(0, e.getDocument().getLength());
+            			if (text.isEmpty()) {
+            				buffer = buffer.replaceAll(placeholder, "");
+            				((JTextField)main).setText(buffer);
             			}
-            			current = text;
+            			text = buffer;
             		} catch (Exception ex) { ex.printStackTrace(); }
             		lock = false;
             	});
@@ -50,12 +45,12 @@ final public class Input extends HTMLElement<Input> {
             	if (!lock) SwingUtilities.invokeLater(() -> {
             		lock = true;
             		try {
-            			String text = e.getDocument().getText(0, e.getDocument().getLength());
-            			if (text.isEmpty()) {
+            			String buffer = e.getDocument().getText(0, e.getDocument().getLength());
+            			if (buffer.isEmpty()) {
             				((JTextField)main).setText(placeholder);
             				((JTextField)main).setCaretPosition(0);
             			}
-            			current = text;
+            			text = buffer;
             		} catch (Exception ex) { ex.printStackTrace(); }
             		lock = false;
             	});
@@ -69,7 +64,7 @@ final public class Input extends HTMLElement<Input> {
 			public void caretUpdate(CaretEvent e) {
 				if (!lock) {
 					lock = true;
-					if (current.isEmpty()) ((JTextField)main).setCaretPosition(0);
+					if (text.isEmpty()) ((JTextField)main).setCaretPosition(0);
 					lock = false;
 				}
 			}

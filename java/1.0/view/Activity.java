@@ -1,5 +1,4 @@
 package view;
 
-public class Activity {
-	
+final public class Activity {
 }

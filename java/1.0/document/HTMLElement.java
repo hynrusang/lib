@@ -19,7 +19,7 @@ public abstract class HTMLElement<T extends HTMLElement<?>> {
 	 * Gets the text of this object.<br>
 	 * @return text of this object.
 	 */
-	public String getText() {
+	final public String getText() {
 		return text;
 	};
 	/**

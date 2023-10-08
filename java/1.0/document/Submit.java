@@ -10,16 +10,12 @@ import document.event.SubmitEvent;
 public class Submit extends HTMLElement<Submit> {
 	protected Form form;
 	
-	@Override
-	public String getText() {
-		return ((JButton)main).getText();
-	}
-	
 	public Submit() {
 		this("submit");
 	}
 	public Submit(String text) {
 		super(new JButton());
+		this.text = text;
 		((JButton)main).addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

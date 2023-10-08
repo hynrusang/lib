@@ -16,11 +16,6 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/document</name>
-			<type>2</type>
-			<locationURI>PROJECT_LOC/1.0/document</locationURI>
-		</link>
-		<link>
 			<name>src/util</name>
 			<type>2</type>
 			<locationURI>PROJECT_LOC/1.0/util</locationURI>

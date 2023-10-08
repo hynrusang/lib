@@ -1,5 +1,4 @@
 import util.Livedata;
-import document.Html;
 
 public class MainActivity {
 	private static String target = "Document";
@@ -14,7 +13,6 @@ public class MainActivity {
     		livedata.setValue(9);
     		break;
     	case "Document":
-    		Html.init(R.activity_main, R.activity_second);
     		break;
     	}
     }

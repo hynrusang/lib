@@ -9,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 
 import view.Activity;
@@ -22,6 +23,9 @@ public class ActivityMain extends Activity {
 		JPanel scrollPanel = new JPanel();
         scrollPanel.setLayout(new BoxLayout(scrollPanel, BoxLayout.Y_AXIS));
         JScrollPane scrollPane = new JScrollPane(scrollPanel);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(20);
+        scrollPane.getHorizontalScrollBar().setUnitIncrement(20);
+        
         main.add(scrollPane, BorderLayout.CENTER);
         
         for (int i = 0; i < 100; i++) {

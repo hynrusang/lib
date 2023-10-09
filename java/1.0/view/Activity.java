@@ -8,10 +8,11 @@ import javax.swing.JPanel;
 
 public abstract class Activity {
 	private int[] window;
-	private Object[] intent;
 	private JFrame mainFrame;
+	protected Object[] intent;
 	protected JPanel main;
 	
+	abstract protected void handlingIntent();
 	final protected void top(JComponent component) {
 		top(component, mainFrame.getWidth(), 40);
 	}
@@ -33,6 +34,7 @@ public abstract class Activity {
 	final public void intent(Activity activity, Object... intent) {
 		mainFrame.dispose();
 		activity.intent = intent;
+		activity.handlingIntent();
 		activity.launch();
 	}
 	protected Activity(String headers, Fragment... fragments) {

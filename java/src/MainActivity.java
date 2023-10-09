@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
             button1.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					intent(R.activity_second, null);
+					intent(R.activity_second, "hello, world!");
 				}
             });
 
@@ -53,6 +53,12 @@ public class MainActivity extends Activity {
         }
         
         bottom(new JPanel());
+	}
+
+	@Override
+	protected void handlingIntent() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

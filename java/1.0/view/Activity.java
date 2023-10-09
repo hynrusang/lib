@@ -50,6 +50,8 @@ public abstract class Activity {
 				window[0] = Integer.parseInt(token[1].split(",")[0].trim());
 				window[1] = Integer.parseInt(token[1].split(",")[1].trim());
 				break;
+			case "title":
+				mainFrame.setTitle(token[1].trim());
 			}
 		}
 		mainFrame.setSize(window[0], window[1]);

@@ -13,7 +13,7 @@ import view.Activity;
 public class SecondActivity extends Activity {
 	private JPanel scrollPanel;
 	protected SecondActivity() {
-		super("");
+		super("title: second activity");
 		JPanel topPanel = new JPanel();
 		top(topPanel);
 		

@@ -12,7 +12,7 @@ import view.Activity;
 
 public class MainActivity extends Activity {
 	public MainActivity() {
-		super("");
+		super("title: first activity");
 		JPanel topPanel = new JPanel();
 		top(topPanel);
 		

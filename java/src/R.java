@@ -1,5 +1,9 @@
+import view.Activity;
 
 public class R {
-	public static MainActivity activity_main = new MainActivity();
-	public static SecondActivity activity_second = new SecondActivity();
+	public static Activity activity_main = new MainActivity().launch();
+	public static Activity activity_second = new SecondActivity();
+	public static void main(String[] args) {
+		
+	}
 }

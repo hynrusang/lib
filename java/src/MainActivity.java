@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
             button1.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					Main.activity.intent(R.activity_second, null);
+					intent(R.activity_second, null);
 				}
             });
 

@@ -30,10 +30,10 @@ public abstract class Activity {
 		mainFrame.setVisible(true);
 		return this;
 	}
-	final public Activity intent(Activity activity, Object... intent) {
+	final public void intent(Activity activity, Object... intent) {
 		mainFrame.dispose();
 		activity.intent = intent;
-		return activity.launch();
+		activity.launch();
 	}
 	protected Activity(String headers, Fragment... fragments) {
 		window = new int[] { 1040, 720 };

@@ -14,17 +14,17 @@ public abstract class Activity {
 	
 	abstract protected void handlingIntent();
 	final protected void top(JComponent component) {
-		top(component, mainFrame.getWidth(), 40);
+		top(component, 40);
 	}
-	final protected void top(JComponent component, int width, int height) {
-		component.setPreferredSize(new Dimension(width, height));
+	final protected void top(JComponent component, int size) {
+		component.setPreferredSize(new Dimension(mainFrame.getWidth(), size));
 		main.add(component, BorderLayout.NORTH);
 	}
 	final protected void bottom(JComponent component) {
-		bottom(component, mainFrame.getWidth(), 40);
+		bottom(component, 40);
 	}
-	final protected void bottom(JComponent component, int width, int height) {
-		component.setPreferredSize(new Dimension(width, height));
+	final protected void bottom(JComponent component, int size) {
+		component.setPreferredSize(new Dimension(mainFrame.getWidth(), size));
 		main.add(component, BorderLayout.SOUTH);
 	}
 	final public Activity launch() {

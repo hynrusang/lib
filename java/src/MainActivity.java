@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import view.Activity;
 
-public class ActivityMain extends Activity {
-	protected ActivityMain() {
+public class MainActivity extends Activity {
+	public MainActivity() {
 		super("");
 		JPanel topPanel = new JPanel();
 		top(topPanel);
@@ -38,9 +38,7 @@ public class ActivityMain extends Activity {
             button1.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					topPanel.setPreferredSize(new Dimension(0, 40));
-					topPanel.revalidate();
-					topPanel.repaint();
+					Main.activity.intent(R.activity_second, null);
 				}
             });
 

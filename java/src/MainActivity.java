@@ -9,10 +9,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import view.Activity;
+import view.Fragment;
 
 public class MainActivity extends Activity {
 	public MainActivity() {
-		super("title: first activity");
+		super("title: first activity",
+				new Fragment()
+		);
 		JPanel topPanel = new JPanel();
 		top(topPanel);
 		

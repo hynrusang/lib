@@ -32,6 +32,7 @@ public abstract class Activity {
 	}
 	final public Activity intent(Activity activity, Object... intent) {
 		mainFrame.dispose();
+		activity.intent = intent;
 		return activity.launch();
 	}
 	protected Activity(String headers, Fragment... fragments) {

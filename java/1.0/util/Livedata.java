@@ -31,7 +31,7 @@ public class Livedata<T> {
 	}
 	/**
 	 * Registers an observer to call when the value of livedata changes.<br>
-	 * @param observer Lambda function to run automatically when the value change.
+	 * @param observer Observer to run automatically when the value change.
 	 */
 	public void observe(Observer<T> observer) { 
 		this.observer = observer; 

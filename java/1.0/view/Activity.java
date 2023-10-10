@@ -6,6 +6,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+@Deprecated
 public abstract class Activity {
 	private int[] window;
 	private JFrame mainFrame;

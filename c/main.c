@@ -1,5 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
-#define DATAS
+#define PROCESS
 
 #if defined DATAS
 
@@ -132,5 +132,9 @@ int main() {
 	printf("\nowner and user's roll was same at (%d, %d);\ntry attempt: %d\n", owner->get(owner), user->get(user), count);
 	return 0;
 }
+
+#elif defined PROCESS
+
+#include "1.0/process.h"
 
 #endif

@@ -20,16 +20,19 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="1.0.0\datas.h">
+    <ClInclude Include="1.0\datas.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="1.0.0\init.h">
+    <ClInclude Include="1.0\dbreader.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="1.0.0\dbreader.h">
+    <ClInclude Include="1.0\init.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="1.0.0\livedata.h">
+    <ClInclude Include="1.0\livedata.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="1.0\process.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

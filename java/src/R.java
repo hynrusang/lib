@@ -22,7 +22,12 @@ public class R {
 				for (HTMLElement<?> field: e.getFormData()) {
 					System.out.println(field.getText());
 				}
-			})
+			}),
+			new Div().size(100, 0, 0, 100).background(Color.RED).position(0, 0, 0, 120),
+			new Div().size(100, 0, 0, 100).background(Color.ORANGE).position(0, 0, 0, 220),
+			new Div().size(100, 0, 0, 100).background(Color.YELLOW).position(0, 0, 0, 320),
+			new Div().size(100, 0, 0, 100).background(Color.GREEN).position(0, 0, 0, 420),
+			new Div().size(100, 0, 0, 100).background(Color.BLUE).position(0, 0, 0, 520)
 		).size(100, 0, 100, -60),
 		R.footer()
 	);

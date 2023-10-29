@@ -18,7 +18,7 @@ const Dom = class {
             for (const [key, value] of Object.entries(additional)) {
                 if (["innerHTML", "html"].includes(key)) this.#node.innerHTML = value
                 else if (["innerText", "text"].includes(key)) this.#node.innerText = value
-                else if (!key.indexOf("on") || key == "async") this.#node[key] = value
+                else if (!key.indexOf("on") || key == "async" || (this.#node.nodeName == "TEXTAREA" && key == "value")) this.#node[key] = value
                 else this.#node.setAttribute(key, value);
             }
         } else throw new TypeError('Additional parameter must be an {key: value} object');

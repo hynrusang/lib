@@ -35,7 +35,7 @@ const LiveData = class {
     constructor(data, dataset) {
         this.#data = data;
         if (dataset) {
-            if ("object" !== (Array.isArray(dataset) ? "array" : typeof dataset)) {
+            if (typeof dataset === "string") {
                 console.log("%cThis way is discontinued from liveata 1.3.0.\nPlease deliver the second parameter in the format of the object,\nnot in the normal type format.", "color: #FF0000");
                 this.#type = dataset;
             } else {

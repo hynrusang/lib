@@ -36,7 +36,7 @@ const LiveData = class {
         this.#data = data;
         if (dataset) {
             if (typeof dataset === "string") {
-                console.log("%cThis way is discontinued from liveata 1.3.0.\nPlease deliver the second parameter in the format of the object,\nnot in the normal type format.", "color: #FF0000");
+                console.log("%cThis way is discontinued from liveata 1.3.0.\nPlease deliver the second parameter in the format of the object,\nnot the string.", "color: #FF0000");
                 this.#type = dataset;
             } else {
                 this.#type = dataset.type;

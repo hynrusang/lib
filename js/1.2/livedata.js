@@ -16,7 +16,7 @@ const LiveData = class {
         return this;
     }
     /**
-     * @deprecated This can cause unintended behavior.
+     * @deprecated This method is not supported starting with 1.3.0.
      * @type {() => void}
      */
     dispatchObserver = () => this.#observer();

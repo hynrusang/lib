@@ -7,7 +7,7 @@ const LiveData = class {
     #type;
     #observer;
     /**
-     * @deprecated This method is not supported starting with 1.3.0. Use the newly renewed constructor second param from liveata 1.2.0 instead.
+     * @deprecated This method is not supported starting with 1.3. Use the newly renewed constructor second param from liveata 1.2 instead.
      * @type {(observer: Function) => LiveData}
      */
     registObserver = observer => {
@@ -16,7 +16,7 @@ const LiveData = class {
         return this;
     }
     /**
-     * @deprecated This method is not supported starting with 1.3.0.
+     * @deprecated This method is not supported starting with 1.3
      * @type {() => void}
      */
     dispatchObserver = () => this.#observer();
@@ -36,7 +36,7 @@ const LiveData = class {
         this.#data = data;
         if (dataset) {
             if (typeof dataset === "string") {
-                console.log("%cThis way is discontinued from liveata 1.3.0.\nPlease deliver the second parameter in the format of the object,\nnot the string.", "color: #FF0000");
+                console.log("%cThis way is discontinued from liveata 1.3.\nPlease deliver the second parameter in the format of the object,\nnot the string.", "color: #FF0000");
                 this.#type = dataset;
             } else {
                 this.#type = dataset.type;

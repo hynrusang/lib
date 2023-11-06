@@ -16,7 +16,7 @@ const LiveData = class {
         return this;
     }
     /**
-     * @deprecated This can cause unintended behavior.
+     * @deprecated This method is not supported starting with 1.3.0.
      * @type {() => void}
      */
     dispatchObserver = () => this.#observer();
@@ -35,8 +35,8 @@ const LiveData = class {
     constructor(data, dataset) {
         this.#data = data;
         if (dataset) {
-            if ("object" !== (Array.isArray(dataset) ? "array" : typeof dataset)) {
-                console.log("%cThis way is discontinued from liveata 1.3.0.\nPlease deliver the second parameter in the format of the object,\nnot in the normal type format.", "color: #FF0000");
+            if (typeof dataset === "string") {
+                console.log("%cThis way is discontinued from liveata 1.3.0.\nPlease deliver the second parameter in the format of the object,\nnot the string.", "color: #FF0000");
                 this.#type = dataset;
             } else {
                 this.#type = dataset.type;

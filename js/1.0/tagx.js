@@ -2,7 +2,7 @@
 html 내에서 html binding과 같은 유용한 기능을 보다 쉽게 사용할 수 있게 해줍니다.
 작성자: 환류상
  */
-console.log("%cThe library will soon be integrated into liveata 1.3.0.\nUse liveata 1.3.0 instead of tagx.", "color: red")
+console.log("%cThe library will soon be integrated into liveata 1.3.\nUse liveata 1.3 instead of tagx.", "color: red")
 const Binder = class {
     static #bindlist = {};
     static #synclist = {};

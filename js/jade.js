@@ -41,7 +41,7 @@ const __$$IMPLEMENTHREF = "https://hynrusang.github.io/lib/js/";
 const __$$VERSIONINFO = {
     dynamic: ["1.1", "1.2", "1.2"],
     livedata: ["1.2", "1.2", "1.3"],
-    tagx: [null, "1.0", "1.0"]
+    tagx: ["1.0", "1.0", "1.0"]
 };
 for (let data of document.querySelector(`script[src="${__$$IMPLEMENTHREF}jade.js"]`).innerHTML
     .replaceAll("\n", "")

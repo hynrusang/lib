@@ -41,8 +41,8 @@ const Dom = class {
     add = (...dom) => {
         for (let pdom of dom) {
             if (Array.isArray(pdom)) {
-                for (let cdom of pdom) this.#node.appendChild(cdom.node);
-            } else this.#node.appendChild(pdom.node);
+                for (let cdom of pdom) if (cdom) this.#node.appendChild(cdom.node);
+            } else if (pdom) this.#node.appendChild(pdom.node);
         }
         return this;
     }

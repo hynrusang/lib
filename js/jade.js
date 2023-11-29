@@ -41,8 +41,7 @@ const __$$IMPLEMENTHREF = "https://hynrusang.github.io/lib/js/";
 const __$$VERSIONINFO = {
     dynamic: ["1.1", "1.2", "1.2"],
     livedata: ["1.2", "1.2", "1.3"],
-    tagx: ["1.0", "1.0", "1.0"],
-    server_firebase: [null, null, "1.0"]
+    tagx: ["1.0", "1.0", "1.0"]
 };
 for (let data of document.querySelector(`script[src="${__$$IMPLEMENTHREF}jade.js"]`).innerHTML
     .replaceAll("\n", "")
@@ -50,14 +49,6 @@ for (let data of document.querySelector(`script[src="${__$$IMPLEMENTHREF}jade.js
     .split(" ").join("")
     .split(";")) {
     if (data != "") {
-        if (data.split(",")[0] == "server_firebase") {
-            ["app", "auth", "firestore", "storage"].forEach(key => {
-                const __$$ELEMENT = document.createElement("script");
-                __$$ELEMENT.async = false;
-                __$$ELEMENT.src = `https://www.gstatic.com/firebasejs/8.6.5/firebase-${key}.js`;
-                document.body.appendChild(__$$ELEMENT);
-            })
-        }
         const __$$ELEMENT = document.createElement("script");
         __$$ELEMENT.async = false;
         __$$ELEMENT.src = (data.split(",")[1] == "developer") ? `${__$$IMPLEMENTHREF}${__$$VERSIONINFO[data.split(",")[0]][2]}/${data.split(",")[0]}.js`

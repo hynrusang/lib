@@ -19,7 +19,7 @@ const Dom = class {
                 if (["innerHTML", "html"].includes(key)) this.#node.innerHTML = value
                 else if (["innerText", "text"].includes(key)) this.#node.innerText = value
                 else if (!key.indexOf("on") || key == "async" || (this.#node.nodeName == "TEXTAREA" && key == "value")) this.#node[key] = value
-                else if (value) this.#node.setAttribute(key, value);
+                else if (typeof value != "undefined") this.#node.setAttribute(key, value);
             }
         } else throw new TypeError('Additional parameter must be an {key: value} object');
         return this;

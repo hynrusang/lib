@@ -63,7 +63,6 @@ window.onload = () => {
         const __$$ELEMENT = document.createElement("script");
         if (data.attributes.src) __$$ELEMENT.src = data.getAttribute("src");
         if (data.attributes.type) __$$ELEMENT.type = data.getAttribute("type")
-        else continue;
         __$$ELEMENT.async = false;
         document.body.appendChild(__$$ELEMENT);
         data.remove();

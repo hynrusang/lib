@@ -70,21 +70,27 @@ const Fragment = class {
     #swipAnimation;
     #animationExcuteTime;
     /**
+     * @deprecated This getter is not supported starting with 1.3.
      * @type {() => Function}
      */
     get _action() {
+        console.log("%cThis getter is not supported starting with 1.3.", "color: red");
         return this.#action;
     }
-    /*
+    /**
+     * @deprecated This getter is not supported starting with 1.3.
      * @type {() => HTMLElement}
      */
     get _view() {
+        console.log("%cThis getter is not supported starting with 1.3.", "color: red");
         return this.#view;
     }
-    /*
+    /**
+     * @deprecated This getter is not supported starting with 1.3.
      * @type {() => Dom[]}
      */
     get fragment() {
+        console.log("%cThis getter is not supported starting with 1.3.", "color: red");
         return this.#fragment;
     }
     /**

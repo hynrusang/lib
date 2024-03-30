@@ -64,6 +64,7 @@ const Dom = class {
     }
 }
 const Fragment = class {
+    #rid;
     #view;
     #fragment;
     #action;
@@ -75,18 +76,25 @@ const Fragment = class {
     get _action() {
         return this.#action;
     }
-    /*
+    /**
      * @type {() => HTMLElement}
      */
     get _view() {
         return this.#view;
     }
-    /*
+    /**
      * @type {() => Dom[]}
      */
     get fragment() {
         return this.#fragment;
     }
+    /**
+     * @type {() => String}
+     */
+    get rid() {
+        return this.#rid;
+    }
+
     /**
      * @type {(arg: any) => Fragment}
      */
@@ -117,6 +125,7 @@ const Fragment = class {
      * @type {(view: String, ...fragment: Dom | Dom[]) => Fragment}
      */
     constructor(view, ...fragment) {
+        this.#rid = view;
         this.#view = `fragment[rid=${view}]`;
         this.#fragment = fragment;
     }

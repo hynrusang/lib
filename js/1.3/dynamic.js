@@ -86,7 +86,8 @@ const Fragment = class {
      * @deprecated This getter is not supported starting with 1.4.0. Use Fragment.launch() instead.
      * @type {() => Dom[]}
      */
-    get fragment() {
+    get _fragment() {
+        console.log("%cThis getter is not supported starting with 1.4.\nUse Fragment.launch() instead.", "color: red");
         return this.#fragment;
     }
     /**
@@ -133,6 +134,7 @@ const Fragment = class {
 }
 const FragAnimation = class {
     static card = async (_fragment, _second) => {
+        console.log(this.#animationExcuteTime)
         if (snipe(_fragment._view).node.innerHTML != "") {
             snipe(_fragment._view).node.animate([{transform: 'rotateY(0deg)', opacity: '1'}, {transform: 'rotateY(180deg)', opacity: '0'}], {duration: _second * 500,})
             await new Promise(code => setTimeout(code, _second * 450));

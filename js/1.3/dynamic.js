@@ -95,37 +95,13 @@ const Fragment = class {
             if (typeof fragment.#action == "function") fragment.#action();
         }
     }
-
     #rid;
     #view;
     #fragment;
     #action;
     #swipAnimation;
     #animationExcuteTime;
-    /**
-     * @deprecated This getter is not supported starting with 1.4.
-     * @type {() => Function}
-     */
-    get _action() {
-        console.log("%cThis getter is not supported starting with 1.4.", "color: red");
-        return this.#action;
-    }
-    /**
-     * @deprecated This getter is not supported starting with 1.4.
-     * @type {() => HTMLElement}
-     */
-    get _view() {
-        console.log("%cThis getter is not supported starting with 1.4.", "color: red");
-        return this.#view;
-    }
-    /**
-     * @deprecated This getter is not supported starting with 1.4.
-     * @type {() => Dom[]}
-     */
-    get _fragment() {
-        console.log("%cThis getter is not supported starting with 1.4.", "color: red");
-        return this.#fragment;
-    }
+
     /**
      * @type {() => String}
      */

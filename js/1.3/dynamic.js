@@ -64,6 +64,38 @@ const Dom = class {
     }
 }
 const Fragment = class {
+    static #animation = {
+        card: async fragment => {
+            if (snipe(fragment.#view).node.innerHTML != "") {
+                snipe(fragment.#view).node.animate([{transform: 'rotateY(0deg)', opacity: '1'}, {transform: 'rotateY(180deg)', opacity: '0'}], {duration: _second * 500,})
+                await new Promise(code => setTimeout(code, _second * 450));
+                snipe(fragment.#view).reset(fragment.#fragment);
+                snipe(fragment.#view).node.animate([{transform: 'rotateY(180deg)', opacity: '0'}, {transform: 'rotateY(360deg)', opacity: '1'}], {duration: _second * 500,})
+            } else snipe(fragment.#view).reset(fragment.#fragment);
+            if (typeof fragment.#action == "function") fragment.#action();
+        },
+        fade: async fragment => {
+            if (snipe(fragment.#view).node.innerHTML != "") {
+                snipe(fragment.#view).node.animate([{opacity: '1'}, {opacity: '0'}], {duration: _second * 500,})
+                await new Promise(code => setTimeout(code, _second * 400));
+                snipe(fragment.#view).reset(fragment.#fragment);
+                snipe(fragment.#view).node.animate([{opacity: '0'}, {opacity: '1'}], {duration: _second * 500,})
+            } else snipe(fragment.#view).reset(fragment.#fragment);
+            if (typeof fragment.#action == "function") fragment.#action();
+        },
+        swip: async fragment => {
+            if (snipe(fragment.#view).node.innerHTML != "") {
+                scan("html").style.overflowX = "hidden";
+                snipe(fragment.#view).node.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(100%)'}], {duration: _second * 450,})
+                await new Promise(code => setTimeout(code, _second * 400));
+                snipe(fragment.#view).reset(fragment.#fragment);
+                snipe(fragment.#view).node.animate([{transform: 'translateX(-100%)'}, {transform: 'translateX(0px)'}], {duration: _second * 550,})
+                scan("html").style.overflowX = null;
+            } else snipe(fragment.#view).reset(fragment.#fragment);
+            if (typeof fragment.#action == "function") fragment.#action();
+        }
+    }
+
     #rid;
     #view;
     #fragment;
@@ -71,23 +103,27 @@ const Fragment = class {
     #swipAnimation;
     #animationExcuteTime;
     /**
+     * @deprecated This getter is not supported starting with 1.4.
      * @type {() => Function}
      */
     get _action() {
+        console.log("%cThis getter is not supported starting with 1.4.", "color: red");
         return this.#action;
     }
     /**
+     * @deprecated This getter is not supported starting with 1.4.
      * @type {() => HTMLElement}
      */
     get _view() {
+        console.log("%cThis getter is not supported starting with 1.4.", "color: red");
         return this.#view;
     }
     /**
-     * @deprecated This getter is not supported starting with 1.4.0. Use Fragment.launch() instead.
+     * @deprecated This getter is not supported starting with 1.4.
      * @type {() => Dom[]}
      */
     get _fragment() {
-        console.log("%cThis getter is not supported starting with 1.4.\nUse Fragment.launch() instead.", "color: red");
+        console.log("%cThis getter is not supported starting with 1.4.", "color: red");
         return this.#fragment;
     }
     /**
@@ -101,7 +137,7 @@ const Fragment = class {
      * @type {(arg: any) => Fragment}
      */
     launch = arg => {
-        if (this.#swipAnimation != null) this.#swipAnimation(this, this.#animationExcuteTime);
+        if (this.#swipAnimation != null) this.#swipAnimation(this);
         else {
             snipe(this.#view).reset(this.#fragment)
             if (typeof this.#action == "function") this.#action(arg);
@@ -130,38 +166,6 @@ const Fragment = class {
         this.#rid = view;
         this.#view = `fragment[rid=${view}]`;
         this.#fragment = fragment;
-    }
-}
-const FragAnimation = class {
-    static card = async (_fragment, _second) => {
-        console.log(this.#animationExcuteTime)
-        if (snipe(_fragment._view).node.innerHTML != "") {
-            snipe(_fragment._view).node.animate([{transform: 'rotateY(0deg)', opacity: '1'}, {transform: 'rotateY(180deg)', opacity: '0'}], {duration: _second * 500,})
-            await new Promise(code => setTimeout(code, _second * 450));
-            snipe(_fragment._view).reset(_fragment.fragment);
-            snipe(_fragment._view).node.animate([{transform: 'rotateY(180deg)', opacity: '0'}, {transform: 'rotateY(360deg)', opacity: '1'}], {duration: _second * 500,})
-        } else snipe(_fragment._view).reset(_fragment.fragment);
-        if (typeof _fragment._action == "function") _fragment._action();
-    }
-    static fade = async (_fragment, _second) => {
-        if (snipe(_fragment._view).node.innerHTML != "") {
-            snipe(_fragment._view).node.animate([{opacity: '1'}, {opacity: '0'}], {duration: _second * 500,})
-            await new Promise(code => setTimeout(code, _second * 400));
-            snipe(_fragment._view).reset(_fragment.fragment);
-            snipe(_fragment._view).node.animate([{opacity: '0'}, {opacity: '1'}], {duration: _second * 500,})
-        } else snipe(_fragment._view).reset(_fragment.fragment);
-        if (typeof _fragment._action == "function") _fragment._action();
-    }
-    static swip = async (_fragment, _second) => {
-        if (snipe(_fragment._view).node.innerHTML != "") {
-            scan("html").style.overflowX = "hidden";
-            snipe(_fragment._view).node.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(100%)'}], {duration: _second * 450,})
-            await new Promise(code => setTimeout(code, _second * 400));
-            snipe(_fragment._view).reset(_fragment.fragment);
-            snipe(_fragment._view).node.animate([{transform: 'translateX(-100%)'}, {transform: 'translateX(0px)'}], {duration: _second * 550,})
-            scan("html").style.overflowX = null;
-        } else snipe(_fragment._view).reset(_fragment.fragment);
-        if (typeof _fragment._action == "function") _fragment._action();
     }
 }
 /**

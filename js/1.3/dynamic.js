@@ -83,6 +83,7 @@ const Fragment = class {
         return this.#view;
     }
     /**
+     * @deprecated This getter is not supported starting with 1.4.0. Use Fragment.launch() instead.
      * @type {() => Dom[]}
      */
     get fragment() {

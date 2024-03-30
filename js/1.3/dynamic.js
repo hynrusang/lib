@@ -39,10 +39,12 @@ const Dom = class {
      * @type {(...dom: Dom | Dom[]) => Dom}
      */
     add = (...dom) => {
-        for (let pdom of dom) {
-            if (Array.isArray(pdom)) {
-                for (let cdom of pdom) if (cdom) this.#node.appendChild(cdom.node);
-            } else if (pdom) this.#node.appendChild(pdom.node);
+        if (0 < dom.length && dom[0]) {
+            for (let pdom of dom) {
+                if (Array.isArray(pdom)) {
+                    for (let cdom of pdom) if (cdom) this.#node.appendChild(cdom.node);
+                } else if (pdom) this.#node.appendChild(pdom.node);
+            }
         }
         return this;
     }

@@ -88,7 +88,7 @@ const Fragment = class {
         return this.#fragment;
     }
     /**
-     * @type {() => Fragment}
+     * @type {(arg: any) => Fragment}
      */
     launch = arg => {
         if (this.#swipAnimation != null) this.#swipAnimation(this, this.#animationExcuteTime);

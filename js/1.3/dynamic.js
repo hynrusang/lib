@@ -67,29 +67,29 @@ const Fragment = class {
     static #animation = {
         card: async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
-                snipe(fragment.#view).node.animate([{transform: 'rotateY(0deg)', opacity: '1'}, {transform: 'rotateY(180deg)', opacity: '0'}], {duration: _second * 500,})
-                await new Promise(code => setTimeout(code, _second * 450));
+                snipe(fragment.#view).node.animate([{transform: 'rotateY(0deg)', opacity: '1'}, {transform: 'rotateY(180deg)', opacity: '0'}], {duration: fragment.#animationExcuteTime * 500,})
+                await new Promise(code => setTimeout(code, fragment.#animationExcuteTime * 450));
                 snipe(fragment.#view).reset(fragment.#fragment);
-                snipe(fragment.#view).node.animate([{transform: 'rotateY(180deg)', opacity: '0'}, {transform: 'rotateY(360deg)', opacity: '1'}], {duration: _second * 500,})
+                snipe(fragment.#view).node.animate([{transform: 'rotateY(180deg)', opacity: '0'}, {transform: 'rotateY(360deg)', opacity: '1'}], {duration: fragment.#animationExcuteTime * 500,})
             } else snipe(fragment.#view).reset(fragment.#fragment);
             if (typeof fragment.#action == "function") fragment.#action();
         },
         fade: async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
-                snipe(fragment.#view).node.animate([{opacity: '1'}, {opacity: '0'}], {duration: _second * 500,})
-                await new Promise(code => setTimeout(code, _second * 400));
+                snipe(fragment.#view).node.animate([{opacity: '1'}, {opacity: '0'}], {duration: fragment.#animationExcuteTime * 500,})
+                await new Promise(code => setTimeout(code, fragment.#animationExcuteTime * 400));
                 snipe(fragment.#view).reset(fragment.#fragment);
-                snipe(fragment.#view).node.animate([{opacity: '0'}, {opacity: '1'}], {duration: _second * 500,})
+                snipe(fragment.#view).node.animate([{opacity: '0'}, {opacity: '1'}], {duration: fragment.#animationExcuteTime * 500,})
             } else snipe(fragment.#view).reset(fragment.#fragment);
             if (typeof fragment.#action == "function") fragment.#action();
         },
         swip: async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
                 scan("html").style.overflowX = "hidden";
-                snipe(fragment.#view).node.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(100%)'}], {duration: _second * 450,})
-                await new Promise(code => setTimeout(code, _second * 400));
+                snipe(fragment.#view).node.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(100%)'}], {duration: fragment.#animationExcuteTime * 450,})
+                await new Promise(code => setTimeout(code, fragment.#animationExcuteTime * 400));
                 snipe(fragment.#view).reset(fragment.#fragment);
-                snipe(fragment.#view).node.animate([{transform: 'translateX(-100%)'}, {transform: 'translateX(0px)'}], {duration: _second * 550,})
+                snipe(fragment.#view).node.animate([{transform: 'translateX(-100%)'}, {transform: 'translateX(0px)'}], {duration: fragment.#animationExcuteTime * 550,})
                 scan("html").style.overflowX = null;
             } else snipe(fragment.#view).reset(fragment.#fragment);
             if (typeof fragment.#action == "function") fragment.#action();
@@ -137,7 +137,7 @@ const Fragment = class {
      * @type {(arg: any) => Fragment}
      */
     launch = arg => {
-        if (this.#swipAnimation != null) this.#swipAnimation(this);
+        if (this.#swipAnimation != null) Fragment.#animation[this.#swipAnimation](this);
         else {
             snipe(this.#view).reset(this.#fragment)
             if (typeof this.#action == "function") this.#action(arg);
@@ -167,6 +167,11 @@ const Fragment = class {
         this.#view = `fragment[rid=${view}]`;
         this.#fragment = fragment;
     }
+}
+const FragAnimation = class {
+    static card = "card";
+    static fade = "fade";
+    static swip = "swip";
 }
 /**
  * @type {(node: string | HTMLElement, additional?: Object) => Dom}

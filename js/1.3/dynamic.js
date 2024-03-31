@@ -108,7 +108,7 @@ const Fragment = class {
     /**
      * @type {(arg: any) => Fragment}
      */
-    static refreshFragment = arg => this.#launchedFragment.launch(arg);
+    static refreshFragment = () => this.#launchedFragment.launch(arg);
     /**
      * @type {(arg: any) => Fragment}
      */
@@ -135,6 +135,13 @@ const Fragment = class {
         this.#swipAnimation = animation;
         this.#animationExcuteTime = second;
         return this;
+    }
+
+    /**
+     * @param {Fragment} fragment 
+     */
+    static set setRefreshFragment(fragment) {
+        this.#launchedFragment = fragment;
     }
 
     /**

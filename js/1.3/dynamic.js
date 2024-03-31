@@ -97,6 +97,7 @@ const Fragment = class {
             if (typeof fragment.#action == "function") fragment.#action();
         }
     }
+    static #launchedFragment;
     #rid;
     #view;
     #fragment;
@@ -105,12 +106,9 @@ const Fragment = class {
     #animationExcuteTime;
 
     /**
-     * @type {() => String}
+     * @type {(arg: any) => Fragment}
      */
-    get rid() {
-        return this.#rid;
-    }
-
+    static refreshFragment = arg => this.#launchedFragment(arg);
     /**
      * @type {(arg: any) => Fragment}
      */
@@ -120,6 +118,7 @@ const Fragment = class {
             snipe(this.#view).reset(this.#fragment)
             if (typeof this.#action == "function") this.#action(arg);
         }
+        Fragment.#launchedFragment = this;
         return this;
     }
     /**
@@ -136,6 +135,13 @@ const Fragment = class {
         this.#swipAnimation = animation;
         this.#animationExcuteTime = second;
         return this;
+    }
+
+    /**
+     * @type {() => String}
+     */
+    get rid() {
+        return this.#rid;
     }
     /**
      * @type {(view: String, ...fragment: Dom | Dom[]) => Fragment}

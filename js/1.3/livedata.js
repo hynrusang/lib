@@ -29,7 +29,15 @@ const LiveData = class {
 const LiveDataManager = class {
     #editable;
     #livedataObject;
-    value = (id, data) => (typeof data !== "undefined") ? this.#livedataObject[id].value = data : this.#livedataObject[id].value;
+    value = (id, data) => {
+        if (typeof data !== "undefined") {
+            const isChanged = JSON.stringify(this.#livedataObject[id].value) !== JSON.stringify(data);
+            this.#livedataObject[id].value = data;
+            return isChanged;
+        } else {
+            return this.#livedataObject[id].value;
+        }
+    }
     get id() {
         if (!this.#editable) throw new SyntaxError(`This LiveDataManager cannot be accessed or modified externally.`)
         return this.#livedataObject;

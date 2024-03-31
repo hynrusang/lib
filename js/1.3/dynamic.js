@@ -140,7 +140,7 @@ const Fragment = class {
     /**
      * @param {Fragment} fragment 
      */
-    static set setRefreshFragment(fragment) {
+    static set launchedFragment(fragment) {
         this.#launchedFragment = fragment;
     }
 

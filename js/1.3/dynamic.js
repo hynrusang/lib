@@ -108,7 +108,7 @@ const Fragment = class {
     /**
      * @type {(arg: any) => Fragment}
      */
-    static refreshFragment = () => this.#launchedFragment.launch(arg);
+    static refreshFragment = arg => this.#launchedFragment.launch(arg);
     /**
      * @type {(arg: any) => Fragment}
      */

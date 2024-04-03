@@ -45,9 +45,9 @@ const dataParser = ({name, version}) => {
     console.log(`%Rose can only import 2.X or higher modules. ${version} by migrating to 2.0.`, "color: red");
     return `./2.0/${name}.js`;
 }
-const getModule = async (name, version) => {
+const Rose = async (name, version) => {
     const roseModule = await import(dataParser({name: name, version: version}));
     return roseModule;
 }
 
-export default getModule;
+export default Rose;

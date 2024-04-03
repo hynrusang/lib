@@ -1,5 +1,5 @@
 ﻿/*
-rose library
+Rose library
 info:
 This library can download other JavaScript programes by module from my website.
 It was very simple and powerful to use.
@@ -9,10 +9,10 @@ Inside the script tag to your site by type=module.
 Also, write in the script similar to the following.
 
 // ex: rose.js
-import getm from "https://hynrusang.github.io/lib/js/rose.js";
+import Rose from "https://hynrusang.github.io/lib/js/Rose.js";
 
-const dynamic = getm("dynamic", "pre_release");
-const livedata = getm("dynamic", "release");
+const dynamic = Rose("dynamic", "pre_release");
+const livedata = Rose("dynamic", "release");
 
 export { dynamic, livedata }
 //
@@ -45,7 +45,9 @@ const dataParser = ({name, version}) => {
     console.log(`%Rose can only import 2.X or higher modules. ${version} by migrating to 2.0.`, "color: red");
     return `./2.0/${name}.js`;
 }
-const get = async (name, version) => {
+const getModule = async (name, version) => {
     const roseModule = await import(dataParser({name: name, version: version}));
     return roseModule;
 }
+
+export default getModule;

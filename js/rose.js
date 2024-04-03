@@ -1,7 +1,7 @@
 ﻿/*
 rose library
 info:
-This library can download other JavaScript by module programs from my website.
+This library can download other JavaScript programes by module from my website.
 It was very simple and powerful to use.
 
 How it works:

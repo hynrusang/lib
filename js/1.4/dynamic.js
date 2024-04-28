@@ -168,9 +168,8 @@ const FragmentBox = class {
         if (alwayRefresh || this.#launchedInfo.target == fragment.rid) {
             fragment.launch(arg);
             this.#launchedInfo.fragments[fragment.rid] = fragment;
-        }
+        } else snipe("router").reset(router);
         this.#launchedInfo.target = fragment.rid;
-        snipe("#router").reset(router);
     };
     static refresh = () => this.#launchedInfo.fragments[this.#launchedInfo.target].launch();
 }

@@ -163,7 +163,7 @@ const FragmentBox = class {
         scan(`fragment[rid=${fragment.rid}]`).style.display = null;
     }
 
-    static toggle = ({fragment, arg, alwayRefresh = false}) => {
+    static toggle = (fragment, arg, alwayRefresh = false) => {
         this.#syncActivate(fragment, arg);
         if (alwayRefresh || this.#launchedInfo.target == fragment.rid) {
             fragment.launch(arg);

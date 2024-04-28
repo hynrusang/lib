@@ -2,6 +2,7 @@
 js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
 작성자: 환류상
  */
+console.log("%cFrom this version, we do not recommend using it for security reasons.\nWe recommend using a 'Rose' model that deals with models 2.0 or higher.", "color: red");
 const Dom = class {
     #node;
     /**
@@ -97,7 +98,6 @@ const Fragment = class {
             if (typeof fragment.#action == "function") fragment.#action();
         }
     }
-    static #launchedFragment;
     #rid;
     #view;
     #fragment;
@@ -105,14 +105,6 @@ const Fragment = class {
     #swipAnimation;
     #animationExcuteTime;
 
-    /**
-     * @deprecated This method is not supported starting with 1.4.
-     * @type {(arg: any) => Fragment}
-     */
-    static refreshFragment = arg => {
-        console.log("%cThis method is not supported starting with 1.4.", "color: red");
-        this.#launchedFragment.launch(arg);
-    }
     /**
      * @type {(arg: any) => Fragment}
      */
@@ -122,7 +114,6 @@ const Fragment = class {
             snipe(this.#view).reset(this.#fragment)
             if (typeof this.#action == "function") this.#action(arg);
         }
-        Fragment.#launchedFragment = this;
         return this;
     }
     /**
@@ -142,13 +133,6 @@ const Fragment = class {
     }
 
     /**
-     * @param {Fragment} fragment 
-     */
-    static set launchedFragment(fragment) {
-        this.#launchedFragment = fragment;
-    }
-
-    /**
      * @type {() => String}
      */
     get rid() {
@@ -162,6 +146,33 @@ const Fragment = class {
         this.#view = `fragment[rid=${view}]`;
         this.#fragment = fragment;
     }
+}
+const FragmentBox = class {
+    static #launchedInfo = {
+        target: null,
+        fragments: {}
+    };
+
+    static #syncActivate = (fragment, arg) => {
+        if (this.#launchedInfo.target == fragment.rid) return;
+        if (!scan(`fragment[rid=${fragment.rid}]`)) {
+            snipe("fragmentbox").add($("fragment", {rid: fragment.rid}));
+            fragment.launch(arg);
+        }
+        scan("!fragmentbox fragment").forEach(node => node.style.display = "none");
+        scan(`fragment[rid=${fragment.rid}]`).style.display = null;
+    }
+
+    static toggle = ({fragment, arg, router, alwayRefresh = false}) => {
+        this.#syncActivate(fragment, arg);
+        if (alwayRefresh || this.#launchedInfo.target == fragment.rid) {
+            fragment.launch(arg);
+            this.#launchedInfo.fragments[fragment.rid] = fragment;
+        }
+        this.#launchedInfo.target = fragment.rid;
+        snipe("#router").reset(router);
+    };
+    static refresh = () => this.#launchedInfo.fragments[this.#launchedInfo.target].launch();
 }
 const FragAnimation = class {
     static card = "card";

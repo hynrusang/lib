@@ -163,14 +163,16 @@ const FragmentBox = class {
         scan(`fragment[rid=${fragment.rid}]`).style.display = null;
     }
 
-    static toggle = ({fragment, arg, router, alwayRefresh = false}) => {
+    static toggle = ({fragment, arg, alwayRefresh = false}) => {
         this.#syncActivate(fragment, arg);
         if (alwayRefresh || this.#launchedInfo.target == fragment.rid) {
             fragment.launch(arg);
             this.#launchedInfo.fragments[fragment.rid] = fragment;
-        } else snipe("router").reset(router);
+        }
+        snipe("router").reset(this.#launchedInfo.router[fragment.rid]);
         this.#launchedInfo.target = fragment.rid;
     };
+    static setRouter = (rid, ...fragment) => this.#launchedInfo.router[rid] = fragment;
     static refresh = () => this.#launchedInfo.fragments[this.#launchedInfo.target].launch();
 }
 const FragAnimation = class {

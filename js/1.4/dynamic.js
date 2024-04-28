@@ -173,7 +173,7 @@ const FragmentBox = class {
         snipe("router").reset(this.#launchedInfo.router[fragment.rid]);
         this.#launchedInfo.target = fragment.rid;
     };
-    static setRouter = (rid, ...domlist) => this.#launchedInfo.router[rid] = domlist;
+    static setRouter = (rid, domlist) => this.#launchedInfo.router[rid] = domlist;
     static refresh = () => this.#launchedInfo.fragments[this.#launchedInfo.target].launch();
 }
 const FragAnimation = class {

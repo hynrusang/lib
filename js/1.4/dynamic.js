@@ -150,7 +150,8 @@ const Fragment = class {
 const FragmentBox = class {
     static #launchedInfo = {
         target: null,
-        fragments: {}
+        fragments: {},
+        router: {}
     };
 
     static #syncActivate = (fragment, arg) => {

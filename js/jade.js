@@ -37,8 +37,7 @@ Result:
 <script src="/resource/js/1.0/firebaseUtil.js"></script>
 <script src="/resource/js/1.0/util.js"></script>
 */
-//const __$$IMPLEMENTHREF = "https://hynrusang.github.io/lib/js/";
-const __$$IMPLEMENTHREF = "/js/";
+const __$$IMPLEMENTHREF = "https://hynrusang.github.io/lib/js/";
 const __$$VERSIONINFO = {
     dynamic: ["1.2", "1.3", "1.4"],
     livedata: ["1.2", "1.3", "1.4"],

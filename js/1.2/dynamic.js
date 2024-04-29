@@ -63,6 +63,30 @@ const Dom = class {
         if (typeof additional !== 'undefined') this.set(additional);
     }
 }
+/**
+ * @type {(node: string | HTMLElement, additional?: Object) => Dom}
+ */
+const $ = (node, additional) => new Dom(node, additional);
+/** 
+ * @type {{
+ * (selector: `!${string}`) => NodeListOf<HTMLElement>;
+ * (selector: string) => HTMLElement
+ * (selector: HTMLElement) => HTMLElement
+ * }}
+ */
+const scan = selector => (typeof selector == "string") ? (selector[0] == "!") ? document.querySelectorAll(selector.split("!")[1]) : document.querySelector(selector) : selector;
+/**
+ * @type {{
+* (selector: `!${string}`) => Dom[]
+* (selector: string) => Dom
+* (selector: HTMLElement) => Dom
+* }}
+*/
+const snipe = selector => {
+    const temp = ((typeof selector == "string") && (selector[0] == "!")) ? [] : $(scan(selector));
+    if (Array.isArray(temp)) for (let i = 0; i < scan(selector).length; i++) temp.push($(scan(selector)[i]));
+    return temp;
+}
 const Fragment = class {
     #view;
     #fragment;
@@ -157,28 +181,4 @@ const FragAnimation = class {
         } else snipe(_fragment._view).reset(_fragment.fragment);
         if (typeof _fragment._action == "function") _fragment._action();
     }
-}
-/**
- * @type {(node: string | HTMLElement, additional?: Object) => Dom}
- */
-const $ = (node, additional) => new Dom(node, additional);
-/** 
- * @type {{
- * (selector: `!${string}`) => NodeListOf<HTMLElement>;
- * (selector: string) => HTMLElement
- * (selector: HTMLElement) => HTMLElement
- * }}
- */
-const scan = selector => (typeof selector == "string") ? (selector[0] == "!") ? document.querySelectorAll(selector.split("!")[1]) : document.querySelector(selector) : selector;
-/**
- * @type {{
-* (selector: `!${string}`) => Dom[]
-* (selector: string) => Dom
-* (selector: HTMLElement) => Dom
-* }}
-*/
-const snipe = selector => {
-    const temp = ((typeof selector == "string") && (selector[0] == "!")) ? [] : $(scan(selector));
-    if (Array.isArray(temp)) for (let i = 0; i < scan(selector).length; i++) temp.push($(scan(selector)[i]));
-    return temp;
 }

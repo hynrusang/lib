@@ -65,24 +65,49 @@ const Dom = class {
         if (typeof additional !== 'undefined') this.set(additional);
     }
 }
+/**
+ * @type {(node: string | HTMLElement, additional?: Object) => Dom}
+ */
+const $ = (node, additional) => new Dom(node, additional);
+/** 
+ * @type {{
+* (selector: `!${string}`) => NodeListOf<HTMLElement>;
+* (selector: string) => HTMLElement
+* (selector: HTMLElement) => HTMLElement
+* }}
+*/
+const scan = selector => (typeof selector == "string") ? (selector[0] == "!") ? document.querySelectorAll(selector.split("!")[1]) : document.querySelector(selector) : selector;
+/**
+* @type {{
+* (selector: `!${string}`) => Dom[]
+* (selector: string) => Dom
+* (selector: HTMLElement) => Dom
+* }}
+*/
+const snipe = selector => {
+   const temp = ((typeof selector == "string") && (selector[0] == "!")) ? [] : $(scan(selector));
+   if (Array.isArray(temp)) for (let i = 0; i < scan(selector).length; i++) temp.push($(scan(selector)[i]));
+   return temp;
+}
+
 const Fragment = class {
     static #animation = {
         card: async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
                 snipe(fragment.#view).node.animate([{transform: 'rotateY(0deg)', opacity: '1'}, {transform: 'rotateY(180deg)', opacity: '0'}], {duration: fragment.#animationExcuteTime * 500,})
                 await new Promise(code => setTimeout(code, fragment.#animationExcuteTime * 450));
-                snipe(fragment.#view).reset(fragment.#fragment);
+                snipe(fragment.#view).reset(fragment.#domlist);
                 snipe(fragment.#view).node.animate([{transform: 'rotateY(180deg)', opacity: '0'}, {transform: 'rotateY(360deg)', opacity: '1'}], {duration: fragment.#animationExcuteTime * 500,})
-            } else snipe(fragment.#view).reset(fragment.#fragment);
+            } else snipe(fragment.#view).reset(fragment.#domlist);
             if (typeof fragment.#action == "function") fragment.#action();
         },
         fade: async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
                 snipe(fragment.#view).node.animate([{opacity: '1'}, {opacity: '0'}], {duration: fragment.#animationExcuteTime * 500,})
                 await new Promise(code => setTimeout(code, fragment.#animationExcuteTime * 400));
-                snipe(fragment.#view).reset(fragment.#fragment);
+                snipe(fragment.#view).reset(fragment.#domlist);
                 snipe(fragment.#view).node.animate([{opacity: '0'}, {opacity: '1'}], {duration: fragment.#animationExcuteTime * 500,})
-            } else snipe(fragment.#view).reset(fragment.#fragment);
+            } else snipe(fragment.#view).reset(fragment.#domlist);
             if (typeof fragment.#action == "function") fragment.#action();
         },
         swip: async fragment => {
@@ -90,17 +115,16 @@ const Fragment = class {
                 scan("html").style.overflowX = "hidden";
                 snipe(fragment.#view).node.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(100%)'}], {duration: fragment.#animationExcuteTime * 450,})
                 await new Promise(code => setTimeout(code, fragment.#animationExcuteTime * 400));
-                snipe(fragment.#view).reset(fragment.#fragment);
+                snipe(fragment.#view).reset(fragment.#domlist);
                 snipe(fragment.#view).node.animate([{transform: 'translateX(-100%)'}, {transform: 'translateX(0px)'}], {duration: fragment.#animationExcuteTime * 550,})
                 scan("html").style.overflowX = null;
-            } else snipe(fragment.#view).reset(fragment.#fragment);
+            } else snipe(fragment.#view).reset(fragment.#domlist);
             if (typeof fragment.#action == "function") fragment.#action();
         }
     }
-    static #launchedFragment;
     #rid;
     #view;
-    #fragment;
+    #domlist;
     #action;
     #swipAnimation;
     #animationExcuteTime;
@@ -108,17 +132,12 @@ const Fragment = class {
     /**
      * @type {(arg: any) => Fragment}
      */
-    static refreshFragment = arg => this.#launchedFragment.launch(arg);
-    /**
-     * @type {(arg: any) => Fragment}
-     */
     launch = arg => {
         if (this.#swipAnimation != null) Fragment.#animation[this.#swipAnimation](this);
         else {
-            snipe(this.#view).reset(this.#fragment)
+            snipe(this.#view).reset(this.#domlist)
             if (typeof this.#action == "function") this.#action(arg);
         }
-        Fragment.#launchedFragment = this;
         return this;
     }
     /**
@@ -138,53 +157,77 @@ const Fragment = class {
     }
 
     /**
-     * @param {Fragment} fragment 
-     */
-    static set launchedFragment(fragment) {
-        this.#launchedFragment = fragment;
-    }
-
-    /**
      * @type {() => String}
      */
     get rid() {
         return this.#rid;
     }
     /**
-     * @type {(view: String, ...fragment: Dom | Dom[]) => Fragment}
+     * @type {(view: String, ...domlist: Dom | Dom[]) => Fragment}
      */
-    constructor(view, ...fragment) {
+    constructor(view, ...domlist) {
         this.#rid = view;
         this.#view = `fragment[rid=${view}]`;
-        this.#fragment = fragment;
+        this.#domlist = domlist;
     }
 }
 const FragAnimation = class {
-    static card = "card";
-    static fade = "fade";
-    static swip = "swip";
+    /**
+     * @type {() => String}
+     */
+    static get card() {
+        return "card";
+    }
+    /**
+     * @type {() => String}
+     */
+    static get fade() {
+        return "fade";
+    }
+    /**
+     * @type {() => String}
+     */
+    static get card() {
+        return "swip";
+    }
 }
-/**
- * @type {(node: string | HTMLElement, additional?: Object) => Dom}
- */
-const $ = (node, additional) => new Dom(node, additional);
-/** 
- * @type {{
- * (selector: `!${string}`) => NodeListOf<HTMLElement>;
- * (selector: string) => HTMLElement
- * (selector: HTMLElement) => HTMLElement
- * }}
- */
-const scan = selector => (typeof selector == "string") ? (selector[0] == "!") ? document.querySelectorAll(selector.split("!")[1]) : document.querySelector(selector) : selector;
-/**
- * @type {{
-* (selector: `!${string}`) => Dom[]
-* (selector: string) => Dom
-* (selector: HTMLElement) => Dom
-* }}
-*/
-const snipe = selector => {
-    const temp = ((typeof selector == "string") && (selector[0] == "!")) ? [] : $(scan(selector));
-    if (Array.isArray(temp)) for (let i = 0; i < scan(selector).length; i++) temp.push($(scan(selector)[i]));
-    return temp;
+const FragBox = class {
+    static #launchedInfo = {
+        target: null,
+        fragments: {},
+        router: {}
+    };
+
+    /**
+     * @type {(fragment: Fragment, arg: any, alwayRefresh: boolean) => void}
+     */
+    static toggle = (fragment, arg, alwayRefresh = false) => {
+        if (!scan(`fragment[rid=${fragment.rid}]`)) {
+            snipe("fragmentbox").add($("fragment", {rid: fragment.rid}));
+            fragment.launch(arg);
+            this.#launchedInfo.fragments[fragment.rid] = fragment;
+        } else if (alwayRefresh || this.#launchedInfo.target == fragment.rid) {
+            fragment.launch(arg);
+            this.#launchedInfo.fragments[fragment.rid] = fragment;
+        };
+        if (this.#launchedInfo.target != fragment.rid) {
+            scan("!fragmentbox fragment").forEach(node => node.style.display = "none");
+            scan(`fragment[rid=${fragment.rid}]`).style.display = null;
+            snipe("router").reset(this.#launchedInfo.router[fragment.rid]);
+            this.#launchedInfo.target = fragment.rid;
+        }
+    };
+    /**
+     * @type {(rid: String, domlist: Dom[]) => void}
+     */
+    static setRouter = (rid, domlist) => {
+        this.#launchedInfo.router[rid] = domlist;
+        if (this.#launchedInfo.target == rid) snipe("router").reset(domlist)
+    }
+    /**
+     * @type {() => void}
+     */
+    static refresh = () => this.#launchedInfo.fragments[this.#launchedInfo.target].launch();
 }
+
+export {$, scan, snipe, Fragment, FragAnimation, FragBox}

@@ -26,7 +26,7 @@ const LiveData = class {
         }
     }
 }
-const LiveDataManager = class {
+const LiveManager = class {
     #editable;
     #livedataObject;
     value = (id, data) => {
@@ -58,7 +58,7 @@ const LiveDataManager = class {
         }, {});
     }
 }
-const Binder = class {
+const LiveBinder = class {
     static #bindlist = {};
     static #synclist = {};
     static #sync = obj => {
@@ -129,6 +129,8 @@ const Binder = class {
 }
 const observer = new MutationObserver(mutationsList => {
     const mutation = mutationsList[mutationsList.length - 1];
-    for (const node of [...mutation.addedNodes, ...mutation.removedNodes]) if (node instanceof HTMLElement) Binder._set();
+    for (const node of [...mutation.addedNodes, ...mutation.removedNodes]) if (node instanceof HTMLElement) LiveBinder._set();
 }).observe(document.body, { childList: true, subtree: true });
-Binder._set();
+LiveBinder._set();
+
+export { LiveData, LiveManager, LiveBinder }

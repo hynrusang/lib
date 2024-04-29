@@ -3,11 +3,11 @@ js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
 작성자: 환류상
  */
 /**
- * @deprecated This class is not supported starting with 1.2. Use Fragment.launch() instead.
+ * @deprecated This class is not supported starting with 1.2.
  */
 class SecurityError extends Error {
     constructor(massage) {
-        console.log("%cThis class is not supported starting with 1.2.\nUse Fragment.launch() instead.", "color: red");
+        console.log("%cThis class is not supported starting with 1.2.", "color: red");
         super(massage);
         this.name = "Security Error";
     }
@@ -90,6 +90,30 @@ const Dom = class {
         if (typeof additional !== 'undefined') this.set(additional);
     }
 }
+/**
+ * @type {(node: string | HTMLElement, additional?: Object) => Dom}
+ */
+const $ = (node, additional) => new Dom(node, additional);
+/** 
+ * @type {{
+* (selector: `!${string}`) => NodeListOf<HTMLElement>;
+* (selector: string) => HTMLElement
+* (selector: HTMLElement) => HTMLElement
+* }}
+*/
+const scan = selector => (typeof selector == "string") ? (selector[0] == "!") ? document.querySelectorAll(selector.split("!")[1]) : document.querySelector(selector) : selector;
+/**
+ * @type {{
+* (selector: `!${string}`) => Dom[]
+* (selector: string) => Dom
+* (selector: HTMLElement) => Dom
+* }}
+*/
+const snipe = selector => {
+   const temp = ((typeof selector == "string") && (selector[0] == "!")) ? [] : $(scan(selector));
+   if (typeof temp == "object") for (let i = 0; i < scan(selector).length; i++) temp.push($(scan(selector)[i]));
+   return temp;
+}
 const Fragment = class {
     #view;
     #fragment;
@@ -116,30 +140,6 @@ const Fragment = class {
         this.#view = snipe(`fragment[rid=${view}]`);
         this.#fragment = fragment;
     }
-}
-/**
- * @type {(node: string | HTMLElement, additional?: Object) => Dom}
- */
-const $ = (node, additional) => new Dom(node, additional);
-/** 
- * @type {{
-* (selector: `!${string}`) => NodeListOf<HTMLElement>;
-* (selector: string) => HTMLElement
-* (selector: HTMLElement) => HTMLElement
-* }}
-*/
-const scan = selector => (typeof selector == "string") ? (selector[0] == "!") ? document.querySelectorAll(selector.split("!")[1]) : document.querySelector(selector) : selector;
-/**
- * @type {{
-* (selector: `!${string}`) => Dom[]
-* (selector: string) => Dom
-* (selector: HTMLElement) => Dom
-* }}
-*/
-const snipe = selector => {
-   const temp = ((typeof selector == "string") && (selector[0] == "!")) ? [] : $(scan(selector));
-   if (typeof temp == "object") for (let i = 0; i < scan(selector).length; i++) temp.push($(scan(selector)[i]));
-   return temp;
 }
 /**
  * @type {(jhpath: string) => void}

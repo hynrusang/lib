@@ -12,30 +12,6 @@ The version can either specify a particular version (e.g. "1.0.0"), use "release
 Note:
 1. To use this jade.js library, scripts in HTML must be written as external scripts, not internal scripts.
 2. The version must either be a valid version number, "release", or "prerelease", or "developer".
-
-Example:
-<script src="https://hynrusang.github.io/js-lib/jade.js">
-    dynamic, prerelease;
-    livedata, developer;
-    advanced, 1.0;
-</script>
-<jade src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></jade>
-<jade src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></jade>
-<jade src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></jade>
-<jade src="/resource/js/1.0/calculater.js"></jade>
-<jade src="/resource/js/1.0/firebaseUtil.js"></jade>
-<jade src="/resource/js/1.0/util.js"></jade>
-
-Result:
-<script src="https://hynrusang.github.io/js-lib/1.2.0/dynamic.js"></script>
-<script src="https://hynrusang.github.io/js-lib/1.2.0/livedata.js"></script>
-<script src="https://hynrusang.github.io/js-lib/1.0.0/advanced.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
-<script src="/resource/js/1.0/calculater.js"></script>
-<script src="/resource/js/1.0/firebaseUtil.js"></script>
-<script src="/resource/js/1.0/util.js"></script>
 */
 const __$$IMPLEMENTHREF = "https://hynrusang.github.io/lib/js/";
 const __$$VERSIONINFO = {

@@ -45,7 +45,7 @@ const LiveData = class {
         }
     }
 }
-const LiveDataManager = class {
+const LiveManager = class {
     #editable;
     #livedataObject;
     value = (id, data) => (typeof data !== "undefined") ? this.#livedataObject[id].value = data : this.#livedataObject[id].value;

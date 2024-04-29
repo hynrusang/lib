@@ -26,7 +26,7 @@ const LiveData = class {
         }
     }
 }
-const LiveDataManager = class {
+const LiveManager = class {
     #editable;
     #livedataObject;
     value = (id, data) => {
@@ -58,7 +58,7 @@ const LiveDataManager = class {
         }, {});
     }
 }
-const Binder = class {
+const LiveBinder = class {
     static #bindlist = {};
     static #synclist = {};
     static #sync = obj => {

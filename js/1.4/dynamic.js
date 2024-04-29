@@ -163,10 +163,10 @@ const FragmentBox = class {
             fragment.launch(arg);
             this.#launchedInfo.fragments[fragment.rid] = fragment;
         };
-        if (this.#launchedInfo.target != fragment.rid) {
+        if (this.#launchedInfo.target || this.#launchedInfo.target != fragment.rid) {
             scan(`fragment[rid=${this.#launchedInfo.target}]`).style.display = "none";
             scan(`fragment[rid=${fragment.rid}]`).style.display = null;
-            if (this.#launchedInfo.router[fragment.rid]) snipe("router").reset(this.#launchedInfo.router[fragment.rid]);
+            snipe("router").reset(this.#launchedInfo.router[fragment.rid]);
             this.#launchedInfo.target = fragment.rid;
         }
     };

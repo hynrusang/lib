@@ -159,6 +159,7 @@ const FragmentBox = class {
         if (!scan(`fragment[rid=${fragment.rid}]`)) {
             snipe("fragmentbox").add($("fragment", {rid: fragment.rid}));
             fragment.launch(arg);
+            this.#launchedInfo.fragments[fragment.rid] = fragment;
         }
         scan("!fragmentbox fragment").forEach(node => node.style.display = "none");
         scan(`fragment[rid=${fragment.rid}]`).style.display = null;

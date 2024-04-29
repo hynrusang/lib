@@ -163,8 +163,8 @@ const FragmentBox = class {
             fragment.launch(arg);
             this.#launchedInfo.fragments[fragment.rid] = fragment;
         };
-        if (this.#launchedInfo.target || this.#launchedInfo.target != fragment.rid) {
-            scan(`fragment[rid=${this.#launchedInfo.target}]`).style.display = "none";
+        if (this.#launchedInfo.target != fragment.rid) {
+            scan("!fragmentbox fragment").forEach(node => node.style.display = "none");
             scan(`fragment[rid=${fragment.rid}]`).style.display = null;
             snipe("router").reset(this.#launchedInfo.router[fragment.rid]);
             this.#launchedInfo.target = fragment.rid;

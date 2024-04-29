@@ -154,6 +154,9 @@ const FragmentBox = class {
         router: {}
     };
 
+    /**
+     * @type {(fragment: Fragment, arg: any, alwayRefresh: boolean) => void}
+     */
     static toggle = (fragment, arg, alwayRefresh = false) => {
         if (!scan(`fragment[rid=${fragment.rid}]`)) {
             snipe("fragmentbox").add($("fragment", {rid: fragment.rid}));
@@ -170,10 +173,16 @@ const FragmentBox = class {
             this.#launchedInfo.target = fragment.rid;
         }
     };
+    /**
+     * @type {(rid: String, domlist: Dom[]) => void}
+     */
     static setRouter = (rid, domlist) => {
         this.#launchedInfo.router[rid] = domlist;
         if (this.#launchedInfo.target == rid) snipe("router").reset(domlist)
     }
+    /**
+     * @type {() => void}
+     */
     static refresh = () => this.#launchedInfo.fragments[this.#launchedInfo.target].launch();
 }
 const FragAnimation = class {

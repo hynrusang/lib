@@ -166,9 +166,9 @@ const FragmentBox = class {
         if (this.#launchedInfo.target != fragment.rid) {
             scan("!fragmentbox fragment").forEach(node => node.style.display = "none");
             scan(`fragment[rid=${fragment.rid}]`).style.display = null;
-            snipe("router").reset(this.#launchedInfo.router[fragment.rid]);
             this.#launchedInfo.target = fragment.rid;
         }
+        snipe("router").reset(this.#launchedInfo.router[fragment.rid]);
     };
     static setRouter = (rid, domlist) => this.#launchedInfo.router[rid] = domlist;
     static refresh = () => this.#launchedInfo.fragments[this.#launchedInfo.target].launch();

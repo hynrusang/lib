@@ -186,9 +186,24 @@ const FragmentBox = class {
     static refresh = () => this.#launchedInfo.fragments[this.#launchedInfo.target].launch();
 }
 const FragAnimation = class {
-    static card = "card";
-    static fade = "fade";
-    static swip = "swip";
+    /**
+     * @type {() => String}
+     */
+    static get card() {
+        return "card";
+    }
+    /**
+     * @type {() => String}
+     */
+    static get fade() {
+        return "fade";
+    }
+    /**
+     * @type {() => String}
+     */
+    static get card() {
+        return "swip";
+    }
 }
 /**
  * @type {(node: string | HTMLElement, additional?: Object) => Dom}

@@ -167,10 +167,13 @@ const FragmentBox = class {
             scan("!fragmentbox fragment").forEach(node => node.style.display = "none");
             scan(`fragment[rid=${fragment.rid}]`).style.display = null;
             this.#launchedInfo.target = fragment.rid;
+            snipe("router").reset(this.#launchedInfo.router[fragment.rid]);
         }
-        snipe("router").reset(this.#launchedInfo.router[fragment.rid]);
     };
-    static setRouter = (rid, domlist) => this.#launchedInfo.router[rid] = domlist;
+    static setRouter = (rid, domlist) => {
+        this.#launchedInfo.router[rid] = domlist;
+        if (this.#launchedInfo.target == rid) snipe("router").reset(domlist)
+    }
     static refresh = () => this.#launchedInfo.fragments[this.#launchedInfo.target].launch();
 }
 const FragAnimation = class {

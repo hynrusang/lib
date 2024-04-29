@@ -142,9 +142,11 @@ const Fragment = class {
     }
 
     /**
+     * @deprecated This method is not supported starting with 1.4.
      * @param {Fragment} fragment 
      */
     static set launchedFragment(fragment) {
+        console.log("%cThis method is not supported starting with 1.4.", "color: red");
         this.#launchedFragment = fragment;
     }
 

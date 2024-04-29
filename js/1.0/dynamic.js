@@ -85,21 +85,32 @@ class DomExpert extends DomDefault {
  */
 const $ = (node, additional) => { return new DomExpert(node, additional); };
 /**
+ * @deprecated This function is not supported starting with 1.1.
  * @type {(target: any, classname: string) => boolean}
  */
-const is = (target, classname) => { return typeof target === classname; };
+const is = (target, classname) => {
+    console.log("%cThis function is not supported starting with 1.1.", "color: red");
+    return typeof target === classname; 
+};
 /**
+ * @deprecated This function is not supported starting with 1.1.
  * @type {(millisecond: number) => Promise<>}
  */
-const wait = millisecond => { return new Promise(code => setTimeout(code, millisecond)); }
+const wait = millisecond => { 
+    console.log("%cThis function is not supported starting with 1.1.", "color: red");
+    return new Promise(code => setTimeout(code, millisecond)); 
+}
 /**
- * Suggested by chatGPT.
+ * @deprecated This function is not supported starting with 1.1.
  * @type {{
  * (parent: any[], child: any) => number
  * (parent: HTMLElement, child: HTMLElement) => number
  * }}
  */
-const getIndex = (parent, child) => { return parent.nodeName != null ? Array.prototype.indexOf.call(parent.children, child) : Array.prototype.indexOf.call(parent, child); };
+const getIndex = (parent, child) => { 
+    console.log("%cThis function is not supported starting with 1.1.", "color: red");
+    return parent.nodeName != null ? Array.prototype.indexOf.call(parent.children, child) : Array.prototype.indexOf.call(parent, child); 
+};
 /** 
  * @type {{
 * (selector: `!${string}`) => NodeListOf<HTMLElement>;

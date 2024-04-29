@@ -3,11 +3,11 @@ js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
 작성자: 환류상
  */
 /**
- * @deprecated This class is not supported starting with 1.2.0. Use Fragment.launch() instead.
+ * @deprecated This class is not supported starting with 1.2. Use Fragment.launch() instead.
  */
 class SecurityError extends Error {
     constructor(massage) {
-        console.log("%cThis class is not supported starting with 1.2.0.\nUse Fragment.launch() instead.", "color: red");
+        console.log("%cThis class is not supported starting with 1.2.\nUse Fragment.launch() instead.", "color: red");
         super(massage);
         this.name = "Security Error";
     }
@@ -74,10 +74,10 @@ const Dom = class {
     }
     /**
      * @type {(count: number) => Dom[]}
-     * @deprecated This method is not supported starting with 1.2.0.
+     * @deprecated This method is not supported starting with 1.2.
      */
     copy = count => {
-        console.log("%cThis method is not supported starting with 1.2.0.", "color: red");
+        console.log("%cThis method is not supported starting with 1.2.", "color: red");
         const tempbox = [];
         for (let i = 0; i < count; i++) tempbox.push($(this.#node.cloneNode(true)));
         return tempbox;
@@ -144,10 +144,10 @@ const snipe = selector => {
 /**
  * @type {(jhpath: string) => void}
  * @throws {SecurityError}
- * @deprecated This function is not supported starting with 1.2.0. Use Fragment.launch() instead.
+ * @deprecated This function is not supported starting with 1.2. Use Fragment.launch() instead.
  */
 const loading  = jhpath => {
-    console.log("%cThis function is not supported starting with 1.2.0.\nUse Fragment.launch() instead.", "color: red");
+    console.log("%cThis function is not supported starting with 1.2.\nUse Fragment.launch() instead.", "color: red");
     const REQUEST = new XMLHttpRequest();
     if (jhpath.indexOf("http") != -1) throw new SecurityError("loading 함수로 다른 웹사이트의 htm.js를 로딩할 수 없습니다.");
     else {

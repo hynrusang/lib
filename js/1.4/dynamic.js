@@ -155,12 +155,12 @@ const FragmentBox = class {
     };
 
     static #syncActivate = (fragment, arg) => {
-        if (this.#launchedInfo.target == fragment.rid) return;
         if (!scan(`fragment[rid=${fragment.rid}]`)) {
             snipe("fragmentbox").add($("fragment", {rid: fragment.rid}));
             fragment.launch(arg);
             this.#launchedInfo.fragments[fragment.rid] = fragment;
         }
+        if (this.#launchedInfo.target == fragment.rid) return;
         scan("!fragmentbox fragment").forEach(node => node.style.display = "none");
         scan(`fragment[rid=${fragment.rid}]`).style.display = null;
     }

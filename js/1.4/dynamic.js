@@ -154,25 +154,21 @@ const FragmentBox = class {
         router: {}
     };
 
-    static #syncActivate = (fragment, arg) => {
+    static toggle = (fragment, arg, alwayRefresh = false) => {
         if (!scan(`fragment[rid=${fragment.rid}]`)) {
             snipe("fragmentbox").add($("fragment", {rid: fragment.rid}));
             fragment.launch(arg);
             this.#launchedInfo.fragments[fragment.rid] = fragment;
-        }
-        if (this.#launchedInfo.target == fragment.rid) return;
-        scan("!fragmentbox fragment").forEach(node => node.style.display = "none");
-        scan(`fragment[rid=${fragment.rid}]`).style.display = null;
-    }
-
-    static toggle = (fragment, arg, alwayRefresh = false) => {
-        this.#syncActivate(fragment, arg);
-        if (alwayRefresh || this.#launchedInfo.target == fragment.rid) {
+        } else if (alwayRefresh || this.#launchedInfo.target == fragment.rid) {
             fragment.launch(arg);
             this.#launchedInfo.fragments[fragment.rid] = fragment;
+        };
+        if (this.#launchedInfo.target != fragment.rid) {
+            scan(`fragment[rid=${this.#launchedInfo.target}]`).style.display = "none";
+            scan(`fragment[rid=${fragment.rid}]`).style.display = null;
+            snipe("router").reset(this.#launchedInfo.router[fragment.rid]);
+            this.#launchedInfo.target = fragment.rid;
         }
-        snipe("router").reset(this.#launchedInfo.router[fragment.rid]);
-        this.#launchedInfo.target = fragment.rid;
     };
     static setRouter = (rid, domlist) => this.#launchedInfo.router[rid] = domlist;
     static refresh = () => this.#launchedInfo.fragments[this.#launchedInfo.target].launch();

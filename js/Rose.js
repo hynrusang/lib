@@ -1,23 +1,36 @@
 ﻿/*
-Rose library
-info:
-This library can download other JavaScript programes by module from my website.
-It was very simple and powerful to use more then jade.
+Rose Module Loader
+Info:
+This module loader facilitates importing modules from a specified URL, enhancing module management in JavaScript projects.
 
 How it works:
-Inside the script tag to your site by type=module.
+To use this module loader, import it into your JavaScript module. Then, call the loadModule function, providing the module name and version as arguments. The loader dynamically fetches the module based on the provided version information and returns a Promise that resolves to the imported module.
 
-Note:
+Notes:
+Version numbers or selector (such as developer, pre-release, release) must be specified as strings.
+Rose can only import modules with version 2.X or higher.
+
+Example Usage:
+(index.html)
+<script src="/resource/js/init/module.js" type="module"></script>
+
+(module.js)
+import loadModule from "https://hynrusang.github.io/lib/js/Rose.js";
+const [Dynamic, LiveData] = await Promise.all([
+loadModule("dynamic", "2.0"),
+loadModule("livedata", "2.0")
+]);
+export { Dynamic, LiveData }
 */
 const versionInfo = {
     dynamic: {
         release: null,
-        pre_release: null,
+        pre_release: "2.0",
         developer: "2.0"
     },
     livedata: {
         release: null,
-        pre_release: null,
+        pre_release: "2.0",
         developer: "2.0"
     }
 };

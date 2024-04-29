@@ -1,17 +1,21 @@
 ﻿/*
-jade(js downloader) library
-info:
-This library can download other JavaScript programs from my website.
-It can be more helpful than the default HTML script tag.
+jade.js Library
+Info:
+This library facilitates downloading JavaScript programs from a specified website, offering advantages over the conventional HTML script tag.
 
 How it works:
-Inside the <script src="https://hynrusang.github.io/js-lib/jade.js"> tag, scripts to include are separated by semicolons.
-The first argument specifies the script name to include, and the second argument specifies the version.
-The version can either specify a particular version (e.g. "1.0.0"), use "release" to automatically use the latest version, or use "developer" for a version specifically for developers.
+To utilize this library, the <script src="https://hynrusang.github.io/js-lib/jade.js"> tag is employed, with scripts to be included separated by semicolons. The first argument designates the script name to include, while the second specifies the version. Versions may specify a particular version number (e.g., "1.0.0"), use "release" to automatically select the latest version, or "developer" for a version tailored for developers.
 
-Note:
-1. To use this jade.js library, scripts in HTML must be written as external scripts, not internal scripts.
-2. The version must either be a valid version number, "release", or "prerelease", or "developer".
+Notes:
+To utilize jade.js, HTML scripts must be written as external scripts rather than internal ones.
+Versions must be valid version numbers, "release", "prerelease", or "developer".
+
+Example Usage:
+<script src="https://hynrusang.github.io/js-lib/jade.js">
+    dynamic, developer;
+    livedata, developer;
+</script>
+<jade src="init.js"></jade>
 */
 const __$$IMPLEMENTHREF = "https://hynrusang.github.io/lib/js/";
 const __$$VERSIONINFO = {

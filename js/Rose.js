@@ -4,7 +4,9 @@ Info:
 This module loader facilitates importing modules from a specified URL, enhancing module management in JavaScript projects.
 
 How it works:
-To use this module loader, import it into your JavaScript module. Then, call the loadModule function, providing the module name and version as arguments. The loader dynamically fetches the module based on the provided version information and returns a Promise that resolves to the imported module.
+To use this module loader, import it into your JavaScript module. 
+Then, call the loadModule function, providing the module name and version as arguments. 
+The loader dynamically fetches the module based on the provided version information and returns a Promise that resolves to the imported module.
 
 Notes:
 Version numbers or selector (such as developer, pre-release, release) must be specified as strings.

@@ -89,7 +89,7 @@ const $ = (node, additional) => { return new DomExpert(node, additional); };
  * @type {(target: any, classname: string) => boolean}
  */
 const is = (target, classname) => {
-    console.log("%cThis function is not supported starting with 1.1.", "color: red");
+    console.warn("This function is not supported starting with 1.1.");
     return typeof target === classname; 
 };
 /**
@@ -97,7 +97,7 @@ const is = (target, classname) => {
  * @type {(millisecond: number) => Promise<>}
  */
 const wait = millisecond => { 
-    console.log("%cThis function is not supported starting with 1.1.", "color: red");
+    console.warn("This function is not supported starting with 1.1.")
     return new Promise(code => setTimeout(code, millisecond)); 
 }
 /**
@@ -108,7 +108,7 @@ const wait = millisecond => {
  * }}
  */
 const getIndex = (parent, child) => { 
-    console.log("%cThis function is not supported starting with 1.1.", "color: red");
+    console.warn("This function is not supported starting with 1.1.")
     return parent.nodeName != null ? Array.prototype.indexOf.call(parent.children, child) : Array.prototype.indexOf.call(parent, child); 
 };
 /** 

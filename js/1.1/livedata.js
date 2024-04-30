@@ -19,20 +19,20 @@ const LiveData = class {
      */
     dispatchObserver = () => this.#observer();
     /**
-     * @deprecated This method is not supported starting with 1.2.0. use LiveData.value setter instead.
+     * @deprecated This method is not supported starting with 1.2. use LiveData.value setter instead.
      * @type {(data: Any) => LiveData}
      */
     set = data => { 
-        console.log("%cThis method is not supported starting with 1.2.0.\nuse LiveData.value setter instead.", "color: red");
+        console.warn("This method is not supported starting with 1.2.0.\nuse LiveData.value setter instead.");
         this.value = data;
         return this;
     }
     /**
-     * @deprecated This method is not supported starting with 1.2.0. use LiveData.value getter instead.
+     * @deprecated This method is not supported starting with 1.2. use LiveData.value getter instead.
      * @type {() => Any}
      */
     get = () => {
-        console.log("%cThis method is not supported starting with 1.2.0.\nuse LiveData.value getter instead.", "color: red");
+        console.warn("This method is not supported starting with 1.2.0.\nuse LiveData.value getter instead.");
         return this.value;
     }
     set value(data) {
@@ -79,21 +79,21 @@ const LiveManager = class {
     }
 }
 /**
- * @deprecated This prototype is not supported starting with 1.2.0. use LiveDataManager.toObject instead.
+ * @deprecated This prototype is not supported starting with 1.2. use LiveDataManager.toObject instead.
  * @type {(json: Object) => Object}
  */
 JSON.unlivedata = json => {
-    console.log("%cThis prototype is not supported starting with 1.2.0.\nuse LiveDataManager.toObject instead.", "color: red");
+    console.warn("This prototype is not supported starting with 1.2.\nuse LiveDataManager.toObject instead.");
     let data = {};
     for (let key of Object.keys(json)) data[key] = (json[key] instanceof LiveData) ? json[key].value : json[key];
     return data;
 }
 /**
- * @deprecated This prototype is not supported starting with 1.2.0. use LiveDataManager.toArray instead.
+ * @deprecated This prototype is not supported starting with 1.2. use LiveDataManager.toArray instead.
  * @type {(json: Object) => Object}
  */
 Array.unlivedata = array => {
-    console.log("%cThis prototype is not supported starting with 1.2.0.\nuse LiveDataManager.toArray instead.", "color: red");
+    console.warn("This prototype is not supported starting with 1.2.\nuse LiveDataManager.toArray instead.");
     let data = []
     for (let inner of array) data.push((inner instanceof LiveData) ? inner.value : inner);
     return data;

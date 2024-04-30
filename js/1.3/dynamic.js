@@ -134,7 +134,7 @@ const Fragment = class {
      * @type {(arg: any) => Fragment}
      */
     static refreshFragment = arg => {
-        console.log("%cThis method is not supported starting with 1.4.", "color: red");
+        console.warn("This method is not supported starting with 1.4.");
         this.#launchedFragment.launch(arg);
     }
     /**
@@ -170,7 +170,7 @@ const Fragment = class {
      * @param {Fragment} fragment 
      */
     static set launchedFragment(fragment) {
-        console.log("%cThis method is not supported starting with 1.4.", "color: red");
+        console.warn("This method is not supported starting with 1.4.");
         this.#launchedFragment = fragment;
     }
 

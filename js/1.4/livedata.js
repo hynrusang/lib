@@ -2,7 +2,7 @@
 js에서 값의 변화를 관측하는 LiveData를 비롯한 여러 기능들을 사용할 수 있게 해줍니다.
 작성자: 환류상
  */
-console.log("%cFrom this version, we do not recommend using it for security reasons.\nWe recommend using a 'Rose' model that deals with models 2.0 or higher.", "color: red");
+console.warn("From this version, we do not recommend using it for security reasons.\nWe recommend using a 'Rose' model that deals with models 2.0 or higher.");
 const LiveData = class {
     #data;
     #type;

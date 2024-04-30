@@ -11,7 +11,7 @@ const LiveData = class {
      * @type {(observer: Function) => LiveData}
      */
     registObserver = observer => {
-        console.log("%cThis method is not supported starting with 1.3.0.\nUse the newly renewed constructor second param from liveata 1.2.0 instead.", "color: red");
+        console.warn("This method is not supported starting with 1.3.\nUse the newly renewed constructor second param from liveata 1.2 instead.");
         this.#observer = observer;
         return this;
     }
@@ -36,7 +36,7 @@ const LiveData = class {
         this.#data = data;
         if (dataset) {
             if (typeof dataset === "string") {
-                console.log("%cThis way is discontinued from liveata 1.3.\nPlease deliver the second parameter in the format of the object,\nnot the string.", "color: #FF0000");
+                console.warn("This way is discontinued from liveata 1.3.\nPlease deliver the second parameter in the format of the object.");
                 this.#type = dataset;
             } else {
                 this.#type = dataset.type;

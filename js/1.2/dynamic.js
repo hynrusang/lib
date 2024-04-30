@@ -98,7 +98,7 @@ const Fragment = class {
      * @type {() => Function}
      */
     get _action() {
-        console.log("%cThis getter is not supported starting with 1.3.", "color: red");
+        console.warn("This getter is not supported starting with 1.3.");
         return this.#action;
     }
     /**
@@ -106,7 +106,7 @@ const Fragment = class {
      * @type {() => HTMLElement}
      */
     get _view() {
-        console.log("%cThis getter is not supported starting with 1.3.", "color: red");
+        console.warn("This getter is not supported starting with 1.3.");
         return this.#view;
     }
     /**
@@ -114,7 +114,7 @@ const Fragment = class {
      * @type {() => FragDom[]}
      */
     get fragment() {
-        console.log("%cThis getter is not supported starting with 1.3.", "color: red");
+        console.warn("This getter is not supported starting with 1.3.");
         return this.#fragment;
     }
     /**

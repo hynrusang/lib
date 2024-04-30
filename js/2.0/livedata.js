@@ -26,6 +26,10 @@ const LiveData = class {
         }
     }
 }
+/**
+ * @type {(data: Any, dataset: object) => LiveData}
+ */
+const $ = (data, dataset) => new LiveData(data, dataset);
 const LiveManager = class {
     #editable;
     #livedataObject;
@@ -133,4 +137,4 @@ const observer = new MutationObserver(mutationsList => {
 }).observe(document.body, { childList: true, subtree: true });
 LiveBinder._set();
 
-export { LiveData, LiveManager, LiveBinder }
+export { $, LiveManager, LiveBinder }

@@ -3,7 +3,7 @@ js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
 작성자: 환류상
  */
 console.log("%cFrom this version, we do not recommend using it for security reasons.\nWe recommend using a 'Rose' model that deals with models 2.0 or higher.", "color: red");
-const Dom = class {
+const FragDom = class {
     #node;
     /**
      * @type {() => HTMLElement}
@@ -12,7 +12,7 @@ const Dom = class {
         return this.#node;
     }
     /**
-     * @type {(additional: Object) => Dom}
+     * @type {(additional: Object) => FragDom}
      */
     set = additional => {
         if (typeof additional === 'object') {
@@ -26,18 +26,18 @@ const Dom = class {
         return this;
     };
     /**
-     * @type {(num: number) => Dom}
+     * @type {(num: number) => FragDom}
      */
     remove = num => {
         this.#node.removeChild(this.children(num).node);
         return this;
     }
     /**
-     * @type {(num: number) => Dom}
+     * @type {(num: number) => FragDom}
      */
-    children = num => this.#node.children[num] ? new Dom(this.#node.children[num]) : null;
+    children = num => this.#node.children[num] ? new FragDom(this.#node.children[num]) : null;
     /**
-     * @type {(...dom: Dom | Dom[]) => Dom}
+     * @type {(...dom: FragDom | FragDom[]) => FragDom}
      */
     add = (...dom) => {
         if (0 < dom.length && dom[0]) {
@@ -50,7 +50,7 @@ const Dom = class {
         return this;
     }
     /**
-     * @type {(...dom?: Dom | Dom[]) => Dom}
+     * @type {(...dom?: FragDom | FragDom[]) => FragDom}
      */
     reset = (...dom) => {
         this.#node.innerHTML = "";
@@ -58,7 +58,7 @@ const Dom = class {
         return this;
     }
     /**
-     * @type {(node: string | HTMLElement, additional: Object?) => Dom}
+     * @type {(node: string | HTMLElement, additional: Object?) => FragDom}
      */
     constructor(node, additional) {
         if (typeof node !== "string" && !node instanceof HTMLElement) throw new TypeError("node is not instanceof HTMLElement. node must be instanceof HTMLElement");
@@ -67,9 +67,9 @@ const Dom = class {
     }
 }
 /**
- * @type {(node: string | HTMLElement, additional?: Object) => Dom}
+ * @type {(node: string | HTMLElement, additional?: Object) => FragDom}
  */
-const $ = (node, additional) => new Dom(node, additional);
+const $ = (node, additional) => new FragDom(node, additional);
 /** 
  * @type {{
  * (selector: `!${string}`) => NodeListOf<HTMLElement>;
@@ -80,9 +80,9 @@ const $ = (node, additional) => new Dom(node, additional);
 const scan = selector => (typeof selector == "string") ? (selector[0] == "!") ? document.querySelectorAll(selector.split("!")[1]) : document.querySelector(selector) : selector;
 /**
  * @type {{
-* (selector: `!${string}`) => Dom[]
-* (selector: string) => Dom
-* (selector: HTMLElement) => Dom
+* (selector: `!${string}`) => FragDom[]
+* (selector: string) => FragDom
+* (selector: HTMLElement) => FragDom
 * }}
 */
 const snipe = selector => {
@@ -163,7 +163,7 @@ const Fragment = class {
         return this.#rid;
     }
     /**
-     * @type {(view: String, ...domlist: Dom | Dom[]) => Fragment}
+     * @type {(view: String, ...domlist: FragDom | FragDom[]) => Fragment}
      */
     constructor(view, ...domlist) {
         this.#rid = view;
@@ -218,7 +218,7 @@ const FragBox = class {
         }
     };
     /**
-     * @type {(rid: String, domlist: Dom[]) => void}
+     * @type {(rid: String, domlist: FragDom[]) => void}
      */
     static setRouter = (rid, domlist) => {
         this.#launchedInfo.router[rid] = domlist;

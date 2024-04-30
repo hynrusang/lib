@@ -2,7 +2,7 @@
 js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
 작성자: 환류상
  */
-const Dom = class {
+const FragDom = class {
     #node;
     /**
      * @type {() => HTMLElement}
@@ -11,7 +11,7 @@ const Dom = class {
         return this.#node;
     }
     /**
-     * @type {(additional: Object) => Dom}
+     * @type {(additional: Object) => FragDom}
      */
     set = additional => {
         if (typeof additional === 'object') {
@@ -25,18 +25,18 @@ const Dom = class {
         return this;
     };
     /**
-     * @type {(num: number) => Dom}
+     * @type {(num: number) => FragDom}
      */
     remove = num => {
         this.#node.removeChild(this.children(num).node);
         return this;
     }
     /**
-     * @type {(num: number) => Dom}
+     * @type {(num: number) => FragDom}
      */
-    children = num => this.#node.children[num] ? new Dom(this.#node.children[num]) : null;
+    children = num => this.#node.children[num] ? new FragDom(this.#node.children[num]) : null;
     /**
-     * @type {(...dom: Dom | Dom[]) => Dom}
+     * @type {(...dom: FragDom | FragDom[]) => FragDom}
      */
     add = (...dom) => {
         for (let pdom of dom) {
@@ -47,7 +47,7 @@ const Dom = class {
         return this;
     }
     /**
-     * @type {(...dom?: Dom | Dom[]) => Dom}
+     * @type {(...dom?: FragDom | FragDom[]) => FragDom}
      */
     reset = (...dom) => {
         this.#node.innerHTML = "";
@@ -55,7 +55,7 @@ const Dom = class {
         return this;
     }
     /**
-     * @type {(node: string | HTMLElement, additional: Object?) => Dom}
+     * @type {(node: string | HTMLElement, additional: Object?) => FragDom}
      */
     constructor(node, additional) {
         if (typeof node !== "string" && !node instanceof HTMLElement) throw new TypeError("node is not instanceof HTMLElement. node must be instanceof HTMLElement");
@@ -64,9 +64,9 @@ const Dom = class {
     }
 }
 /**
- * @type {(node: string | HTMLElement, additional?: Object) => Dom}
+ * @type {(node: string | HTMLElement, additional?: Object) => FragDom}
  */
-const $ = (node, additional) => new Dom(node, additional);
+const $ = (node, additional) => new FragDom(node, additional);
 /** 
  * @type {{
  * (selector: `!${string}`) => NodeListOf<HTMLElement>;
@@ -77,9 +77,9 @@ const $ = (node, additional) => new Dom(node, additional);
 const scan = selector => (typeof selector == "string") ? (selector[0] == "!") ? document.querySelectorAll(selector.split("!")[1]) : document.querySelector(selector) : selector;
 /**
  * @type {{
-* (selector: `!${string}`) => Dom[]
-* (selector: string) => Dom
-* (selector: HTMLElement) => Dom
+* (selector: `!${string}`) => FragDom[]
+* (selector: string) => FragDom
+* (selector: HTMLElement) => FragDom
 * }}
 */
 const snipe = selector => {
@@ -111,7 +111,7 @@ const Fragment = class {
     }
     /**
      * @deprecated This getter is not supported starting with 1.3.
-     * @type {() => Dom[]}
+     * @type {() => FragDom[]}
      */
     get fragment() {
         console.log("%cThis getter is not supported starting with 1.3.", "color: red");
@@ -144,7 +144,7 @@ const Fragment = class {
         return this;
     }
     /**
-     * @type {(view: String, ...fragment: Dom | Dom[]) => Fragment}
+     * @type {(view: String, ...fragment: FragDom | FragDom[]) => Fragment}
      */
     constructor(view, ...fragment) {
         this.#view = `fragment[rid=${view}]`;

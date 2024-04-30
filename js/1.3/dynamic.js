@@ -1,4 +1,4 @@
-﻿/*
+/*
 js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
 작성자: 환류상
  */
@@ -111,12 +111,13 @@ const Fragment = class {
         },
         swip: async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
+                const beforeOverflowX = scan("html").style.overflowX;
                 scan("html").style.overflowX = "hidden";
                 snipe(fragment.#view).node.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(100%)'}], {duration: fragment.#animationExcuteTime * 450,})
                 await new Promise(code => setTimeout(code, fragment.#animationExcuteTime * 400));
                 snipe(fragment.#view).reset(fragment.#domlist);
                 snipe(fragment.#view).node.animate([{transform: 'translateX(-100%)'}, {transform: 'translateX(0px)'}], {duration: fragment.#animationExcuteTime * 550,})
-                scan("html").style.overflowX = null;
+                scan("html").style.overflowX = beforeOverflowX;
             } else snipe(fragment.#view).reset(fragment.#domlist);
             if (typeof fragment.#action == "function") fragment.#action();
         }

@@ -89,7 +89,7 @@ const snipe = selector => {
 }
 const Fragment = class {
     #view;
-    #fragment;
+    #domlist;
     #action;
     #swipAnimation;
     #animationExcuteTime;
@@ -113,9 +113,9 @@ const Fragment = class {
      * @deprecated This getter is not supported starting with 1.3.
      * @type {() => FragDom[]}
      */
-    get fragment() {
+    get domlist() {
         console.warn("This getter is not supported starting with 1.3.");
-        return this.#fragment;
+        return this.#domlist;
     }
     /**
      * @type {() => Fragment}
@@ -123,7 +123,7 @@ const Fragment = class {
     launch = () => {
         if (this.#swipAnimation != null) this.#swipAnimation(this, this.#animationExcuteTime);
         else {
-            snipe(this.#view).reset(this.#fragment)
+            snipe(this.#view).reset(this.#domlist)
             if (typeof this.#action == "function") this.#action();
         }
         return this;
@@ -144,11 +144,11 @@ const Fragment = class {
         return this;
     }
     /**
-     * @type {(view: String, ...fragment: FragDom | FragDom[]) => Fragment}
+     * @type {(view: String, ...domlist: FragDom | FragDom[]) => Fragment}
      */
-    constructor(view, ...fragment) {
+    constructor(view, ...domlist) {
         this.#view = `fragment[rid=${view}]`;
-        this.#fragment = fragment;
+        this.#domlist = domlist;
     }
 }
 const FragAnimation = class {
@@ -156,18 +156,18 @@ const FragAnimation = class {
         if (snipe(_fragment._view).node.innerHTML != "") {
             snipe(_fragment._view).node.animate([{transform: 'rotateY(0deg)', opacity: '1'}, {transform: 'rotateY(180deg)', opacity: '0'}], {duration: _second * 500,})
             await new Promise(code => setTimeout(code, _second * 450));
-            snipe(_fragment._view).reset(_fragment.fragment);
+            snipe(_fragment._view).reset(_fragment.domlist);
             snipe(_fragment._view).node.animate([{transform: 'rotateY(180deg)', opacity: '0'}, {transform: 'rotateY(360deg)', opacity: '1'}], {duration: _second * 500,})
-        } else snipe(_fragment._view).reset(_fragment.fragment);
+        } else snipe(_fragment._view).reset(_fragment.domlist);
         if (typeof _fragment._action == "function") _fragment._action();
     }
     static fade = async (_fragment, _second) => {
         if (snipe(_fragment._view).node.innerHTML != "") {
             snipe(_fragment._view).node.animate([{opacity: '1'}, {opacity: '0'}], {duration: _second * 500,})
             await new Promise(code => setTimeout(code, _second * 400));
-            snipe(_fragment._view).reset(_fragment.fragment);
+            snipe(_fragment._view).reset(_fragment.domlist);
             snipe(_fragment._view).node.animate([{opacity: '0'}, {opacity: '1'}], {duration: _second * 500,})
-        } else snipe(_fragment._view).reset(_fragment.fragment);
+        } else snipe(_fragment._view).reset(_fragment.domlist);
         if (typeof _fragment._action == "function") _fragment._action();
     }
     static swip = async (_fragment, _second) => {
@@ -175,10 +175,10 @@ const FragAnimation = class {
             scan("html").style.overflowX = "hidden";
             snipe(_fragment._view).node.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(100%)'}], {duration: _second * 450,})
             await new Promise(code => setTimeout(code, _second * 400));
-            snipe(_fragment._view).reset(_fragment.fragment);
+            snipe(_fragment._view).reset(_fragment.domlist);
             snipe(_fragment._view).node.animate([{transform: 'translateX(-100%)'}, {transform: 'translateX(0px)'}], {duration: _second * 550,})
             scan("html").style.overflowX = null;
-        } else snipe(_fragment._view).reset(_fragment.fragment);
+        } else snipe(_fragment._view).reset(_fragment.domlist);
         if (typeof _fragment._action == "function") _fragment._action();
     }
 }

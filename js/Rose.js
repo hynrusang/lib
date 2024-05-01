@@ -40,7 +40,7 @@ const dataParser = (name, version) => {
     version = version.trim();
     if (versionInfo[name][version]) return `./${versionInfo[name][version]}/${name}.js`;
     if (2 <= parseInt(version[0])) return `./${version}/${name}.js`;
-    console.log(`%Rose can only import 2.X or higher modules. ${version} by migrating to 2.0.`, "color: red");
+    console.warm(`Rose can only import 2.X or higher modules. ${version} by migrating to 2.0.`);
     return `./${versionInfo[name].release}/${name}.js`;
 }
 const loadModule = async (name, version) => {

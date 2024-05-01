@@ -36,7 +36,7 @@ const versionInfo = {
         developer: "2.0"
     }
 };
-const dataParser = ({name, version}) => {
+const dataParser = (name, version) => {
     version = version.trim();
     if (versionInfo[name][version]) return `./${versionInfo[name][version]}/${name}.js`;
     if (2 <= parseInt(version[0])) return `./${version}/${name}.js`;
@@ -44,7 +44,7 @@ const dataParser = ({name, version}) => {
     return `./${versionInfo[name].release}/${name}.js`;
 }
 const loadModule = async (name, version) => {
-    const roseModule = await import(dataParser({name: name, version: version}));
+    const roseModule = await import(dataParser(name, version));
     return roseModule;
 }
 

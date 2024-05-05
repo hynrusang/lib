@@ -4,7 +4,9 @@ Info:
 This library facilitates downloading JavaScript programs from a specified website, offering advantages over the conventional HTML script tag.
 
 How it works:
-To utilize this library, the <script src="https://hynrusang.github.io/js-lib/jade.js"> tag is employed, with scripts to be included separated by semicolons. The first argument designates the script name to include, while the second specifies the version. Versions may specify a particular version number (e.g., "1.0.0"), use "release" to automatically select the latest version, or "developer" for a version tailored for developers.
+To utilize this library, the <script src="https://hynrusang.github.io/js-lib/jade.js"> tag is employed, with scripts to be included separated by semicolons. 
+The first argument designates the script name to include, while the second specifies the version. 
+Versions may specify a particular version number (e.g., "1.0.0"), use "release" to automatically select the latest version, or "developer" for a version tailored for developers.
 
 Notes:
 To utilize jade.js, HTML scripts must be written as external scripts rather than internal ones.

@@ -116,13 +116,13 @@ const snipe = selector => {
 }
 const Fragment = class {
     #view;
-    #fragment;
+    #domlist;
     #action;
     /**
      * @type {() => Fragment}
      */
     launch = () => {
-        this.#view.reset(this.#fragment)
+        this.#view.reset(this.#domlist)
         if (typeof this.#action == "function") this.#action();
         return this;
     }
@@ -134,11 +134,11 @@ const Fragment = class {
         return this;
     }
     /**
-     * @type {(view: String, ...fragment: FragDom) => Fragment}
+     * @type {(view: String, ...domlist: FragDom) => Fragment}
      */
-    constructor(view, ...fragment) {
+    constructor(view, ...domlist) {
         this.#view = snipe(`fragment[rid=${view}]`);
-        this.#fragment = fragment;
+        this.#domlist = domlist;
     }
 }
 /**

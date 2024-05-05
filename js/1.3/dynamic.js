@@ -1,4 +1,4 @@
-﻿/*
+/*
 js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
 작성자: 환류상
  */
@@ -95,36 +95,37 @@ const Fragment = class {
             if (snipe(fragment.#view).node.innerHTML != "") {
                 snipe(fragment.#view).node.animate([{transform: 'rotateY(0deg)', opacity: '1'}, {transform: 'rotateY(180deg)', opacity: '0'}], {duration: fragment.#animationExcuteTime * 500,})
                 await new Promise(code => setTimeout(code, fragment.#animationExcuteTime * 450));
-                snipe(fragment.#view).reset(fragment.#fragment);
+                snipe(fragment.#view).reset(fragment.#domlist);
                 snipe(fragment.#view).node.animate([{transform: 'rotateY(180deg)', opacity: '0'}, {transform: 'rotateY(360deg)', opacity: '1'}], {duration: fragment.#animationExcuteTime * 500,})
-            } else snipe(fragment.#view).reset(fragment.#fragment);
+            } else snipe(fragment.#view).reset(fragment.#domlist);
             if (typeof fragment.#action == "function") fragment.#action();
         },
         fade: async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
                 snipe(fragment.#view).node.animate([{opacity: '1'}, {opacity: '0'}], {duration: fragment.#animationExcuteTime * 500,})
                 await new Promise(code => setTimeout(code, fragment.#animationExcuteTime * 400));
-                snipe(fragment.#view).reset(fragment.#fragment);
+                snipe(fragment.#view).reset(fragment.#domlist);
                 snipe(fragment.#view).node.animate([{opacity: '0'}, {opacity: '1'}], {duration: fragment.#animationExcuteTime * 500,})
-            } else snipe(fragment.#view).reset(fragment.#fragment);
+            } else snipe(fragment.#view).reset(fragment.#domlist);
             if (typeof fragment.#action == "function") fragment.#action();
         },
         swip: async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
+                const beforeOverflowX = scan("html").style.overflowX;
                 scan("html").style.overflowX = "hidden";
                 snipe(fragment.#view).node.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(100%)'}], {duration: fragment.#animationExcuteTime * 450,})
                 await new Promise(code => setTimeout(code, fragment.#animationExcuteTime * 400));
-                snipe(fragment.#view).reset(fragment.#fragment);
+                snipe(fragment.#view).reset(fragment.#domlist);
                 snipe(fragment.#view).node.animate([{transform: 'translateX(-100%)'}, {transform: 'translateX(0px)'}], {duration: fragment.#animationExcuteTime * 550,})
-                scan("html").style.overflowX = null;
-            } else snipe(fragment.#view).reset(fragment.#fragment);
+                scan("html").style.overflowX = beforeOverflowX;
+            } else snipe(fragment.#view).reset(fragment.#domlist);
             if (typeof fragment.#action == "function") fragment.#action();
         }
     }
     static #launchedFragment;
     #rid;
     #view;
-    #fragment;
+    #domlist;
     #action;
     #swipAnimation;
     #animationExcuteTime;
@@ -143,7 +144,7 @@ const Fragment = class {
     launch = arg => {
         if (this.#swipAnimation != null) Fragment.#animation[this.#swipAnimation](this);
         else {
-            snipe(this.#view).reset(this.#fragment)
+            snipe(this.#view).reset(this.#domlist)
             if (typeof this.#action == "function") this.#action(arg);
         }
         Fragment.#launchedFragment = this;
@@ -181,12 +182,12 @@ const Fragment = class {
         return this.#rid;
     }
     /**
-     * @type {(view: String, ...fragment: FragDom | FragDom[]) => Fragment}
+     * @type {(view: String, ...domlist: FragDom | FragDom[]) => Fragment}
      */
-    constructor(view, ...fragment) {
+    constructor(view, ...domlist) {
         this.#rid = view;
         this.#view = `fragment[rid=${view}]`;
-        this.#fragment = fragment;
+        this.#domlist = domlist;
     }
 }
 const FragAnimation = class {

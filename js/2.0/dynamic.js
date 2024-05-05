@@ -192,7 +192,7 @@ const FragAnimation = class {
         return "swip";
     }
 }
-const FragBox = class {
+const FragMutation = class {
     static #launchedInfo = {
         target: null,
         fragments: {},
@@ -202,7 +202,8 @@ const FragBox = class {
     /**
      * @type {(fragment: Fragment, arg: any, alwayRefresh: boolean) => void}
      */
-    static toggle = (fragment, arg, alwayRefresh = false) => {
+    static mutate = (fragment, arg, alwayRefresh = false) => {
+        const router = scan("router");
         if (!scan(`fragment[rid=${fragment.rid}]`)) {
             snipe("fragmentbox").add($("fragment", {rid: fragment.rid}));
             fragment.launch(arg);
@@ -214,7 +215,7 @@ const FragBox = class {
         if (this.#launchedInfo.target != fragment.rid) {
             scan("!fragmentbox fragment").forEach(node => node.style.display = "none");
             scan(`fragment[rid=${fragment.rid}]`).style.display = null;
-            snipe("router").reset(this.#launchedInfo.router[fragment.rid]);
+            if (router) snipe(router).reset(this.#launchedInfo.router[fragment.rid]);
             this.#launchedInfo.target = fragment.rid;
         }
     };

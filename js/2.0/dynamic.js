@@ -232,4 +232,4 @@ const FragMutation = class {
     static refresh = () => this.#launchedInfo.fragments[this.#launchedInfo.target].launch();
 }
 
-export {$, scan, snipe, Fragment, FragAnimation, FragBox}
+export {$, scan, snipe, Fragment, FragAnimation, FragMutation}

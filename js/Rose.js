@@ -32,7 +32,7 @@ const versionInfo = {
     },
     livedata: {
         release: null,
-        pre_release: "2.0",
+        pre_release: null,
         developer: "2.0"
     }
 };

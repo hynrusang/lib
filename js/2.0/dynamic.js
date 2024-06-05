@@ -94,31 +94,47 @@ const Fragment = class {
     static #animation = {
         card: async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
-                snipe(fragment.#view).node.animate([{transform: 'rotateY(0deg)', opacity: '1'}, {transform: 'rotateY(180deg)', opacity: '0'}], {duration: fragment.#animationExcuteTime * 500,})
-                await new Promise(code => setTimeout(code, fragment.#animationExcuteTime * 450));
+                await snipe(fragment.#view).node.animate([
+                    {transform: 'rotateY(0deg)', opacity: '1'}, 
+                    {transform: 'rotateY(180deg)', opacity: '0'}
+                ], {duration: fragment.#animationExcuteTime * 0.5}).finished;
                 snipe(fragment.#view).reset(fragment.#domlist);
-                snipe(fragment.#view).node.animate([{transform: 'rotateY(180deg)', opacity: '0'}, {transform: 'rotateY(360deg)', opacity: '1'}], {duration: fragment.#animationExcuteTime * 500,})
+                snipe(fragment.#view).node.animate([
+                    {transform: 'rotateY(180deg)', opacity: '0'}, 
+                    {transform: 'rotateY(360deg)', opacity: '1'}
+                ], {duration: fragment.#animationExcuteTime * 0.5})
             } else snipe(fragment.#view).reset(fragment.#domlist);
             if (typeof fragment.#action == "function") fragment.#action();
         },
         fade: async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
-                snipe(fragment.#view).node.animate([{opacity: '1'}, {opacity: '0'}], {duration: fragment.#animationExcuteTime * 500,})
-                await new Promise(code => setTimeout(code, fragment.#animationExcuteTime * 400));
+                await snipe(fragment.#view).node.animate([
+                    {opacity: '1'}, 
+                    {opacity: '0'}
+                ], {duration: fragment.#animationExcuteTime * 0.5}).finished
                 snipe(fragment.#view).reset(fragment.#domlist);
-                snipe(fragment.#view).node.animate([{opacity: '0'}, {opacity: '1'}], {duration: fragment.#animationExcuteTime * 500,})
+                snipe(fragment.#view).node.animate([
+                    {opacity: '0'}, 
+                    {opacity: '1'}
+                ], {duration: fragment.#animationExcuteTime * 0.5})
             } else snipe(fragment.#view).reset(fragment.#domlist);
             if (typeof fragment.#action == "function") fragment.#action();
         },
         swip: async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
-                const beforeOverflowX = scan("html").style.overflowX;
-                scan("html").style.overflowX = "hidden";
-                snipe(fragment.#view).node.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(100%)'}], {duration: fragment.#animationExcuteTime * 450,})
-                await new Promise(code => setTimeout(code, fragment.#animationExcuteTime * 400));
+                const parent = snipe(fragment.#view).node.parentElement;
+                const beforeOverfloxX = parent.style.overflowX;
+                parent.style.overflowX = "hidden";
+                await snipe(fragment.#view).node.animate([
+                    {transform: 'translateX(0px)'}, 
+                    {transform: 'translateX(100vw)'}
+                ], {duration: fragment.#animationExcuteTime * 0.5}).finished
                 snipe(fragment.#view).reset(fragment.#domlist);
-                snipe(fragment.#view).node.animate([{transform: 'translateX(-100%)'}, {transform: 'translateX(0px)'}], {duration: fragment.#animationExcuteTime * 550,})
-                scan("html").style.overflowX = beforeOverflowX;
+                snipe(fragment.#view).node.animate([
+                    {transform: 'translateX(-100vw)'}, 
+                    {transform: 'translateX(0px)'}
+                ], {duration: fragment.#animationExcuteTime * 0.5})
+                parent.style.overflowX = beforeOverfloxX;
             } else snipe(fragment.#view).reset(fragment.#domlist);
             if (typeof fragment.#action == "function") fragment.#action();
         }
@@ -188,7 +204,7 @@ const FragAnimation = class {
     /**
      * @type {() => String}
      */
-    static get card() {
+    static get swip() {
         return "swip";
     }
 }

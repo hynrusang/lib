@@ -136,11 +136,11 @@ const Fragment = class {
         return this;
     }
     /**
-     * @type {(animation: FragAnimation, second: Number) => Fragment}
+     * @type {(animation: FragAnimation, millisecond: Number) => Fragment}
      */
-    registAnimation = (animation, second) => {
+    registAnimation = (animation, millisecond) => {
         this.#swipAnimation = animation;
-        this.#animationExcuteTime = second;
+        this.#animationExcuteTime = millisecond;
         return this;
     }
     /**
@@ -152,34 +152,50 @@ const Fragment = class {
     }
 }
 const FragAnimation = class {
-    static card = async (_fragment, _second) => {
+    static card = async (_fragment, _millisecond) => {
         if (snipe(_fragment._view).node.innerHTML != "") {
-            snipe(_fragment._view).node.animate([{transform: 'rotateY(0deg)', opacity: '1'}, {transform: 'rotateY(180deg)', opacity: '0'}], {duration: _second * 500,})
-            await new Promise(code => setTimeout(code, _second * 450));
-            snipe(_fragment._view).reset(_fragment.domlist);
-            snipe(_fragment._view).node.animate([{transform: 'rotateY(180deg)', opacity: '0'}, {transform: 'rotateY(360deg)', opacity: '1'}], {duration: _second * 500,})
-        } else snipe(_fragment._view).reset(_fragment.domlist);
+            await snipe(_fragment._view).node.animate([
+                {transform: 'rotateY(0deg)', opacity: '1'}, 
+                {transform: 'rotateY(180deg)', opacity: '0'}
+            ], {duration: _millisecond * 0.5}).finished;
+            snipe(_fragment._view).reset(_fragment._domlist);
+            snipe(_fragment._view).node.animate([
+                {transform: 'rotateY(180deg)', opacity: '0'}, 
+                {transform: 'rotateY(360deg)', opacity: '1'}
+            ], {duration: _fragment._animationExcuteTime * 0.5})
+        } else snipe(_fragment._view).reset(_fragment._domlist);
         if (typeof _fragment._action == "function") _fragment._action();
     }
-    static fade = async (_fragment, _second) => {
+    static fade = async (_fragment, _millisecond) => {
         if (snipe(_fragment._view).node.innerHTML != "") {
-            snipe(_fragment._view).node.animate([{opacity: '1'}, {opacity: '0'}], {duration: _second * 500,})
-            await new Promise(code => setTimeout(code, _second * 400));
-            snipe(_fragment._view).reset(_fragment.domlist);
-            snipe(_fragment._view).node.animate([{opacity: '0'}, {opacity: '1'}], {duration: _second * 500,})
-        } else snipe(_fragment._view).reset(_fragment.domlist);
+            await snipe(_fragment._view).node.animate([
+                {opacity: '1'}, 
+                {opacity: '0'}
+            ], {duration: _millisecond * 0.5}).finished;
+            snipe(_fragment._view).reset(_fragment._domlist);
+            snipe(_fragment._view).node.animate([
+                {opacity: '0'}, 
+                {opacity: '1'}
+            ], {duration: _millisecond * 0.5})
+        } else snipe(_fragment._view).reset(_fragment._domlist);
         if (typeof _fragment._action == "function") _fragment._action();
     }
-    static swip = async (_fragment, _second) => {
+    static swip = async (_fragment, _millisecond) => {
         if (snipe(_fragment._view).node.innerHTML != "") {
-            const beforeOverflowX = scan("html").style.overflowX;
-            scan("html").style.overflowX = "hidden";
-            snipe(_fragment._view).node.animate([{transform: 'translateX(0px)'}, {transform: 'translateX(100%)'}], {duration: _second * 450,})
-            await new Promise(code => setTimeout(code, _second * 400));
-            snipe(_fragment._view).reset(_fragment.domlist);
-            snipe(_fragment._view).node.animate([{transform: 'translateX(-100%)'}, {transform: 'translateX(0px)'}], {duration: _second * 550,})
-            scan("html").style.overflowX = beforeOverflowX;
-        } else snipe(_fragment._view).reset(_fragment.domlist);
+            const parent = snipe(_fragment._view).node.parentElement;
+            const beforeOverfloxX = parent.style.overflowX;
+            parent.style.overflowX = "hidden";
+            await snipe(_fragment._view).node.animate([
+                {transform: 'translateX(0px)'}, 
+                {transform: 'translateX(100vw)'}
+            ], {duration: _millisecond * 0.5}).finished
+            snipe(_fragment._view).reset(_fragment._domlist);
+            snipe(_fragment._view).node.animate([
+                {transform: 'translateX(-100vw)'}, 
+                {transform: 'translateX(0px)'}
+            ], {duration: _millisecond * 0.5})
+            parent.style.overflowX = beforeOverfloxX;
+        } else snipe(_fragment._view).reset(_fragment._domlist);
         if (typeof _fragment._action == "function") _fragment._action();
     }
 }

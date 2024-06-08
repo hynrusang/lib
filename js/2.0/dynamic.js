@@ -91,8 +91,8 @@ const snipe = selector => {
 }
 
 const Fragment = class {
-    static #animation = {
-        card: async fragment => {
+    static #animation = class {
+         static card = async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
                 await snipe(fragment.#view).node.animate([
                     {transform: 'rotateY(0deg)', opacity: '1'}, 
@@ -105,8 +105,8 @@ const Fragment = class {
                 ], {duration: fragment.#animationExcuteTime * 0.5})
             } else snipe(fragment.#view).reset(fragment.#domlist);
             if (typeof fragment.#action == "function") fragment.#action();
-        },
-        fade: async fragment => {
+        };
+        static fade = async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
                 await snipe(fragment.#view).node.animate([
                     {opacity: '1'}, 
@@ -119,8 +119,8 @@ const Fragment = class {
                 ], {duration: fragment.#animationExcuteTime * 0.5})
             } else snipe(fragment.#view).reset(fragment.#domlist);
             if (typeof fragment.#action == "function") fragment.#action();
-        },
-        swip: async fragment => {
+        };
+        static swip = async fragment => {
             if (snipe(fragment.#view).node.innerHTML != "") {
                 const parent = snipe(fragment.#view).node.parentElement;
                 const beforeOverfloxX = parent.style.overflowX;

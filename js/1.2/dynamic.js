@@ -152,50 +152,34 @@ const Fragment = class {
     }
 }
 const FragAnimation = class {
-    static card = async (_fragment, _millisecond) => {
-        if (snipe(_fragment._view).node.innerHTML != "") {
-            await snipe(_fragment._view).node.animate([
-                {transform: 'rotateY(0deg)', opacity: '1'}, 
-                {transform: 'rotateY(180deg)', opacity: '0'}
-            ], {duration: _millisecond * 0.5}).finished;
-            snipe(_fragment._view).reset(_fragment._domlist);
-            snipe(_fragment._view).node.animate([
-                {transform: 'rotateY(180deg)', opacity: '0'}, 
-                {transform: 'rotateY(360deg)', opacity: '1'}
-            ], {duration: _fragment._animationExcuteTime * 0.5})
-        } else snipe(_fragment._view).reset(_fragment._domlist);
-        if (typeof _fragment._action == "function") _fragment._action();
-    }
-    static fade = async (_fragment, _millisecond) => {
-        if (snipe(_fragment._view).node.innerHTML != "") {
-            await snipe(_fragment._view).node.animate([
-                {opacity: '1'}, 
-                {opacity: '0'}
-            ], {duration: _millisecond * 0.5}).finished;
-            snipe(_fragment._view).reset(_fragment._domlist);
-            snipe(_fragment._view).node.animate([
-                {opacity: '0'}, 
-                {opacity: '1'}
-            ], {duration: _millisecond * 0.5})
-        } else snipe(_fragment._view).reset(_fragment._domlist);
-        if (typeof _fragment._action == "function") _fragment._action();
-    }
-    static swip = async (_fragment, _millisecond) => {
-        if (snipe(_fragment._view).node.innerHTML != "") {
-            const parent = snipe(_fragment._view).node.parentElement;
-            const beforeOverfloxX = parent.style.overflowX;
-            parent.style.overflowX = "hidden";
-            await snipe(_fragment._view).node.animate([
-                {transform: 'translateX(0px)'}, 
-                {transform: 'translateX(100vw)'}
-            ], {duration: _millisecond * 0.5}).finished
-            snipe(_fragment._view).reset(_fragment._domlist);
-            snipe(_fragment._view).node.animate([
-                {transform: 'translateX(-100vw)'}, 
-                {transform: 'translateX(0px)'}
-            ], {duration: _millisecond * 0.5})
-            parent.style.overflowX = beforeOverfloxX;
-        } else snipe(_fragment._view).reset(_fragment._domlist);
-        if (typeof _fragment._action == "function") _fragment._action();
-    }
+    static #applyAnimation = async (_fragment, _millisecond, animationIn, animationOut) => {
+        const view = snipe(_fragment._view);
+        if (view.node.innerHTML != "") {
+            await view.node.animate(animationIn, {duration: _millisecond * 0.5}).finished;
+            view.reset(_fragment._domlist);
+            view.node.animate(animationOut, {duration: _millisecond * 0.5});
+        } else view.reset(_fragment._domlist);
+        if (typeof _fragment._action === "function") _fragment._action();
+    };
+    static card = async (_fragment, _millisecond) => await this.#applyAnimation(_fragment, _millisecond, [
+        {transform: 'rotateY(0deg)', opacity: '1'}, 
+        {transform: 'rotateY(180deg)', opacity: '0'}
+    ], [
+        {transform: 'rotateY(180deg)', opacity: '0'}, 
+        {transform: 'rotateY(360deg)', opacity: '1'}
+    ]);
+    static fade = async (_fragment, _millisecond) => await this.#applyAnimation(_fragment, _millisecond, [
+        {opacity: '1'}, 
+        {opacity: '0'}
+    ], [
+        {opacity: '0'}, 
+        {opacity: '1'}
+    ]);
+    static swip = async (_fragment, _millisecond) => await this.#applyAnimation(_fragment, _millisecond, [
+        { left: '0px', position: 'relative' }, 
+        { left: '100vw', position: 'relative' }
+    ], [
+        { left: '-100vw', position: 'relative' }, 
+        { left: '0px', position: 'relative' }
+    ]);
 }

@@ -90,53 +90,37 @@ const snipe = selector => {
     return temp;
 }
 const Fragment = class {
-    static #animation = {
-        card: async fragment => {
-            if (snipe(fragment.#view).node.innerHTML != "") {
-                await snipe(fragment.#view).node.animate([
-                    {transform: 'rotateY(0deg)', opacity: '1'}, 
-                    {transform: 'rotateY(180deg)', opacity: '0'}
-                ], {duration: fragment.#animationExcuteTime * 0.5}).finished;
-                snipe(fragment.#view).reset(fragment.#domlist);
-                snipe(fragment.#view).node.animate([
-                    {transform: 'rotateY(180deg)', opacity: '0'}, 
-                    {transform: 'rotateY(360deg)', opacity: '1'}
-                ], {duration: fragment.#animationExcuteTime * 0.5})
-            } else snipe(fragment.#view).reset(fragment.#domlist);
-            if (typeof fragment.#action == "function") fragment.#action();
-        },
-        fade: async fragment => {
-            if (snipe(fragment.#view).node.innerHTML != "") {
-                await snipe(fragment.#view).node.animate([
-                    {opacity: '1'}, 
-                    {opacity: '0'}
-                ], {duration: fragment.#animationExcuteTime * 0.5}).finished
-                snipe(fragment.#view).reset(fragment.#domlist);
-                snipe(fragment.#view).node.animate([
-                    {opacity: '0'}, 
-                    {opacity: '1'}
-                ], {duration: fragment.#animationExcuteTime * 0.5})
-            } else snipe(fragment.#view).reset(fragment.#domlist);
-            if (typeof fragment.#action == "function") fragment.#action();
-        },
-        swip: async fragment => {
-            if (snipe(fragment.#view).node.innerHTML != "") {
-                const parent = snipe(fragment.#view).node.parentElement;
-                const beforeOverfloxX = parent.style.overflowX;
-                parent.style.overflowX = "hidden";
-                await snipe(fragment.#view).node.animate([
-                    {transform: 'translateX(0px)'}, 
-                    {transform: 'translateX(100vw)'}
-                ], {duration: fragment.#animationExcuteTime * 0.5}).finished
-                snipe(fragment.#view).reset(fragment.#domlist);
-                snipe(fragment.#view).node.animate([
-                    {transform: 'translateX(-100vw)'}, 
-                    {transform: 'translateX(0px)'}
-                ], {duration: fragment.#animationExcuteTime * 0.5})
-                parent.style.overflowX = beforeOverfloxX;
-            } else snipe(fragment.#view).reset(fragment.#domlist);
-            if (typeof fragment.#action == "function") fragment.#action();
-        }
+    static #animation = class {
+        static #applyAnimation = async (fragment, animationIn, animationOut) => {
+            const view = snipe(fragment.#view);
+            if (view.node.innerHTML != "") {
+                await view.node.animate(animationIn, {duration: fragment.#animationExcuteTime * 0.5}).finished;
+                view.reset(fragment.#domlist);
+                view.node.animate(animationOut, {duration: fragment.#animationExcuteTime * 0.5});
+            } else view.reset(fragment.#domlist);
+            if (typeof fragment.#action === "function") fragment.#action();
+        };
+        static card = async fragment => await this.#applyAnimation(fragment, [
+            {transform: 'rotateY(0deg)', opacity: '1'}, 
+            {transform: 'rotateY(180deg)', opacity: '0'}
+        ], [
+            {transform: 'rotateY(180deg)', opacity: '0'}, 
+            {transform: 'rotateY(360deg)', opacity: '1'}
+        ]);
+        static fade = async fragment => await this.#applyAnimation(fragment, [
+            {opacity: '1'}, 
+            {opacity: '0'}
+        ], [
+            {opacity: '0'}, 
+            {opacity: '1'}
+        ]);
+        static swip = async fragment => await this.#applyAnimation(fragment, [
+            { left: '0px', position: 'relative' }, 
+            { left: '100vw', position: 'relative' }
+        ], [
+            { left: '-100vw', position: 'relative' }, 
+            { left: '0px', position: 'relative' }
+        ]);
     }
     static #launchedFragment;
     #rid;

@@ -36,24 +36,25 @@ const FragDom = class {
      */
     children = num => this.#node.children[num] ? new FragDom(this.#node.children[num]) : null;
     /**
-     * @type {(...dom: FragDom | FragDom[]) => FragDom}
+     * @type {(...dom: FragDom) => FragDom}
      */
     add = (...dom) => {
-        if (0 < dom.length && dom[0]) {
-            for (let pdom of dom) {
-                if (Array.isArray(pdom)) {
-                    for (let cdom of pdom) if (cdom) this.#node.appendChild(cdom.node);
-                } else if (pdom) this.#node.appendChild(pdom.node);
-            }
-        }
+        if (dom[0]) for (let pdom of dom.flat()) this.#node.appendChild(pdom.node);
         return this;
     }
     /**
-     * @type {(...dom?: FragDom | FragDom[]) => FragDom}
+     * @type {(...dom?: FragDom) => FragDom}
      */
     reset = (...dom) => {
         this.#node.innerHTML = "";
         this.add(...dom);
+        return this;
+    }
+    /**
+     * @type {(...dom: FragDom) => FragDom}
+     */
+    sync = (...dom) => {
+        console.log(this.#node.children)
         return this;
     }
     /**
@@ -136,7 +137,7 @@ const Fragment = class {
     launch = arg => {
         if (this.#swipAnimation != null) Fragment.#animation[this.#swipAnimation](this);
         else {
-            snipe(this.#view).reset(this.#domlist)
+            snipe(this.#view).reset(...this.#domlist)
             if (typeof this.#action == "function") this.#action(arg);
         }
         return this;

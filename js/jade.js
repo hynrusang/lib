@@ -21,7 +21,7 @@ Example Usage:
 */
 const __$$IMPLEMENTHREF = "https://hynrusang.github.io/lib/js/";
 const __$$VERSIONINFO = {
-    dynamic: ["1.2", "1.3", "1.4"],
+    dynamic: ["1.3", "1.4", "1.4"],
     livedata: ["1.2", "1.3", "1.4"]
 };
 for (let data of document.querySelector(`script[src="${__$$IMPLEMENTHREF}jade.js"]`).innerHTML

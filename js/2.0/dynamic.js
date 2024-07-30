@@ -39,13 +39,7 @@ const FragDom = class {
      * @type {(...dom: FragDom) => FragDom}
      */
     add = (...dom) => {
-        if (dom.flat()[0]) {
-            console.log(dom.flat())
-            for (let pdom of dom.flat()) {
-                console.log(pdom)
-                this.#node.appendChild(pdom.node);
-            }
-        }
+        for (let pdom of dom.flat()) pdom ? this.#node.appendChild(pdom.node) : null;
         return this;
     }
     /**

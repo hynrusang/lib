@@ -9,7 +9,7 @@ const LiveData = class {
     #observer;
     set value(data) {
         if (this.#type && this.#type.name.toLocaleLowerCase() !== (Array.isArray(data) ? "array" : typeof data)) throw new TypeError(`invalid type of data. Data must be of type ${this.#type.name}.`);
-        const isChanged = JSON.stringify(data) !== JSON.stringify(this.#data);
+        const isChanged = data.equals ? data.equals(this.#data) : JSON.stringify(data) !== JSON.stringify(this.#data);
         this.#data = data;
         if (isChanged && typeof this.#observer == "function") this.#observer();
     }
@@ -32,7 +32,7 @@ const LiveManager = class {
     #livedataObject;
     value = (id, data) => {
         if (typeof data !== "undefined") {
-            const isChanged = JSON.stringify(this.#livedataObject[id].value) !== JSON.stringify(data);
+            const isChanged = data.equals ? data.equals(this.#livedataObject[id].value) : JSON.stringify(this.#livedataObject[id].value) !== JSON.stringify(data);
             this.#livedataObject[id].value = data;
             return isChanged;
         } else return this.#livedataObject[id].value;

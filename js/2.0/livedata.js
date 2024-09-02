@@ -35,7 +35,7 @@ const LiveManager = class {
     #livedataObject;
     value = (id, data) => {
         if (typeof data !== "undefined") {
-            const isChanged = JSON.stringify(this.#livedataObject[id].value) !== JSON.stringify(data);
+            const isChanged = data.equals ? data.equals(this.#livedataObject[id].value) : JSON.stringify(this.#livedataObject[id].value) !== JSON.stringify(data);
             this.#livedataObject[id].value = data;
             return isChanged;
         } else return this.#livedataObject[id].value;

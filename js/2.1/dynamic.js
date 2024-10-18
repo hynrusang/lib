@@ -3,15 +3,7 @@ js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
 작성자: 환류상
 
 업데이트 내역
-1. class FragAnimation가 다시 도입
-1. class FragMutation 도입으로 기존에는 하지 못했던 다양한 기능을 손쉽게 제공함.
-2. FragMutation.mutate: Fragment의 rid를 기준으로, 현재 rid를 가진 Fragment 내의 작업 내용을 그대로 가지고 새로운 rid를 가진 Fragment에서 추가적인 작업 수행 가능
-3. FragMutation.setRouter: FragMutation.mutate가 실행될 때, 동일한 rid를 가진 다수의 Fragment를 Routing하는 Router 배열 등록 가능
-4. FragMutation.refresh: 현재 Fragment를 단순히 새로고침함
-
-삭제 내역
-1. Fragment.refreshFragment: merged by FragMutation.refresh
-2. Fragment.launchedFragment: merged by FragMutation.mutate
+1. FragMutation.refresh()를 할 때, 현재 Fragment 객체의 모든 스크롤 정보를 같이 동기화.
  */
 const FragDom = class {
     #node;
@@ -234,7 +226,12 @@ const FragMutation = class {
     /**
      * @type {() => void}
      */
-    static refresh = () => this.#launchedInfo.fragments[this.#launchedInfo.target].launch();
+    static refresh = () => {
+        const nodeList = Array.from(scan(`!fragment[rid='${this.#launchedInfo.fragments[this.#launchedInfo.target].rid}'] *`))
+        const temp = nodeList.map(element => element.scrollTop)
+        this.#launchedInfo.fragments[this.#launchedInfo.target].launch();
+        nodeList.forEach((element, index) => element.scrollTop = temp[index]);
+    }
 }
 
 export {$, scan, snipe, Fragment, FragAnimation, FragMutation}

@@ -1,11 +1,15 @@
 ﻿/*
 js에서 값의 변화를 관측하는 LiveData를 비롯한 여러 기능들을 사용할 수 있게 해줍니다.
 작성자: 환류상
+
+업데이트 내역
+1. function help: 현재 livedata 버전에서 지원하는 기능들을 console.dir로 출력
  */
 const LiveData = class {
     #data;
     #type;
     #observer;
+
     set value(data) {
         if (this.#type && this.#type.name.toLocaleLowerCase() !== (Array.isArray(data) ? "array" : typeof data)) throw new TypeError(`invalid type of data. Data must be of type ${this.#type.name}.`);
         const isChanged = data.equals ? data.equals(this.#data) : JSON.stringify(data) !== JSON.stringify(this.#data);
@@ -30,6 +34,16 @@ const LiveData = class {
  * @type {(data: Any, dataset: object) => LiveData}
  */
 const $ = (data, dataset) => new LiveData(data, dataset);
+/**
+ * @type {() => null}
+ */
+const help = () => {
+    console.log("support function: [$(data, dataset)]");
+    console.log("support class: [LiveManager]");
+    console.log("support LiveManager methods: [.value(id), .value(id, data), .toArray(), .toObject()]");
+    console.log("support LiveManager getter: [.id]")
+}
+
 const LiveManager = class {
     #editable;
     #livedataObject;
@@ -40,15 +54,16 @@ const LiveManager = class {
             return isChanged;
         } else return this.#livedataObject[id].value;
     }
-    get id() {
-        if (!this.#editable) throw new SyntaxError(`This LiveDataManager cannot be accessed or modified externally.`)
-        return this.#livedataObject;
-    }
     toArray = () => Object.values(this.#livedataObject).map(inner => inner.value);
     toObject = () => Object.entries(this.#livedataObject).reduce((obj, [key, value]) => {
         obj[key] = value.value;
         return obj;
-      }, {});
+    }, {});
+    
+    get id() {
+        if (!this.#editable) throw new SyntaxError(`This LiveDataManager cannot be accessed or modified externally.`)
+        return this.#livedataObject;
+    }
     /**
      * @type {(livedataObject: Object, editable?: boolean) => LiveDataManager}
      */

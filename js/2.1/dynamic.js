@@ -86,6 +86,18 @@ const snipe = selector => {
    if (Array.isArray(temp)) for (let i = 0; i < scan(selector).length; i++) temp.push($(scan(selector)[i]));
    return temp;
 }
+/**
+ * @type {() => null}
+ */
+const help = () => {
+    console.log("support function: [$(node, additional), scan(selector), snipe(selector)]");
+    console.log("support class: [Fragment, FragMutation]");
+    console.log("support animation: [card, fade, swip]");
+    console.log("support Fragment methods: [.launch(arg), .registAction(action), .registAnimation(animation, second)]");
+    console.log("support Fragment getter: [.rid]")
+    console.log("support FragMutation methods: [.mutate(fragment, arg, alwayRefresh = false), .setRouter(rid, domlist), .refresh()]")
+    console.log("support FragMutation getter: []")
+}
 
 const Fragment = class {
     static #animation = class {
@@ -169,26 +181,6 @@ const Fragment = class {
         this.#domlist = domlist;
     }
 }
-const FragAnimation = class {
-    /**
-     * @type {() => String}
-     */
-    static get card() {
-        return "card";
-    }
-    /**
-     * @type {() => String}
-     */
-    static get fade() {
-        return "fade";
-    }
-    /**
-     * @type {() => String}
-     */
-    static get swip() {
-        return "swip";
-    }
-}
 const FragMutation = class {
     static #launchedInfo = {
         target: null,
@@ -234,4 +226,4 @@ const FragMutation = class {
     }
 }
 
-export {$, scan, snipe, Fragment, FragAnimation, FragMutation}
+export {$, scan, snipe, help, Fragment, FragMutation}

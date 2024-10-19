@@ -3,13 +3,14 @@ js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
 작성자: 환류상
 
 업데이트 내역
-1. class FragAnimation가 다시 도입
+1. function help: 현재 dynamic 버전에서 지원하는 기능들을 console.dir로 출력
 1. class FragMutation 도입으로 기존에는 하지 못했던 다양한 기능을 손쉽게 제공함.
 2. FragMutation.mutate: Fragment의 rid를 기준으로, 현재 rid를 가진 Fragment 내의 작업 내용을 그대로 가지고 새로운 rid를 가진 Fragment에서 추가적인 작업 수행 가능
 3. FragMutation.setRouter: FragMutation.mutate가 실행될 때, 동일한 rid를 가진 다수의 Fragment를 Routing하는 Router 배열 등록 가능
 4. FragMutation.refresh: 현재 Fragment를 단순히 새로고침함
 
 삭제 내역
+1. class FragAnimation: merged by function help
 1. Fragment.refreshFragment: merged by FragMutation.refresh
 2. Fragment.launchedFragment: merged by FragMutation.mutate
  */
@@ -94,6 +95,18 @@ const snipe = selector => {
    if (Array.isArray(temp)) for (let i = 0; i < scan(selector).length; i++) temp.push($(scan(selector)[i]));
    return temp;
 }
+/**
+ * @type {() => null}
+ */
+const help = () => {
+    console.log("support function: [$(node, additional), scan(selector), snipe(selector)]");
+    console.log("support class: [Fragment, FragMutation]");
+    console.log("support animation: [card, fade, swip]");
+    console.log("support Fragment methods: [.launch(arg), .registAction(action), .registAnimation(animation, second)]");
+    console.log("support Fragment getter: [.rid]")
+    console.log("support FragMutation methods: [.mutate(fragment, arg, alwayRefresh = false), .setRouter(rid, domlist), .refresh()]")
+    console.log("support FragMutation getter: []")
+}
 
 const Fragment = class {
     static #animation = class {
@@ -177,26 +190,6 @@ const Fragment = class {
         this.#domlist = domlist;
     }
 }
-const FragAnimation = class {
-    /**
-     * @type {() => String}
-     */
-    static get card() {
-        return "card";
-    }
-    /**
-     * @type {() => String}
-     */
-    static get fade() {
-        return "fade";
-    }
-    /**
-     * @type {() => String}
-     */
-    static get swip() {
-        return "swip";
-    }
-}
 const FragMutation = class {
     static #launchedInfo = {
         target: null,
@@ -237,4 +230,4 @@ const FragMutation = class {
     static refresh = () => this.#launchedInfo.fragments[this.#launchedInfo.target].launch();
 }
 
-export {$, scan, snipe, Fragment, FragAnimation, FragMutation}
+export {$, scan, snipe, help, Fragment, FragMutation}

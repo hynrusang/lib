@@ -47,6 +47,7 @@ const help = () => {
 const LiveManager = class {
     #editable;
     #livedataObject;
+
     value = (id, data) => {
         if (typeof data !== "undefined") {
             const isChanged = data.equals ? data.equals(this.#livedataObject[id].value) : JSON.stringify(this.#livedataObject[id].value) !== JSON.stringify(data);
@@ -78,4 +79,4 @@ const LiveManager = class {
     }
 }
 
-export { $, LiveManager }
+export { $, help, LiveManager }

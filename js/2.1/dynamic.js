@@ -49,9 +49,6 @@ const FragDom = class {
         return this;
     }
 
-    /**
-     * @type {() => HTMLElement}
-     */
     get node() {
         return this.#node;
     }
@@ -168,9 +165,6 @@ const Fragment = class {
         return this;
     }
 
-    /**
-     * @type {() => String}
-     */
     get rid() {
         return this.#rid;
     }

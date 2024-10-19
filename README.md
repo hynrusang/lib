@@ -37,3 +37,6 @@ const [Dynamic, LiveData] = await Promise.all([
 2. Instead of frameworks like react or vue, it's a library that works directly on the web, so you can use other frameworks and libraries together.
 3. It is easy to implement scenarios where there are multiple sub-pages on one page.
 4. Beyond single-page applications, you can easily move tabs, switch pages, and more with just one url, FragMutation.mute and Fragment.launch.
+#### [livedata.js](/js/2.0/livedata.js)
+1. It provides a class that detects changes in data and a class that safely manages multiple liveable objects.
+2. If desired, you can also proceed with an additional type check to prevent value conversion to mismatched types.

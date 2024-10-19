@@ -38,6 +38,7 @@ const $ = (data, dataset) => new LiveData(data, dataset);
  * @type {() => null}
  */
 const help = () => {
+    console.log("support liveable type: [string, number, bigint, boolean, array, object]");
     console.log("support function: [$(data, dataset)]");
     console.log("support class: [LiveManager]");
     console.log("support LiveManager methods: [.value(id), .value(id, data), .toArray(), .toObject()]");

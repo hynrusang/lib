@@ -89,9 +89,9 @@ const snipe = selector => {
  * @type {() => null}
  */
 const help = () => {
+    console.log("support animation: [card, fade, swip]");
     console.log("support function: [$(node, additional), scan(selector), snipe(selector)]");
     console.log("support class: [Fragment, FragMutation]");
-    console.log("support animation: [card, fade, swip]");
     console.log("support Fragment methods: [.launch(arg), .registAction(action), .registAnimation(animation, second)]");
     console.log("support Fragment getter: [.rid]")
     console.log("support FragMutation methods: [.mutate(fragment, arg, alwayRefresh = false), .setRouter(rid, domlist), .refresh()]")

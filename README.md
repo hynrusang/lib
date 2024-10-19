@@ -23,7 +23,7 @@ you should use not script tag but jade tag as an external script method.
 ...
 ```
 #### [Rose.js](/js/Rose.js)
-As an external Module, you may need this CDN to automatically manage the 2.x version library below.
+As an external Module, you may need this CDN to automatically manage the 2.x version library below.  
 If you want to use it, you will need insert the following script into the external module script.
 ```js
 import loadModule from "https://hynrusang.github.io/lib/js/Rose.js";

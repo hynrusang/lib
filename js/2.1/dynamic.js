@@ -7,12 +7,7 @@ js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
  */
 const FragDom = class {
     #node;
-    /**
-     * @type {() => HTMLElement}
-     */
-    get node() {
-        return this.#node;
-    }
+
     /**
      * @type {(additional: Object) => FragDom}
      */
@@ -52,6 +47,13 @@ const FragDom = class {
         this.#node.innerHTML = "";
         this.add(...dom);
         return this;
+    }
+
+    /**
+     * @type {() => HTMLElement}
+     */
+    get node() {
+        return this.#node;
     }
     /**
      * @type {(node: string | HTMLElement, additional: Object?) => FragDom}

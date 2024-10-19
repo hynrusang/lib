@@ -15,7 +15,8 @@ If you want to use it, you will need to add your html tag as in the following ex
 notice:
 Unlike other CDNs, this CDN has some framework properties.  
 Therefore, if you want to create another script that interacts with the script that is automatically imported into this CDN,  
-you should use not script tag but jade tag as an external script method.
+you should use not script tag but jade tag as an external script method.  
+(internal scripting is not allowed)
 ```html
 <jade src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></jade>
 <jade src="/resource/js/pageImport.js"></jade>

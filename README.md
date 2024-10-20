@@ -7,7 +7,7 @@ As an external CDN, you may need this CDN to automatically manage the 1.x versio
 If you want to use it, you will need to add your html tag as in the following example  
 (or statically add the 1.x version of script directly below)
 ```html
-<script src="https://hynrusang.github.io/js-lib/jade.js">
+<script src="https://hynrusang.github.io/lib/js/jade.js">
     dynamic, release;
     livedata, release;
 </script>

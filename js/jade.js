@@ -13,7 +13,7 @@ To utilize jade.js, HTML scripts must be written as external scripts rather than
 Versions must be valid version numbers, "release", "prerelease", or "developer".
 
 Example Usage:
-<script src="https://hynrusang.github.io/js-lib/jade.js">
+<script src="https://hynrusang.github.io/lib/js/jade.js">
     dynamic, developer;
     livedata, developer;
 </script>

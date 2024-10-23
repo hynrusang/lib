@@ -166,7 +166,7 @@ const Fragment = class {
         return this;
     }
     /**
-     * @type {(animation: FragAnimation, second: Number) => Fragment}
+     * @type {(animation: string, second: Number) => Fragment}
      */
     registAnimation = (animation, second) => {
         this.#swipAnimation = animation;

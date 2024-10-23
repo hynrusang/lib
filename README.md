@@ -73,7 +73,7 @@ Fragmentbox의 동작에는 내부 &lt;fragment&gt;들을 동적으로 관리하
 ```js
 FragMutation.mutate(Sec1)
 ```
-은 현재 실행중인 rid와 비교해서 다른 rid로 Fragmemt를 전환할 경우 적절한 동작을 거쳐 이전 내용을 가져가면서 동시에 다른 작업을 수행할 수 있게 합니다.  
+은 현재 실행중인 rid와 전환하려는 Fragment의 rid를 비교해서 fragment.launch를 단순 실행시키거나 대신 전환하려는 rid에 캐시해둔, 이전에 실행했던 Fragment를 복구하는 작업을 수행합니다.  
 FragMutation이 할 수 있는 일은 이보다 더 다양하고 다소 복잡하므로, 다른 작업은 내부 문서를 참조해 주십시오.
 #### [livedata.js](/js/2.0/livedata.js)
 1. It provides a class that detects changes in data and a class that safely manages multiple liveable objects.

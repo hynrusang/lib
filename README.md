@@ -65,7 +65,7 @@ Sec1.launch()
 는 launch될 때 swip 애니메이션을 1s(1000ms)동안 실행하면서 mainSection이라는 rid를 가진 &lt;fragment&gt; 내부를 동적으로 전환합니다.
 ##### FragMutation
 앞서 사용했던 Fragment는 동적으로 요소를 전환하기 때문에 도중에 다른 Fragment로 전환할 경우, 이전에 했던 행동이 기억되지 않을 수 있습니다. 그리고 이는 동일 사이트에서 음악 재생을 하면서 다른 작업을 수행하는 등의 기능 구현에 에로가 발생할 수 있습니다.  
-서로 다른 rid를 가진 &lt;fragment&gt; 태그를 두개 이상 두고 fragment도 rid 값을 다르게 준 뒤, 특정 event listener에 적절한 기능을 직접 구현하는 식으로 구현할 수 있지만, FragMutation은 보다 더 쉬운 방식과 효율적인 방식으로 이를 지원합니다.  
+서로 다른 rid를 가진 &lt;fragment&gt; 태그를 두개 이상 두고 Fragment도 rid 값을 다르게 준 뒤, 특정 event listener에 적절한 기능을 직접 구현하는 식으로 구현할 수 있지만, FragMutation은 보다 더 쉬운 방식과 효율적인 방식으로 이를 지원합니다.  
 해당 요소는 내부 html에 별도의 rid를 가진 &lt;fragmentbox&gt; 태그를 필요로 합니다.  
 Fragmentbox의 동작에는 내부 &lt;fragment&gt;들을 동적으로 관리하는 기능도 있으므로 &lt;fragment&gt; 요소는 가급적 사용하지 마십시오.  
   

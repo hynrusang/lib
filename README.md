@@ -62,7 +62,7 @@ const Sec1 = new Fragment("mainSection",
 ).registAnimation("swip", 1000)
 Sec1.launch()
 ```
-는 launch될 때 swip 애니메이션을 1s(1000ms)동안 실행하면서 mainSection이라는 rid를 가진 &lt;fragment&gt; 내부를 동적으로 전환합니다.
+는 launch될 때 swip 애니메이션을 1s(1000ms)동안 실행하면서 mainSection이라는 rid를 가진 &lt;fragment&gt; 내부를 동적으로 **변경**합니다.
 ##### FragMutation
 앞서 사용했던 Fragment는 동적으로 요소를 전환하기 때문에 도중에 다른 Fragment로 전환할 경우, 이전에 했던 행동이 기억되지 않을 수 있습니다. 그리고 이는 스마트폰의 다중 애플리케이션같이, 동일 사이트에서 다수의 작업을 동시에 수행하는 등의 기능 구현에 에로가 발생할 수 있습니다.  
 서로 다른 rid를 가진 &lt;fragment&gt; 태그를 두개 이상 두고 Fragment도 rid 값을 다르게 준 뒤, 특정 event listener에 적절한 기능을 직접 구현하는 식으로 구현할 수 있지만, FragMutation은 보다 더 쉬운 방식과 효율적인 방식으로 이를 지원합니다.  

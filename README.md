@@ -41,7 +41,7 @@ const [Dynamic, LiveData] = await Promise.all([
 #### 사용법
 1. 기본적인 dynamic.js의 사용법은 다음과 같습니다.
 ##### $
-동적으로 다룰 수 있는 html dom을 만들어서 FragDom 객체를 만들어서 반환합니다.  
+동적으로 다룰 수 있는 html dom을 만들어서 FragDom 객체에 담아 반환합니다.  
   
 예를 들어
 ```js

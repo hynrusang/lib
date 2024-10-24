@@ -64,7 +64,7 @@ Sec1.launch()
 ```
 는 launch될 때 swip 애니메이션을 1s(1000ms)동안 실행하면서 mainSection이라는 rid를 가진 &lt;fragment&gt; 내부를 동적으로 **변경**합니다.
 ##### FragMutation
-앞서 사용했던 Fragment는 동적으로 요소를 전환하기 때문에 도중에 다른 Fragment로 전환할 경우, 이전에 했던 행동이 기억되지 않을 수 있습니다. 그리고 이는 스마트폰의 다중 애플리케이션같이, 동일 사이트에서 다수의 작업을 동시에 수행하는 등의 기능 구현에 에로가 발생할 수 있습니다.  
+앞서 사용했던 Fragment는 동적으로 요소를 변경하기 때문에 도중에 다른 Fragment로 전환할 경우, 이전에 했던 행동이 기억되지 않을 수 있습니다. 그리고 이는 스마트폰의 다중 애플리케이션같이, 동일 사이트에서 다수의 작업을 동시에 수행하는 등의 기능 구현에 에로가 발생할 수 있습니다.  
 서로 다른 rid를 가진 &lt;fragment&gt; 태그를 두개 이상 두고 Fragment도 rid 값을 다르게 준 뒤, 특정 event listener에 적절한 기능을 직접 구현하는 식으로 구현할 수 있지만, FragMutation은 보다 더 쉬운 방식과 효율적인 방식으로 이를 지원합니다.  
 해당 요소는 내부 html에 별도의 rid를 가진 &lt;fragmentbox&gt; 태그를 필요로 합니다.  
 Fragmentbox의 동작에는 내부 &lt;fragment&gt;들을 동적으로 관리하는 기능도 있으므로 &lt;fragment&gt; 요소는 가급적 사용하지 마십시오.  
@@ -75,7 +75,7 @@ FragMutation.mutate(Sec1)
 ```
 은 현재 실행중인 rid와 전환하려는 Fragment의 rid를 비교해서 fragment.launch를 단순 실행시키거나 대신 전환하려는 rid에 캐시해둔, 이전에 실행했던 Fragment를 복구하는 작업을 수행합니다.  
 캐시되어있는 Fragment가 없을 경우, 내부적으로 &lt;fragment&gt; 요소를 자동으로 할당하고 캐시해둡니다.  
-FragMutation이 할 수 있는 일은 이보다 더 다양하고 다소 복잡하므로, 다른 작업은 내부 문서를 참조해 주십시오.
+FragMutation이 할 수 있는 일은 이보다 더 다양하고 다소 복잡하므로, 추가적인 작업은 내부 문서를 참조해 주십시오.
 #### [livedata.js](/js/2.0/livedata.js)
 1. It provides a class that detects changes in data and a class that safely manages multiple liveable objects.
 2. If desired, you can also proceed with an additional type check to prevent value conversion to mismatched types.

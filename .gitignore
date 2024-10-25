@@ -1,0 +1,6 @@
+c/.vs/
+c/x64/
+c/*.db
+java/bin
+.metadata
+desktop.ini

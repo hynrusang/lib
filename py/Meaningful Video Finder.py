@@ -21,7 +21,7 @@ YOUTUBE_API = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
 CHANNEL_ID = "TO_ANALYZE_CHANEEL_ID"
 
 # Variable data for the program
-masterpiece_classification_point = int(input("How much value do you want to set to meet Per Day Views (PDW)?\n(Recommended:  Average View x Desired channel Growth Rate / 100):") or 0)
+masterpiece_classification_point = int(input("How much value do you want to set to meet Per Day Views (PDW)?\n(Recommended: Average daily Views x Desired channel Growth Rate / 100):") or 0)
 masterpiece_list = []
 foundation_num = 0
 next_page_token = None

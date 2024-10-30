@@ -65,11 +65,10 @@ while True:
             
             pdw = views / passed_timestamp
             if masterpiece_classification_point <= pdw: masterpiece_list.append({"title": title, "pdw": pdw})
-            
-    if int(input(f"found {len(masterpiece_list)} meaningful Video Data out of the Current {foundation_num} Videos.\nShould Keep going? (0: Stop 1: Keep going):") or 1) == 0: break;
-    
+
     next_page_token = all_search_data["nextPageToken"] if "nextPageToken" in all_search_data else None
     if not next_page_token: break
+    if int(input(f"found {len(masterpiece_list)} meaningful Video Data out of the Current {foundation_num} Videos.\nShould Keep going? (0: Stop 1: Keep going):") or 1) == 0: break;
 
 print("\nList of final selected meaningful Videos:")
 grade_width = len(masterpiece_list) // 10

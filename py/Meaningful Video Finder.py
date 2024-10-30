@@ -1,10 +1,10 @@
 """
 이 프로그램은 주어진 YouTube 채널에서 동영상을 검색하고,
-사용자가 설정한 기준 PDW(Per Day Views)를 충족하는 동영상의 제목과 PDW를 출력합니다.
+사용자가 설정한 Average Daily Views를 충족하는 동영상의 제목과 PDW를 출력합니다.
 해당 지표를 통해서, 해당 채널이 성장하는데 특히 도움을 준 영상들이 무엇인지 분석할 수 있습니다.
 
 This program searches for videos on a given YouTube channel,
-Outputs the title and PDW of the video that meets the user's set criteria for Per Day Views (PDW).
+Outputs the title and PDW of the video that meets the user's set criteria for Average Daily Views.
 Through this indicator, you can analyze what videos have particularly helped the channel grow.
 
 작성자: 환류상
@@ -21,13 +21,13 @@ YOUTUBE_API = build('youtube', 'v3', developerKey=YOUTUBE_API_KEY)
 CHANNEL_ID = "TO_ANALYZE_CHANEEL_ID"
 
 # Variable data for the program
-masterpiece_classification_point = int(input("How much value do you want to set to meet Per Day Views (PDW)?\n(Recommended: Average daily Views x Desired channel Growth Rate / 100):") or 0)
+masterpiece_classification_point = int(input("How many Average Daily Views do you want to like to filter?\n(Recommended: Average daily Views x Desired channel Growth Rate / 100):") or 0)
 masterpiece_list = []
 foundation_num = 0
 next_page_token = None
 today = datetime.now()
 
-def formatting_str(text, max_length=25):
+def formatting_str(text, max_length=40):
     length = 0
     for i, char in enumerate(text):
         if unicodedata.east_asian_width(char) in "WF": length += 2

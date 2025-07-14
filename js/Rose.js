@@ -1,51 +1,33 @@
 ﻿/*
 Rose Module Loader
-Info:
-This module loader facilitates importing modules from a specified URL, enhancing module management in JavaScript projects.
 
-How it works:
-To use this module loader, import it into your JavaScript module. 
-Then, call the loadModule function, providing the module name and version as arguments. 
-The loader dynamically fetches the module based on the provided version information and returns a Promise that resolves to the imported module.
-
-Notes:
-Version numbers or selector (such as developer, pre-release, release) must be specified as strings.
-Rose can only import modules with version 2.X or higher.
-
-Example Usage:
-(index.html)
-<script src="/resource/js/init/module.js" type="module"></script>
-
-(module.js)
+How to Use:
 import loadModule from "https://hynrusang.github.io/lib/js/Rose.js";
 const [Dynamic, LiveData] = await Promise.all([
     loadModule("dynamic", "2.0"),
     loadModule("livedata", "2.0")
 ]);
-export { Dynamic, LiveData }
+
+Notes:
+- Only supports modules version 2.X or higher.
+- Version selectors (e.g., "release", "pre_release", "developer") must be strings.
 */
 const versionInfo = {
-    dynamic: {
-        release: "2.0",
-        pre_release: "2.1",
-        developer: "2.1"
-    },
-    livedata: {
-        release: "2.0",
-        pre_release: "2.0",
-        developer: "2.0"
-    }
+    dynamic: { release: "2.0", pre_release: "2.1", developer: "2.1" },
+    livedata: { release: "2.0", pre_release: "2.0", developer: "2.0" }
 };
-const dataParser = (name, version) => {
-    version = version.trim();
-    if (versionInfo[name][version]) return `./${versionInfo[name][version]}/${name}.js`;
-    if (2 <= parseInt(version[0])) return `./${version}/${name}.js`;
-    console.warn(`Rose can only import 2.X or higher modules. ${version} by migrating to ${versionInfo[name].release}.`);
-    return `./${versionInfo[name].release}/${name}.js`;
-}
-const loadModule = async (name, version) => {
-    const roseModule = await import(dataParser(name, version));
-    return roseModule;
-}
+
+const getModulePath = (name, version) => {
+    const trimmed = version.trim();
+    const vmap = versionInfo[name];
+
+    if (vmap[trimmed]) return `./${vmap[trimmed]}/${name}.js`;
+    if (2 <= parseInt(trimmed[0])) return `./${trimmed}/${name}.js`;
+    console.warn(`Rose only supports 2.X or higher. Downgrade attempt to ${trimmed} -> defaulting to ${vmap.release}`);
+    return `./${vmap.release}/${name}.js`;
+};
+
+
+const loadModule = async (name, version) => import(dataParser(name, version));
 
 export default loadModule;

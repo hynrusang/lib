@@ -2,7 +2,7 @@
 js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
 작성자: 환류상
  */
-console.warn("From this version, We will no longer update the 1.X version.\nWe recommend using a 'Rose' model that deals with models 2.0 or higher.");
+console.warn("From this version, I will no longer update the 1.X version.\nI recommend using a 'Rose' model that deals with models 2.0 or higher.");
 const FragDom = class {
     #node;
     /**

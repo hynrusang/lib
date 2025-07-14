@@ -4,14 +4,14 @@ js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
 
 업데이트 내역
 1. FragMutation.refresh()를 할 때, 현재 Fragment 객체의 모든 스크롤 정보를 같이 동기화.
-2. 내부 FragDom 구조체 최적화
+2. 내부 FragDom 구조체 최적화 (이름 수정 FragDom => DocumentContainer)
  */
-const FragDom = class {
+const DocumentContainer = class {
     #node;
 
     /**
-     * @type {(...dom: FragDom) => FragDom}
-     * @description Appends one or more FragDom elements to the current node.
+     * @type {(...dom: DocumentContainer) => DocumentContainer}
+     * @description Appends one or more DocumentContainer elements to the current node.
      */
     add = (...dom) => {
         for (const pdom of dom) { 
@@ -22,7 +22,7 @@ const FragDom = class {
     }
 
     /**
-     * @type {(additional: Object) => FragDom}
+     * @type {(additional: Object) => DocumentContainer}
      * @description Sets various properties or attributes of the DOM element.
      */
     set = additional => {
@@ -38,7 +38,7 @@ const FragDom = class {
     };
 
     /**
-     * @type {(...dom?: FragDom) => FragDom}
+     * @type {(...dom?: DocumentContainer) => DocumentContainer}
      * @description Clears the current node’s children and appends new ones.
      */
     reset = (...dom) => {
@@ -49,14 +49,14 @@ const FragDom = class {
 
     /**
      * @type {() => HTMLElement}
-     * @description Returns the underlying native HTMLElement associated with this FragDom instance.
+     * @description Returns the underlying native HTMLElement associated with this DocumentContainer instance.
      */
     get node() {
         return this.#node;
     }
 
     /**
-     * @type {(node: string | HTMLElement, additional: Object?) => FragDom}
+     * @type {(node: string | HTMLElement, additional: Object?) => DocumentContainer}
      */
     constructor(node, additional) {
         if (typeof node !== "string" && !node instanceof HTMLElement) throw new TypeError("node is not instanceof HTMLElement. node must be instanceof HTMLElement");
@@ -66,9 +66,9 @@ const FragDom = class {
 }
 
 /**
- * @type {(node: string | HTMLElement, additional?: Object) => FragDom}
+ * @type {(node: string | HTMLElement, additional?: Object) => DocumentContainer}
  */
-const $ = (node, additional) => new FragDom(node, additional);
+const $ = (node, additional) => new DocumentContainer(node, additional);
 
 /** 
  * @type {{
@@ -81,9 +81,9 @@ const scan = selector => (typeof selector == "string") ? (selector[0] == "!") ? 
 
 /**
  * @type {{
- * (selector: `!${string}`) => FragDom[]
- * (selector: string) => FragDom
- * (selector: HTMLElement) => FragDom
+ * (selector: `!${string}`) => DocumentContainer[]
+ * (selector: string) => DocumentContainer
+ * (selector: HTMLElement) => DocumentContainer
  * }}
  */
 const snipe = selector => {
@@ -175,7 +175,7 @@ const Fragment = class {
         return this.#rid;
     }
     /**
-     * @type {(view: String, ...domlist: FragDom | FragDom[]) => Fragment}
+     * @type {(view: String, ...domlist: DocumentContainer | DocumentContainer[]) => Fragment}
      */
     constructor(view, ...domlist) {
         this.#rid = view;
@@ -211,7 +211,7 @@ const FragMutation = class {
         }
     };
     /**
-     * @type {(rid: String, domlist: FragDom[]) => void}
+     * @type {(rid: String, domlist: DocumentContainer[]) => void}
      */
     static setRouter = (rid, domlist) => {
         this.#launchedInfo.router[rid] = domlist;

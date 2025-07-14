@@ -4,12 +4,26 @@ js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
 
 업데이트 내역
 1. FragMutation.refresh()를 할 때, 현재 Fragment 객체의 모든 스크롤 정보를 같이 동기화.
+2. 내부 FragDom 구조체 최적화
  */
 const FragDom = class {
     #node;
 
     /**
+     * @type {(...dom: FragDom) => FragDom}
+     * @description Appends one or more FragDom elements to the current node.
+     */
+    add = (...dom) => {
+        for (const pdom of dom) { 
+            if (Array.isArray(pdom)) this.add(...pdom);
+            else this.#node.appendChild((pdom instanceof DocumentContainer) ? pdom.node : pdom);
+        }
+        return this;
+    }
+
+    /**
      * @type {(additional: Object) => FragDom}
+     * @description Sets various properties or attributes of the DOM element.
      */
     set = additional => {
         if (typeof additional === 'object') {
@@ -22,26 +36,10 @@ const FragDom = class {
         } else throw new TypeError('Additional parameter must be an {key: value} object');
         return this;
     };
-    /**
-     * @type {(num: number) => FragDom}
-     */
-    remove = num => {
-        this.#node.removeChild(this.children(num).node);
-        return this;
-    }
-    /**
-     * @type {(num: number) => FragDom}
-     */
-    children = num => this.#node.children[num] ? new FragDom(this.#node.children[num]) : null;
-    /**
-     * @type {(...dom: FragDom) => FragDom}
-     */
-    add = (...dom) => {
-        for (let pdom of dom.flat()) pdom ? this.#node.appendChild(pdom.node) : null;
-        return this;
-    }
+
     /**
      * @type {(...dom?: FragDom) => FragDom}
+     * @description Clears the current node’s children and appends new ones.
      */
     reset = (...dom) => {
         this.#node.innerHTML = "";
@@ -49,9 +47,14 @@ const FragDom = class {
         return this;
     }
 
+    /**
+     * @type {() => HTMLElement}
+     * @description Returns the underlying native HTMLElement associated with this FragDom instance.
+     */
     get node() {
         return this.#node;
     }
+
     /**
      * @type {(node: string | HTMLElement, additional: Object?) => FragDom}
      */
@@ -61,10 +64,12 @@ const FragDom = class {
         if (typeof additional !== 'undefined') this.set(additional);
     }
 }
+
 /**
  * @type {(node: string | HTMLElement, additional?: Object) => FragDom}
  */
 const $ = (node, additional) => new FragDom(node, additional);
+
 /** 
  * @type {{
  * (selector: `!${string}`) => NodeListOf<HTMLElement>;
@@ -73,6 +78,7 @@ const $ = (node, additional) => new FragDom(node, additional);
  * }}
  */
 const scan = selector => (typeof selector == "string") ? (selector[0] == "!") ? document.querySelectorAll(selector.split("!")[1]) : document.querySelector(selector) : selector;
+
 /**
  * @type {{
  * (selector: `!${string}`) => FragDom[]

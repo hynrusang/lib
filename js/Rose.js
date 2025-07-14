@@ -27,7 +27,7 @@ export { Dynamic, LiveData }
 const versionInfo = {
     dynamic: {
         release: "2.0",
-        pre_release: "2.0",
+        pre_release: "2.1",
         developer: "2.1"
     },
     livedata: {

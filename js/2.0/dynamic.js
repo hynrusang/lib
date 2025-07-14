@@ -32,16 +32,22 @@ const FragDom = class {
         return this;
     };
     /**
+     * @deprecated This method is not supported starting with 2.1.
      * @type {(num: number) => FragDom}
      */
     remove = num => {
+        console.warn("This method is not supported starting with 2.1.");
         this.#node.removeChild(this.children(num).node);
         return this;
     }
     /**
+     * @deprecated This method is not supported starting with 2.1.
      * @type {(num: number) => FragDom}
      */
-    children = num => this.#node.children[num] ? new FragDom(this.#node.children[num]) : null;
+    children = num => {
+        console.warn("This method is not supported starting with 2.1.");
+        return this.#node.children[num] ? new FragDom(this.#node.children[num]) : null;
+    }
     /**
      * @type {(...dom: FragDom) => FragDom}
      */

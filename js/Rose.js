@@ -28,6 +28,6 @@ const getModulePath = (name, version) => {
 };
 
 
-const loadModule = async (name, version) => import(dataParser(name, version));
+const loadModule = async (name, version) => import(getModulePath(name, version));
 
 export default loadModule;

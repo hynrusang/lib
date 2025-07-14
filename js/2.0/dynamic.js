@@ -14,6 +14,10 @@ js로 html 요소를 동적으로 더 쉽게 다룰 수 있게 해 줍니다.
 1. Fragment.refreshFragment: merged by FragMutation.refresh
 2. Fragment.launchedFragment: merged by FragMutation.mutate
  */
+
+/**
+ * @description This class will be renamed to `DocumentContainer` starting from version 2.1.
+ */
 const FragDom = class {
     #node;
 
@@ -71,6 +75,8 @@ const FragDom = class {
      * @type {(node: string | HTMLElement, additional: Object?) => FragDom}
      */
     constructor(node, additional) {
+        console.warn("FragDom will be renamed to `DocumentContainer` in version 2.1.")
+
         if (typeof node !== "string" && !node instanceof HTMLElement) throw new TypeError("node is not instanceof HTMLElement. node must be instanceof HTMLElement");
         this.#node = (typeof node === "string") ? document.createElement(node) : node;
         if (typeof additional !== 'undefined') this.set(additional);

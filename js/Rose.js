@@ -14,7 +14,7 @@ Notes:
 */
 const versionInfo = {
     dynamic: { release: "2.0", pre_release: "2.1", developer: "2.1" },
-    livedata: { release: "2.0", pre_release: "2.0", developer: "2.0" }
+    livedata: { release: "2.0", pre_release: "2.0", developer: "2.1" }
 };
 
 const getModulePath = (name, version) => {

@@ -114,7 +114,7 @@ const Fragment = class {
             const animationDuration = { duration: fragment.#animationExcuteTime * 0.5 };
 
             if (view.node.innerHTML) {
-                await view.node.animate(animationIn, animationDuration).finished();
+                await view.node.animate(animationIn, animationDuration).finished;
                 view.reset(fragment.#domlist);
                 view.node.animate(animationOut, animationDuration);
             } else view.reset(fragment.#domlist);

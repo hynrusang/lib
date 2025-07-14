@@ -16,7 +16,8 @@ const DocumentContainer = class {
     add = (...dom) => {
         for (const pdom of dom) { 
             if (Array.isArray(pdom)) this.add(...pdom);
-            else this.#node.appendChild((pdom instanceof DocumentContainer) ? pdom.node : pdom);
+            else if (pdom instanceof DocumentContainer) this.#node.appendChild(pdom.node);
+            else if (pdom instanceof HTMLElement) this.#node.appendChild(pdom);
         }
         return this;
     }

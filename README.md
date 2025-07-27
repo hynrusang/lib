@@ -70,12 +70,12 @@ These will be automatically converted and appended to the body.
 ### 🎨 [dynamic.js](/js/2.1/dynamic.js) - The Dynamic UI Library  
 `dynamic.js` provides tools to build and manage your UI programmatically.  
 
-#### `$` (or `new DocumentContainer`)  
+#### ⚙️ `$` (or `new DocumentContainer`)  
 The `$` function is a factory for creating `DocumentContainer` objects,  
 which wrap HTML elements and provide a chainable API for modifying them.  
 ```javascript
 // Assuming 'Dynamic' module has been loaded
-const { $ } = Dynamic;
+const { $, scan, snipe, Fragment, FragMutation } = Dynamic;
 
 const card = $("div", { id: "main-card", class: "card-container" }).add(
     $("h1", { class: "title", text: "Welcome!" }),
@@ -88,9 +88,32 @@ const card = $("div", { id: "main-card", class: "card-container" }).add(
 
 // Append the created element to the body
 document.body.appendChild(card.node);
-```
+```  
+  
+#### 🎯 `scan`  
+A wrapper for `document.querySelector` and `querySelectorAll`.  
+It returns native `HTMLElement`(s). Use a `!` prefix in the selector to get all matching elements.  
+```javascript
+// Get a single element by its ID
+const titleElement = scan("#main-title");
 
-#### `new Fragment`  
+// Get all list items as a NodeList
+const allItems = scan("!ul > li");
+allItems.forEach(item => console.log(item.innerText));
+```  
+  
+#### 🎯 `snipe`  
+Similar to `scan`, but it returns `DocumentContainer` instance(s) instead of native elements.  
+This allows you to immediately chain methods like `.set()` or `.add()`.  
+```javascript
+// Get a single element and chain a method
+snipe("#main-title").set({ style: "color: blue;" });
+
+// Get multiple elements and apply a class to all of them
+snipe("!button").forEach(button => button.set({ class: "btn-primary" }));
+```  
+  
+#### 🧩 `new Fragment`  
 A `Fragment` represents an independent, swappable section of your UI, like a page or a component.  
 Each `Fragment` is rendered into a `<fragment>` tag with a matching `rid` (route ID).  
 ```javascript
@@ -101,7 +124,7 @@ const mainPage = new Fragment("mainPage",
 ).registAnimation("fade", 500); // Apply a 0.5s fade animation on launch
 ```  
   
-#### `FragMutation`  
+#### 🚀 `FragMutation`  
 `FragMutation` manages multiple `Fragment`s, enabling you to build a Single Page Application.  
 It handles the lifecycle of fragments, caches their state, and renders them into a single `<fragmentbox>` element in your HTML.  
   
@@ -135,7 +158,7 @@ To force a full refresh every time, use `mutate(fragment, null, true)`.
 ### 🔄 [livedata.js](/js/2.1/livedata.js) - The Reactive Data Library  
 `livedata.js` provides reactive data objects that allow you to observe changes and automatically trigger side effects.  
   
-#### `$` (or `new LiveData`)  
+#### ⚙️ `$` (or `new LiveData`)  
 The core of the library. It creates a `LiveData` object that holds a value.  
 By providing an `observer` callback, you can execute code whenever the value changes.  
 ```javascript
@@ -157,7 +180,7 @@ count.value = 5;  // UI updates to "Current count: 5"
 count.value += 10; // UI updates to "Current count: 15"
 ```  
   
-#### `LiveManager`  
+#### 📦 `LiveManager`  
 A `LiveManager` provides a safe and organized way to manage a group of related `LiveData` objects.  
 ```javascript
 const userProfileManager = new LiveManager({

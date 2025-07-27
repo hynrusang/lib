@@ -5,9 +5,9 @@ This library is dependency-free, works without any build steps, and can be seaml
 ---
 ## ✨ Key Features  
 - **Lightweight & Flexible**: Unlike complex frameworks, you can pick and choose only the functions you need, keeping your project light and agile.  
-- **Intuitive DOM Control**: [dynamic.js](/js/2.1/dynamic.js) allows you to create and manipulate HTML elements programmatically with a clean, chainable syntax.  
+- **Intuitive DOM Control**: [dynamic.js](2.1/dynamic.js) allows you to create and manipulate HTML elements programmatically with a clean, chainable syntax.  
 - **Effortless SPAs**: Implement Single Page Applications with multiple sub-pages intuitively using `Fragment` and `FragMutation`.  
-- **Reactive Data Management**: Use [livedata.js](/js/2.1/livedata.js) to create data objects that automatically trigger actions upon modification, simplifying state management.  
+- **Reactive Data Management**: Use [livedata.js](2.1/livedata.js) to create data objects that automatically trigger actions upon modification, simplifying state management.  
   
 ---
 ## 🚀 Getting Started  
@@ -64,7 +64,7 @@ These will be automatically converted and appended to the body.
 ```  
 
 ---
-## 🎨 [dynamic.js](/js/2.1/dynamic.js) - The Dynamic UI Library  
+## 🎨 [dynamic.js](2.1/dynamic.js) - The Dynamic UI Library  
 `dynamic.js` provides tools to build and manage your UI programmatically.  
 
 ### ⚙️ `$` (or `new DocumentContainer`)  
@@ -152,7 +152,7 @@ FragMutation.mutate(mainPage);
 To force a full refresh every time, use `mutate(fragment, null, true)`.  
   
 ---
-## 🔄 [livedata.js](/js/2.1/livedata.js) - The Reactive Data Library  
+## 🔄 [livedata.js](2.1/livedata.js) - The Reactive Data Library  
 `livedata.js` provides reactive data objects that allow you to observe changes and automatically trigger side effects.  
   
 ### ⚙️ `$` (or `new LiveData`)  

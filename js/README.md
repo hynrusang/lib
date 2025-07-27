@@ -202,7 +202,7 @@ console.log(userProfileManager.toObject());
 // Outputs: { username: "Hwanryusang", isLoggedIn: true }
 ```  
   
-#### 💡 Helper Functions  
+## 💡 Helper Functions  
 Each library includes a `help()` function that logs a summary of its features and API to the console.  
 ```javascript
 Dynamic.help();

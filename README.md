@@ -67,4 +67,66 @@ These will be automatically converted and appended to the body.
 ```  
 
 ---
-### 🎨 [dynamic.js](/js/2.1/dynamic.js) - The Dynamic UI Library
+### 🎨 [dynamic.js](/js/2.1/dynamic.js) - The Dynamic UI Library  
+`dynamic.js` provides tools to build and manage your UI programmatically.  
+
+#### `$` (or `new DocumentContainer`)  
+The `$` function is a factory for creating `DocumentContainer` objects,  
+which wrap HTML elements and provide a chainable API for modifying them.  
+```javascript
+// Assuming 'Dynamic' module has been loaded
+const { $ } = Dynamic;
+
+const card = $("div", { id: "main-card", class: "card-container" }).add(
+    $("h1", { class: "title", text: "Welcome!" }),
+    $("p", { html: "This library helps you build <strong>dynamic UI</strong>." }),
+    $("button", {
+        text: "Click Me",
+        onclick: () => alert("Button was clicked!")
+    })
+);
+
+// Append the created element to the body
+document.body.appendChild(card.node);
+```
+
+#### `new Fragment`  
+A `Fragment` represents an independent, swappable section of your UI, like a page or a component.  
+Each `Fragment` is rendered into a `<fragment>` tag with a matching `rid` (route ID).  
+```javascript
+// Create a Fragment with the rid "mainPage"
+const mainPage = new Fragment("mainPage",
+    $("h2", { text: "Main Page" }),
+    $("p", { text: "This is the content of the main page." })
+).registAnimation("fade", 500); // Apply a 0.5s fade animation on launch
+```  
+  
+#### `FragMutation`  
+`FragMutation` manages multiple `Fragment`s, enabling you to build a Single Page Application.  
+It handles the lifecycle of fragments, caches their state, and renders them into a single `<fragmentbox>` element in your HTML.  
+  
+- Html  
+```html
+<body>
+    <nav>
+        <button id="btn-main">Main</button>
+        <button id="btn-about">About</button>
+    </nav>
+    <fragmentbox></fragmentbox>
+</body>
+```  
+  
+- Javascript  
+```javascript
+const mainPage = new Fragment("main", /* ... */);
+const aboutPage = new Fragment("about", /* ... */);
+
+// Switch between fragments
+document.getElementById("btn-main").onclick = () => FragMutation.mutate(mainPage);
+document.getElementById("btn-about").onclick = () => FragMutation.mutate(aboutPage);
+
+// Load the initial page
+FragMutation.mutate(mainPage);
+```  
+`FragMutation.mutate` intelligently caches the last state of a `Fragment`.  
+To force a full refresh every time, use `mutate(fragment, null, true)`.

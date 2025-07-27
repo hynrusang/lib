@@ -17,7 +17,7 @@ This library is dependency-free, works without any build steps, and can be seaml
 You have two ways to include these libraries in your project.  
 I recommend `Rose.js` for modern projects, while `jade.js` is available for legacy support.  
   
-#### **📦 Using `Rose.js` (v2.x, Recommended)**  
+#### 📦 Using `Rose.js` (v2.x, Recommended)  
 For modern projects, use the Rose.js module loader to import the 2.x versions of the libraries.  
 It leverages native ES Modules for asynchronous and efficient loading.
   
@@ -46,7 +46,7 @@ const name = prompt("what's your name?");
 document.body.appendChild(Dynamic.$("h1", { text: `hello, ${name}!` }).node);
 ```  
   
-#### **📜 Using `jade.js` (v1.x, Legacy)**  
+#### 📜 Using `jade.js` (v1.x, Legacy)  
 For older projects or non-module environments, you can use the `jade.js` script loader.
   
 1. **Add the `jade.js` script to your HTML**:  
@@ -65,4 +65,6 @@ These will be automatically converted and appended to the body.
 <jade src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></jade>
 <jade src="/resource/js/myApp.js"></jade>
 ```  
-  
+
+---
+### 🎨 [dynamic.js](/js/2.1/dynamic.js) - The Dynamic UI Library

@@ -4,10 +4,10 @@ This library is dependency-free, works without any build steps, and can be seaml
   
 ---
 ## ✨ Key Features  
-- **Lightweight & Flexible**: Unlike complex frameworks, you can pick and choose only the functions you need, keeping your project light and agile.  
-- **Intuitive DOM Control**: [dynamic.js](2.1/dynamic.js) allows you to create and manipulate HTML elements programmatically with a clean, chainable syntax.  
-- **Effortless SPAs**: Implement Single Page Applications with multiple sub-pages intuitively using `Fragment` and `FragMutation`.  
-- **Reactive Data Management**: Use [livedata.js](2.1/livedata.js) to create data objects that automatically trigger actions upon modification, simplifying state management.  
+- **Lightweight & Flexible**: Unlike complex frameworks, you can pick and choose only the functions you need, keeping your project light and agile.
+- **Intuitive DOM Control**: [dynamic.js](2.1/dynamic.js) allows you to create and manipulate HTML elements programmatically with a clean, chainable syntax.
+- **Effortless SPAs**: Implement Single Page Applications with multiple sub-pages intuitively using `Fragment` and `FragMutation`.
+- **Reactive Data Management**: Use [livedata.js](2.1/livedata.js) to create data objects that automatically trigger actions upon modification, simplifying state management.
   
 ---
 ## 🚀 Getting Started  

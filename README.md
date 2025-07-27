@@ -129,4 +129,64 @@ document.getElementById("btn-about").onclick = () => FragMutation.mutate(aboutPa
 FragMutation.mutate(mainPage);
 ```  
 `FragMutation.mutate` intelligently caches the last state of a `Fragment`.  
-To force a full refresh every time, use `mutate(fragment, null, true)`.
+To force a full refresh every time, use `mutate(fragment, null, true)`.  
+  
+---
+### 🔄 [livedata.js](/js/2.1/livedata.js) - The Reactive Data Library  
+`livedata.js` provides reactive data objects that allow you to observe changes and automatically trigger side effects.  
+  
+#### `$` (or `new LiveData`)  
+The core of the library. It creates a `LiveData` object that holds a value.  
+By providing an `observer` callback, you can execute code whenever the value changes.  
+```javascript
+// Assuming 'LiveData' module is loaded and its '$' is aliased to '$L'
+const { $L } = { $L: LiveData.$ };
+
+const countDisplay = document.getElementById("count");
+
+// Create a LiveData object. The observer updates the UI on change.
+const count = $L(0, {
+    type: Number, // Optional: enforce a type
+    observer: () => {
+        countDisplay.innerText = `Current count: ${count.value}`;
+    }
+});
+
+// Changing the value automatically triggers the observer
+count.value = 5;  // UI updates to "Current count: 5"
+count.value += 10; // UI updates to "Current count: 15"
+```  
+  
+#### `LiveManager`  
+A `LiveManager` provides a safe and organized way to manage a group of related `LiveData` objects.  
+```javascript
+const userProfileManager = new LiveManager({
+    username: $L("Guest", { type: String }),
+    isLoggedIn: $L(false, {
+      type: Boolean,
+      observer: () => {
+        if (this.value) console.log("Logined!");
+      }
+  })
+});
+
+// Read a value
+console.log(userProfileManager.value("username")); // "Guest"
+
+// Update a value (this will trigger the observer of the corresponding LiveData object)
+userProfileManager.value("username", "Hwanryusang");
+userProfileManager.value("isLoggedIn", true); // Outputs: Logined!
+
+// Get all current values as a plain object
+console.log(userProfileManager.toObject());
+// Outputs: { username: "Hwanryusang", isLoggedIn: true }
+```  
+  
+#### 💡 Helper Functions  
+Each library includes a `help()` function that logs a summary of its features and API to the console.  
+```javascript
+Dynamic.help();
+LiveData.help();
+```  
+  
+---

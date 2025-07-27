@@ -9,4 +9,6 @@ Integrated custom libraries by programming language
   
 ## 📚 Explore by Language  
 Explore the libraries available for each programming language.  
-1. [Javascript](/js/README.md)  
+- [C](/c/README.md)
+- [C++](/cpp/README.md)  
+- [Javascript](/js/README.md)  
